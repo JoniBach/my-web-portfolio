@@ -23,5 +23,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    "indent": ["warn", 4, {"SwitchCase": 1, "MemberExpression": 0}],
   },
 };

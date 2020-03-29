@@ -1,18 +1,19 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable no-tabs */
 import React from 'react';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-
+import MainDisplay from './components/MainDisplay/MainDisplay';
+import useStyles from './App.style';
 
 import './App.css';
 
 function App() {
-  return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <PersonPinIcon />
-      <Typography>James&apos; portfolio comming soon! </Typography>
-    </Box>
-  );
+  const styles = useStyles();
+
+    return (
+        <div className={styles.root}>
+            <MainDisplay />
+        </div>
+    );
 }
 
 export default App;
