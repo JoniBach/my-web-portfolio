@@ -1,12 +1,19 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable no-tabs */
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import MainDisplay from './components/MainDisplay/MainDisplay';
+import useStyles from './App.style';
 
 import './App.css';
 
 function App() {
-  return (
-    <div />
-  );
+  const styles = useStyles();
+
+    return (
+        <div className={styles.root}>
+            <MainDisplay />
+        </div>
+    );
 }
 
 export default App;
