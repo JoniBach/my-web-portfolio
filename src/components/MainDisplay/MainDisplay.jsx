@@ -8,18 +8,7 @@ import Button from '@material-ui/core/Button';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { Typography } from '@material-ui/core';
 import portrait from './portrait-01.jpg';
-import theme from '../../theme';
-
-
-const useStyles = makeStyles(() => ({
-    image: {
-        height: '500px',
-    },
-    button: {
-        backgroundColour: theme.palette.common.white,
-    },
-
-}));
+import useStyles from './MainDisplay.style';
 
 
 export default function MainDisplay() {
