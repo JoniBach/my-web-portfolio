@@ -2,30 +2,29 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { Typography } from '@material-ui/core';
-import portrait from './portrait-01.jpg';
 import useStyles from './MainDisplay.style';
+import logo from '../../logo2.svg';
 
 
 export default function MainDisplay() {
-    const classes = useStyles();
+    const styles = useStyles();
 
     return (
-        <Box>
-            <img className={classes.image} src={portrait} alt="logo" />
-            <Box>
+        <Box align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
+            <Box alignSelf="center" className={styles.root}>
+                <img src={logo} alt="My logo" className={styles.image} />
                 <Typography color="primary" variant="h4">
-                    James Crook
+                        James Crook
                 </Typography>
                 <Typography color="primary" variant="h6">
-                    Graduate Developer
+                        Graduate Developer
                 </Typography>
                 <Button href="https://www.linkedin.com/in/james-crook-492652185/" color="secondary" variant="outlined" startIcon={<LinkedInIcon />}>
-                  View Portfolio
+                        View Portfolio
                 </Button>
             </Box>
         </Box>
