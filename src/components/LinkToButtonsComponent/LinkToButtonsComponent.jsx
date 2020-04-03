@@ -20,7 +20,7 @@ const buttons = [
     {buttonText: 'LinkedIn', buttonIcon: <LinkedInIcon />, buttonlink:'https://www.linkedin.com/in/james-crook-492652185/'},
     {buttonText: 'Email', buttonIcon: <EmailIcon />, buttonlink: 'mailto:james@jamescrook.uk'},
     {buttonText: 'My CV', buttonIcon: <DriveIcon />, buttonlink: 'https://docs.google.com/document/d/1T7bBXvHs8SR6-YXDmXWAdowlkUAd7ONjOdUKwZ8-tvk/edit?usp=sharing?export=download' },
-    {buttonText: 'Instagram', buttonIcon: <Instagram />, buttonlink: 'https://www.instagram.com/jzcrook/'}
+    {buttonText: 'Instagram', buttonIcon: <Instagram />, buttonlink: 'https://www.google.com'}
 ]
   
 export default function LinkToButtonsComponent({ buttonText, buttonIcon, buttonlink }: buttonProps) {
