@@ -10,5 +10,8 @@ export default makeStyles(() => ({
     fullScreen: {
         height: '100vh',
         background: '#383234',
+    },
+    button: {
+        width: 20,
     }
 }));

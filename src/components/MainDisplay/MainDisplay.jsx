@@ -5,6 +5,10 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import Email from '@material-ui/icons/Email';
+import Drive from '@material-ui/icons/InsertDriveFile';
+
+
 import { Typography } from '@material-ui/core';
 import useStyles from './MainDisplay.style';
 import logo from '../../logo2.svg';
@@ -24,8 +28,13 @@ export default function MainDisplay() {
                         Graduate Developer
                 </Typography>
                 <Button href="https://www.linkedin.com/in/james-crook-492652185/" color="secondary" variant="outlined" startIcon={<LinkedInIcon />}>
-                        View Portfolio
+                        LinkedIn
                 </Button>
+                <Button href="mailto:james@jamescrook.uk" color="secondary" variant="outlined" startIcon={<Email />}>
+                    Email
+                </Button>
+
+
             </Box>
         </Box>
     );
