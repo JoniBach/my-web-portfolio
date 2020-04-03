@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
     image: {
-        height: '500px',
+        height: '350px',
     },
     root: {
         background: '#383234',
