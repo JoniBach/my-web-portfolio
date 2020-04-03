@@ -2,10 +2,8 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import { Typography } from '@material-ui/core';
+import LinkToButtonsComponent from '../LinkToButtonsComponent/LinkToButtonsComponent';
+import { Typography, Box } from '@material-ui/core';
 import useStyles from './MainDisplay.style';
 import logo from '../../logo2.svg';
 
@@ -23,9 +21,7 @@ export default function MainDisplay() {
                 <Typography color="primary" variant="h6">
                         Graduate Developer
                 </Typography>
-                <Button href="https://www.linkedin.com/in/james-crook-492652185/" color="secondary" variant="outlined" startIcon={<LinkedInIcon />}>
-                        View Portfolio
-                </Button>
+                <LinkToButtonsComponent />
             </Box>
         </Box>
     );
