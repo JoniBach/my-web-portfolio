@@ -5,7 +5,9 @@ import React from 'react';
 import LinkToButtonsComponent from '../LinkToButtonsComponent/LinkToButtonsComponent';
 import { Typography, Box } from '@material-ui/core';
 import useStyles from './MainDisplay.style';
-import logo from '../../logo2.svg';
+// import logo from '../../logo2.svg';
+ import logo from './portrait-01.jpg';
+
 
 
 export default function MainDisplay() {
