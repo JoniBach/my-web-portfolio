@@ -6,7 +6,7 @@ import LinkToButtonsComponent from '../LinkToButtonsComponent/LinkToButtonsCompo
 import { Typography, Box } from '@material-ui/core';
 import useStyles from './MainDisplay.style';
 // import logo from '../../logo2.svg';
- import logo from './portrait-01.jpg';
+import logo from './portrait-01.jpg';
 
 
 
@@ -15,7 +15,7 @@ export default function MainDisplay() {
 
     return (
         <Box align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
-            <Box alignSelf="center" className={styles.root}>
+            <Box alignSelf="center" className={styles.root} >
                 <img src={logo} alt="My logo" className={styles.image} />
                 <Typography color="primary" variant="h4">
                         James Crook
