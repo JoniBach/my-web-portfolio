@@ -10,12 +10,6 @@ import DriveIcon from '@material-ui/icons/InsertDriveFile';
 import useStyles from './LinkToButtonsComponent.style';
 import Instagram from '@material-ui/icons/Instagram';
 
-type buttonProps = {
-    buttonText: String;
-    buttonIcon: Array<Object>;
-    buttonlink: String;
-}
-
 const buttons = [
     {buttonText: 'LinkedIn', buttonIcon: <LinkedInIcon />, buttonlink:'https://www.linkedin.com/in/james-crook-492652185/'},
     {buttonText: 'Email', buttonIcon: <EmailIcon />, buttonlink: 'mailto:james@jamescrook.uk'},
@@ -23,7 +17,7 @@ const buttons = [
     {buttonText: 'Instagram', buttonIcon: <Instagram />, buttonlink: 'https://www.instagram.com/jzcrook/'}
 ]
   
-export default function LinkToButtonsComponent({ buttonText, buttonIcon, buttonlink }: buttonProps) {
+export default function LinkToButtonsComponent() {
     const styles = useStyles();
 
     return (
