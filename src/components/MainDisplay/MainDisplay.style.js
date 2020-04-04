@@ -9,7 +9,7 @@ export default makeStyles(() => ({
     },
     fullScreen: {
         height: '100vh',
-        background: '#383234',  
+        background: '#383234',
         minWidth: 'fit-content'
     },
     button: {
