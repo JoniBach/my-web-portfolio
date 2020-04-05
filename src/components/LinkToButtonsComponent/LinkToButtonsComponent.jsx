@@ -19,10 +19,11 @@ export default function LinkToButtonsComponent({buttons}: buttonProps) {
         <Box align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
             {
                 buttons.map((button) => (
+                    <Box px={0.5} >
                     <Button href={button.buttonlink} color="secondary" variant="outlined" startIcon={button.buttonIcon}>{button.buttonText}</Button>
+                    </Box>
                 ))
             }
-            
         </Box>
     );
 }
