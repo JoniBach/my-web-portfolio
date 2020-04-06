@@ -2,7 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        maxWidth: '100vw%',
+      },
+      page: {
+        maxWidth: '100%',
       },
       menuButton: {
         marginRight: theme.spacing(2),
@@ -14,8 +17,25 @@ export default makeStyles((theme) => ({
       highlightImage: {
           maxHeight: '700px',
           overflow: 'hidden',
-          width: '100%',
       },
+      logo: {
+          paddingRight: 5,
+      },
+      blackCard: {
+        background: 'black',
+        color: 'white',
+      },
+      greyCard: {
+        background: 'grey',
+        color: 'white',   
+      },
+      whiteCard: {
+        background: 'white',
+        color: 'black',   
+      },
+      image: {
+          paddingRight: 20,
+          maxWidth: '100%',
 
-
+      }
 }));
