@@ -3,6 +3,7 @@ import { createMuiTheme } from '@material-ui/core'
 import grey from '@material-ui/core/colors/grey';
 import green from '@material-ui/core/colors/green';
 import blue from '@material-ui/core/colors/blue';
+import lime from '@material-ui/core/colors/lime';
 
 
 const colors = {
