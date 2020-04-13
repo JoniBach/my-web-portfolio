@@ -4,6 +4,9 @@
 import React from 'react';
 import logo from './DemoSiteImages/wing_logo_01.png'
 import NavBar from '../NavBar/NavBar'
+import ProjectCard from '../ProjectCard/ProjectCard'
+import Box from '@material-ui/core/Box'
+
 
 const NavContent = [
     { buttonText: 'Home', buttonlink: '/' },
@@ -15,8 +18,13 @@ const NavImages = [
 ]
 
 export default function DemoSite() {
-
     return (
-        <NavBar navContent={NavContent} navImages={NavImages} />
+        <Box >
+            <NavBar navContent={NavContent} navImages={NavImages} />
+            <Box p={3}>
+            <ProjectCard />
+            </Box>
+        </Box>
+
     );
 }
