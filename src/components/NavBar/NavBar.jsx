@@ -4,7 +4,7 @@
 import AppBar from '@material-ui/core/AppBar';
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Typography, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import useStyles from '../LinkToButtonsComponent/LinkToButtonsComponent.style';
 import theme from '../../theme'
@@ -18,8 +18,6 @@ type navProps = {
     buttonVariant: String;
     navImage: Array<Object>;
 }
-
-
 
 export default function DemoSite({ navContent, navImages }: navProps) {
     const styles = useStyles(theme);
