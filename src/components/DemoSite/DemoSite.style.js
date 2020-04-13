@@ -12,14 +12,14 @@ export default makeStyles((theme) => ({
       },
       title: {
         flexGrow: 1,
-        // textAlign: 'center', 
+        // textAlign: 'center',
       },
       highlightImage: {
-          maxHeight: '700px',
-          overflow: 'hidden',
+        maxHeight: '700px',
+        overflow: 'hidden',
       },
       logo: {
-          paddingRight: 5,
+        paddingRight: 5,
       },
       blackCard: {
         background: 'black',
@@ -27,15 +27,14 @@ export default makeStyles((theme) => ({
       },
       greyCard: {
         background: 'grey',
-        color: 'white',   
+        color: 'white',
       },
       whiteCard: {
         background: 'white',
-        color: 'black',   
+        color: 'black',
       },
       image: {
-          paddingRight: 20,
-          maxWidth: '100%',
-
+        paddingRight: 20,
+        maxWidth: '100%',
       }
 }));

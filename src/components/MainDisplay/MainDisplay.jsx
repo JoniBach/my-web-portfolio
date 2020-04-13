@@ -27,7 +27,7 @@ export default function MainDisplay() {
 
     return (
         <Box width="100%" align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
-            <Box width="100%" alignSelf="center" className={styles.root} >
+            <Box width="100%" alignSelf="center" className={styles.root}>
                 <img src={logo} alt="My logo" className={styles.image} />
                 <Typography color="primary" variant="h4">
                         James Crook
