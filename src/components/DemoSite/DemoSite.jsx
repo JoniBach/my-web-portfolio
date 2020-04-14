@@ -18,7 +18,7 @@ const NavContent = [
     buttonlink: String
     */
     { buttonText: 'Home', buttonlink: '/' },
-    { buttonText: 'My Projects', buttonlink: '/demosite' },
+    { buttonText: 'Animations', buttonlink: '/demosite' },
 ]
 
 const NavImages = [
@@ -29,7 +29,7 @@ const NavImages = [
     { navImage: logo },
 ]
 
-const CardData = [
+const AnimationCardData = [
     /* 
     Each Object can take the following peramiters:  
     image: String
@@ -37,20 +37,27 @@ const CardData = [
     description: String
     href: String
     */
-    { image: 'https://www.wallpaperbetter.com/wallpaper/429/1000/856/basket-of-puppies-1080P-wallpaper-middle-size.jpg', title: 'Hi', description: 'hello', href: '/'},
-    { image: 'https://www.wallpaperbetter.com/wallpaper/429/1000/856/basket-of-puppies-1080P-wallpaper-middle-size.jpg'},
-    { title: 'Hi', description: 'hello', href: '/'},
-    
-
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/butterfly.png', title: 'Butterfly', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://youtu.be/R1_Z7zR6drM'},
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/parkinglot.png', title: 'Parking Lot', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=PoLar73R4Zw'},
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/rainbowcar.png', title: 'Rainbow Road', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=Fu2tjMiWqGU'},
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/rainbowman.png', title: 'Rainbow Man', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=TD0s8BGV2fQ&feature=youtu.be'},
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/strut.png', title: 'Strut Fur', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=ncLb4wvw9uY'},
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/wateralien.png', title: 'Fluid Alien', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=Wo40N4g04QI'},
 
 ]
 
+
+
+
 export default function DemoSite() {
+
+
     return (
         <Box>
             <NavBar navContent={NavContent} navImages={NavImages} />
             <Box p={3}>
-                <ProjectCard cardData={CardData} />
+                <ProjectCard cardData={AnimationCardData} />
+
             </Box>
         </Box>
 
