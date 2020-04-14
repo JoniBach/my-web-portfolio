@@ -3,7 +3,6 @@
 import React from 'react';
 import MainDisplay from './components/MainDisplay/MainDisplay';
 import DemoSite from './components/DemoSite/DemoSite';
-import Button from '@material-ui/core/Button'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
