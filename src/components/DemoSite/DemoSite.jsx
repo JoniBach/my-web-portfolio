@@ -23,7 +23,7 @@ const NavContent = [
     buttonlink: String
     */
     { buttonText: 'Home', buttonlink: '/' },
-    { buttonText: 'My Work', buttonlink: '/demosite' },
+    { buttonText: 'My Work', buttonlink: '#/demosite' },
 
 ]
 
