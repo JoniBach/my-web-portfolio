@@ -6,12 +6,8 @@ import logo from './DemoSiteImages/wing_logo_01.png'
 import NavBar from '../NavBar/NavBar'
 import ProjectCard from '../ProjectCard/ProjectCard'
 import Box from '@material-ui/core/Box'
-import { Typography, Card, Button } from '@material-ui/core';
-import useStyles from './DemoSite.style'
-
-function scrollWin() {
-    window.scrollTo(0, 300);
-  }
+import { Typography, Card, Button, Checkbox, FormGroup, FormControlLabel } from '@material-ui/core';
+import Icon from '@material-ui/icons/Face'
 
 const NavContent = [
     /* 
@@ -51,6 +47,18 @@ const AnimationCardData = [
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/wateralien.png', title: 'Fluid Alien', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=Wo40N4g04QI' },
 ]
 
+const GradshowData = [
+    /* 
+    Each Object can take the following peramiters:  
+    image: String
+    title: String
+    description: String
+    href: String
+    */
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/trumpbot.png', title: 'Trump Bot', description: 'A simulacrum of Donald Trump driven by a TensorFlow Neural Network, animated in Maya, rendered with Arnold', href: 'https://vimeo.com/317655498' },
+
+]
+
 const PhotographyCardData = [
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Two+Foxes+Complete+Sides.jpg', title: 'Two Foxes', description: 'A rendering of a building concept made to learn modeling in Cinema4D', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Two+Foxes+Complete+Sides.jpg' },
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Three+Spikes+Final.jpg', title: 'Three Spikes', description: 'A rendering of a building concept made to learn modeling in Cinema4D', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Three+Spikes+Final.jpg' },
@@ -65,18 +73,89 @@ const PhotographyCardData = [
 
 
 export default function DemoSite() {
+    const handleShowGrad = (event) => {
+        setShowGrad(event.target.checked);
+    };
+    const [showGrad, setShowGrad] = React.useState(true);
+
+    const handleShowAnimations = (event) => {
+        setShowAnimations(event.target.checked);
+    };
+    const [showAnimations, setShowAnimations] = React.useState(true);
+
+    const handleShowAPhotos = (event) => {
+        setShowPhotos(event.target.checked);
+    };
+    const [showPhotos, setShowPhotos] = React.useState(true);
+
+
+
     return (
         <Box>
             <NavBar navContent={NavContent} navImages={NavImages} />
             <Box px={3}>
-            <Box pt={4} pb={1}>
-                    <Typography variant="h4" component="h2">Animation</Typography>
-                </Box>
-                <ProjectCard cardData={AnimationCardData} />
-                <Box pt={4} pb={1}>
-                    <Typography variant="h4" component="h2">Photography</Typography>
-                </Box>
-                <ProjectCard cardData={PhotographyCardData} />
+                <FormGroup row>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={showGrad}
+                                onChange={handleShowGrad}
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />}
+                        label="Gradshow Project"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={showAnimations}
+                                onChange={handleShowAnimations}
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />}
+                        label="Animations"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={showPhotos}
+                                onChange={handleShowAPhotos}
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />}
+                        label="Photography"
+                    />
+                </FormGroup></Box>
+
+
+
+
+            <Box px={3}>
+                <FormGroup row>
+
+                    {showGrad ?
+                        <div>
+                            <Box pt={4} pb={1}>
+                                <Typography variant="h4" component="h2">Grad Show</Typography>
+                            </Box>
+                            <ProjectCard cardData={GradshowData} />
+                        </div>
+                        : null}
+                    {showAnimations ?
+                        <div>
+                            <Box pt={4} pb={1}>
+                                <Typography variant="h4" component="h2">Animation</Typography>
+                            </Box>
+                            <ProjectCard cardData={AnimationCardData} />
+                        </div>
+                        : null}
+                    {showPhotos ?
+                        <div>
+                            <Box pt={4} pb={1}>
+                                <Typography variant="h4" component="h2">Photography</Typography>
+                            </Box>
+                            <ProjectCard cardData={PhotographyCardData} />
+                        </div>
+                        : null}
+                </ FormGroup>
+
             </Box>
         </Box>
 
