@@ -22,8 +22,8 @@ const NavContent = [
     buttonColor: String
     buttonlink: String
     */
-    { buttonText: 'Home', buttonlink: '/' },
-    { buttonText: 'My Work', buttonlink: '#/demosite' },
+    { buttonText: 'Home', buttonlink: '/home' },
+    { buttonText: 'My Work', buttonlink: '/' },
 
 ]
 

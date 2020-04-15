@@ -16,7 +16,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 const buttons = [
     {buttonText: 'LinkedIn', buttonIcon: <LinkedInIcon />, buttonColor: 'secondary', buttonlink:'https://www.linkedin.com/in/james-crook-492652185/'},
     {buttonText: 'Email', buttonIcon: <EmailIcon />, buttonColor: 'secondary',buttonlink: 'mailto:james@jamescrook.uk'},
-    {buttonText: 'Portfolio', buttonIcon: <MenuBookIcon />, buttonColor: 'secondary', buttonlink: '#/demosite'},
+    {buttonText: 'Portfolio', buttonIcon: <MenuBookIcon />, buttonColor: 'secondary', buttonlink: '/'},
     {buttonText: 'CV', buttonIcon: <DriveIcon />, buttonColor: 'secondary', buttonlink: 'https://docs.google.com/document/d/1T7bBXvHs8SR6-YXDmXWAdowlkUAd7ONjOdUKwZ8-tvk/edit?usp=sharing?export=download' },
     {buttonText: 'Instagram', buttonIcon: <Instagram />, buttonColor: 'secondary', buttonlink: 'https://www.instagram.com/jzcrook/'},
 
