@@ -49,7 +49,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
                             cardData.map((content) => (
                                 <Grid item xs={12}>
                                     <Card width="100%">
-                                        <CardActionArea href={content.href} onClick={content.function} >
+                                      <CardActionArea onClick={() => window.open(content.href)}>
                                             {content.image ? <CardMedia className={classes.media} image={content.image} /> : null}
                                             {content.title || content.description ?
                                                 <CardContent>
@@ -69,7 +69,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
                 cardData.map((content) => (
                     <Grid item xs={4}>
                         <Card width="100%">
-                            <CardActionArea href={content.href} onClick={content.function} >
+                            <CardActionArea onClick={() => window.open(content.href)}>
                                 {content.image ? <CardMedia className={classes.media} image={content.image} /> : null}
                                 {content.title || content.description ?
                                     <CardContent>
