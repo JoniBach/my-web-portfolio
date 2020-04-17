@@ -71,6 +71,11 @@ const PhotographyCardData = [
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Touch_finger.jpg', title: 'Sine Finger', description: 'A rendering of the human anatomy represented by data made with ProcessingPY, lazer cutter, darkroom exposures', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Touch_finger.jpg' },
 ]
 
+const WebDesignCardData = [
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+jamescrookdev+Screenshot.png', title: 'jamescrookdev Wireframes', description: 'Low Fideliy Wire Frames to guide the design of this website, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/my-react-portfolio+design+01.pdf' },
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/HIFI+jamescrookdev+Screenshot.png', title: 'jamescrookdev HIFI Design', description: 'High Fidelity Designs to guide the construction of this website, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/my-react-portfolio+HiFi+01.pdf' },
+]
+
 
 export default function DemoSite() {
     const handleShowGrad = (event) => {
@@ -88,6 +93,11 @@ export default function DemoSite() {
     };
     const [showPhotos, setShowPhotos] = React.useState(true);
 
+    const handleShowWebDesign = (event) => {
+        setShowWebDesign(event.target.checked);
+    };
+    const [showWebDesign, setShowWebDesign] = React.useState(true);
+
 
 
     return (
@@ -95,66 +105,88 @@ export default function DemoSite() {
             <NavBar navContent={NavContent} navImages={NavImages} />
             <Box px={3}>
                 <FormGroup row>
+                <FormControlLabel
+                      control={(
+                            <Checkbox
+                                checked={showWebDesign}
+                                onChange={handleShowWebDesign}
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                        )}
+                        label="Web Design"
+                    />
                     <FormControlLabel
-                        control={
+                      control={(
                             <Checkbox
                                 checked={showGrad}
                                 onChange={handleShowGrad}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />}
+                            />
+                        )}
                         label="Gradshow Project"
                     />
                     <FormControlLabel
-                        control={
+                      control={(
                             <Checkbox
                                 checked={showAnimations}
                                 onChange={handleShowAnimations}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />}
+                            />
+                          )}
                         label="Animations"
                     />
                     <FormControlLabel
-                        control={
+                      control={(
                             <Checkbox
                                 checked={showPhotos}
                                 onChange={handleShowAPhotos}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />}
+                            />
+                          )}
                         label="Photography"
                     />
-                </FormGroup></Box>
-
-
-
+                </FormGroup>
+            </Box>
 
             <Box px={3}>
                 <FormGroup row>
-
-                    {showGrad ?
+                {showWebDesign ? (
+                        <div>
+                            <Box pt={4} pb={1}>
+                                <Typography variant="h4" component="h2">Web Design</Typography>
+                            </Box>
+                            <ProjectCard cardData={WebDesignCardData} />
+                        </div>
+                    )
+                        : null}
+                    {showGrad ? (
                         <div>
                             <Box pt={4} pb={1}>
                                 <Typography variant="h4" component="h2">Grad Show</Typography>
                             </Box>
                             <ProjectCard cardData={GradshowData} />
                         </div>
+                    )
                         : null}
-                    {showAnimations ?
+                    {showAnimations ? (
                         <div>
                             <Box pt={4} pb={1}>
                                 <Typography variant="h4" component="h2">Animation</Typography>
                             </Box>
                             <ProjectCard cardData={AnimationCardData} />
                         </div>
+                    )
                         : null}
-                    {showPhotos ?
+                    {showPhotos ? (
                         <div>
                             <Box pt={4} pb={1}>
                                 <Typography variant="h4" component="h2">Photography</Typography>
                             </Box>
                             <ProjectCard cardData={PhotographyCardData} />
                         </div>
+                    )
                         : null}
-                </ FormGroup>
+                </FormGroup>
 
             </Box>
         </Box>
