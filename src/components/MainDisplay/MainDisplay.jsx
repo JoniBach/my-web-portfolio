@@ -36,7 +36,7 @@ export default function MainDisplay() {
                         Graduate Developer
                 </Typography>
                 <Box py={1}>
-                <LinkToButtonsComponent buttons={buttons} />
+                    <LinkToButtonsComponent buttons={buttons} />
                 </Box>
             </Box>
         </Box>

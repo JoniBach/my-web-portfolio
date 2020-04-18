@@ -18,6 +18,7 @@ const NavContent = [
     buttonlink: String
     */
     { buttonText: 'Home', buttonlink: '/home' },
+    { buttonText: 'Expenses Dash', buttonlink: '/expensesdashboard' },
     { buttonText: 'My Work', buttonlink: '/' },
 
 ]
@@ -78,25 +79,22 @@ const WebDesignCardData = [
 
 
 export default function DemoSite() {
+    const [showGrad, setShowGrad] = React.useState(true);
     const handleShowGrad = (event) => {
         setShowGrad(event.target.checked);
     };
-    const [showGrad, setShowGrad] = React.useState(true);
-
+    const [showAnimations, setShowAnimations] = React.useState(true);
     const handleShowAnimations = (event) => {
         setShowAnimations(event.target.checked);
     };
-    const [showAnimations, setShowAnimations] = React.useState(true);
-
+    const [showPhotos, setShowPhotos] = React.useState(true);
     const handleShowAPhotos = (event) => {
         setShowPhotos(event.target.checked);
     };
-    const [showPhotos, setShowPhotos] = React.useState(true);
-
+    const [showWebDesign, setShowWebDesign] = React.useState(true);
     const handleShowWebDesign = (event) => {
         setShowWebDesign(event.target.checked);
     };
-    const [showWebDesign, setShowWebDesign] = React.useState(true);
 
 
 
