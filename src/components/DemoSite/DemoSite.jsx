@@ -2,12 +2,11 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
 import React from 'react';
+import { Typography, Checkbox, FormGroup, FormControlLabel } from '@material-ui/core';
 import logo from './DemoSiteImages/wing_logo_01.png'
 import NavBar from '../NavBar/NavBar'
 import ProjectCard from '../ProjectCard/ProjectCard'
 import Box from '@material-ui/core/Box'
-import { Typography, Card, Button, Checkbox, FormGroup, FormControlLabel } from '@material-ui/core';
-import Icon from '@material-ui/icons/Face'
 
 const NavContent = [
     /* 
@@ -72,6 +71,7 @@ const PhotographyCardData = [
 ]
 
 const WebDesignCardData = [
+    { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+fintech+style+dashboard+Screenshot.png', title: 'FinTech Style Dash Wireframes', description: 'Low Fideliy Wire Frames to guide the design and implimentation of a FinTech style personal expenses dashboard Proof of Concept, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+FinTech+Dashboard+01+wireframes.png' },
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+jamescrookdev+Screenshot.png', title: 'jamescrookdev Wireframes', description: 'Low Fideliy Wire Frames to guide the design of this website, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/my-react-portfolio+design+01.pdf' },
     { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/HIFI+jamescrookdev+Screenshot.png', title: 'jamescrookdev HIFI Design', description: 'High Fidelity Designs to guide the construction of this website, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/my-react-portfolio+HiFi+01.pdf' },
 ]
