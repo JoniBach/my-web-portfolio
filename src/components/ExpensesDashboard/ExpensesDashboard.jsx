@@ -15,24 +15,33 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, Paper, Box, Button } from '@material-ui/core';
-import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { 
+    Grid, 
+    Paper, 
+    Box, 
+    Button, 
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    InputAdornment,
+    FormControl,
+    InputLabel,
+    Input,
+
+} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import FileIcon from '@material-ui/icons/FileCopyOutlined';
 import EditIcon from '@material-ui/icons/Edit';
+import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
 import TextField from '@material-ui/core/TextField'
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+import { KeyboardDatePicker } from '@material-ui/pickers';
+
 
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -107,6 +116,12 @@ function ResponsiveDrawer(props) {
     function createData(name, totalHighestSpend, storeName, dateHightestSpend, addReciept) {
         return { name, totalHighestSpend, storeName, dateHightestSpend, addReciept };
     }
+
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
 
     const rows = [
         createData(1, '£430.00', 'Goldsmiths', '16/02/20'),
@@ -235,17 +250,31 @@ function ResponsiveDrawer(props) {
                                         <Grid item xs={6}>
                                             <Box p={2}>
                                                 <form className={classes.textFields} noValidate autoComplete="off">
-                                                    <TextField label="Shop Name" />
-                                                    <FormControl fullWidth>
+                                                    <TextField required label="Shop Name" />
+                                                    <FormControl required fullWidth>
                                                         <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
-                                                        <Input
-                                                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                                        />
+                                                        <Input type="number" inputProps={{ min: 0 }} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
                                                     </FormControl>
-                                                    <TextField label="Date of purchase" />
-                                                    <TextField label="Type of purchase" />
+                                                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
+
+                                                    <KeyboardDatePicker
+                                                    required
+                                                        disableToolbar
+                                                        variant="inline"
+                                                        format="MM/dd/yyyy"
+                                                        margin="normal"
+                                                        id="date-picker-inline"
+                                                        label="Date picker inline"
+                                                        value={selectedDate}
+                                                        onChange={handleDateChange}
+                                                        KeyboardButtonProps={{
+                                                            'aria-label': 'change date',
+                                                        }}
+                                                    />
+                                                    {/* </MuiPickersUtilsProvider> */}
+                                                    <TextField required label="Type of purchase" />
                                                     <Box>
-                                                        <Typography>Upload Reciepit</Typography>
+                                                        <Typography>Upload Receipt</Typography>
                                                         <Input type="file">hi</Input>
                                                     </Box>
                                                     <Button variant="outlined" color="secondary" disabled>
@@ -315,7 +344,7 @@ function ResponsiveDrawer(props) {
                                                         <TableCell>Total</TableCell>
                                                         <TableCell>Store</TableCell>
                                                         <TableCell>Date</TableCell>
-                                                        <TableCell>Reciepit</TableCell>
+                                                        <TableCell>Receipt</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -328,12 +357,12 @@ function ResponsiveDrawer(props) {
                                                             <TableCell>{row.storeName}</TableCell>
                                                             <TableCell>{row.dateHightestSpend}</TableCell>
                                                             <TableCell>
-                                                                <Button>
+                                                                <IconButton>
                                                                     <FileIcon />
-                                                                </Button>
-                                                                <Button>
+                                                                </IconButton>
+                                                                <IconButton>
                                                                     <AddIcon /><EditIcon />
-                                                                </Button>
+                                                                </IconButton>
                                                             </TableCell>
                                                         </TableRow>
                                                     ))}
