@@ -369,7 +369,6 @@ function ResponsiveDrawer(props) {
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
-
                                     </Box>
                                 </Paper>
                             </Box>
