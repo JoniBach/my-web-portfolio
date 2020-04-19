@@ -24,12 +24,26 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import AddIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import FileIcon from '@material-ui/icons/FileCopyOutlined';
+import EditIcon from '@material-ui/icons/Edit';
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+
+    },
+    textFields: {
+        '& > *': {
+            margin: theme.spacing(1),
+
+        },
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -82,21 +96,28 @@ function ResponsiveDrawer(props) {
     const handleShowHowMuch = (event) => {
         setShowHowMuch(event.target.checked);
     };
+    const [showAddNewPurchase, setShowAddNewPurchase] = React.useState(false);
+    const handleShowAddNewPurchase = (event) => {
+        setShowAddNewPurchase(true);
+    };
+    const handleHideAddNewPurchase = (event) => {
+        setShowAddNewPurchase(false);
+    };
 
     function createData(name, totalHighestSpend, storeName, dateHightestSpend, addReciept) {
         return { name, totalHighestSpend, storeName, dateHightestSpend, addReciept };
     }
 
     const rows = [
-        createData(1, '£430.00', 'Goldsmiths', '16/02/20', ),
-        createData(2, '£134.79', 'Ebay', '12/02/20', ),
-        createData(3, '£67.99', 'Argos', '18/02/20', ),
-        createData(4, '£55.00', 'John Lewis', '22/02/20', ),
-        createData(5, '£49.99', 'Amazon', '02/02/20', ),
+        createData(1, '£430.00', 'Goldsmiths', '16/02/20'),
+        createData(2, '£134.79', 'Ebay', '12/02/20'),
+        createData(3, '£67.99', 'Argos', '18/02/20'),
+        createData(4, '£55.00', 'John Lewis', '22/02/20'),
+        createData(5, '£49.99', 'Amazon', '02/02/20'),
     ];
 
     const drawer = (
-        <div>
+        <div className={classes.root}>
             <div className={classes.toolbar} />
             <Divider />
             <List>
@@ -153,7 +174,10 @@ function ResponsiveDrawer(props) {
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         Your Expenses Dashboard
-          </Typography>
+                    </Typography>
+                    <Typography variant="body2" noWrap>
+                        ->  Site under development. Features will include placehoders until logic is complete
+                    </Typography>
                 </Toolbar>
             </AppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">
@@ -191,6 +215,58 @@ function ResponsiveDrawer(props) {
                 <div className={classes.toolbar} />
 
                 <Grid container>
+                    <Grid item xs={12}>
+                        <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
+                            <Paper >
+                                <Box width="100%" alignSelf="flex-start" p={2} >
+                                    <Button variant="outlined" color="secondary" onClick={handleShowAddNewPurchase}>
+                                        <Typography>
+                                            Add New purchase
+                                            </Typography>
+                                    </Button>
+                                    <Button variant="outlined" color="secondary" disabled>
+                                        <Typography>
+                                            Edit Existing purchase
+                                            </Typography >
+                                    </Button >
+                                </Box>
+                                <Box width="100%">
+                                    {showAddNewPurchase ? (
+                                        <Grid item xs={6}>
+                                            <Box p={2}>
+                                                <form className={classes.textFields} noValidate autoComplete="off">
+                                                    <TextField label="Shop Name" />
+                                                    <FormControl fullWidth>
+                                                        <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+                                                        <Input
+                                                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                                        />
+                                                    </FormControl>
+                                                    <TextField label="Date of purchase" />
+                                                    <TextField label="Type of purchase" />
+                                                    <Box>
+                                                        <Typography>Upload Reciepit</Typography>
+                                                        <Input type="file">hi</Input>
+                                                    </Box>
+                                                    <Button variant="outlined" color="secondary" disabled>
+                                                        <Typography>
+                                                            Submit
+                                            </Typography>
+                                                    </Button>
+                                                    <Button variant="outlined" color="warning" onClick={handleHideAddNewPurchase}>
+                                                        <Typography>
+                                                            Cancel
+                                            </Typography>
+                                                    </Button>
+                                                </form>
+                                            </Box>
+                                        </Grid>
+                                    )
+                                        : null}
+                                </Box>
+                            </Paper>
+                        </Box>
+                    </Grid>
                     {showWhat ? (
                         <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -231,7 +307,7 @@ function ResponsiveDrawer(props) {
                                         <Typography >
                                             Top Purchase
                                     </Typography>
-                                        <TableContainer component={Paper}>
+                                        <TableContainer>
                                             <Table className={classes.table} aria-label="simple table">
                                                 <TableHead>
                                                     <TableRow>
@@ -239,7 +315,7 @@ function ResponsiveDrawer(props) {
                                                         <TableCell>Total</TableCell>
                                                         <TableCell>Store</TableCell>
                                                         <TableCell>Date</TableCell>
-                                                        <TableCell>Add Reciepit</TableCell>
+                                                        <TableCell>Reciepit</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -251,13 +327,20 @@ function ResponsiveDrawer(props) {
                                                             <TableCell>{row.totalHighestSpend}</TableCell>
                                                             <TableCell>{row.storeName}</TableCell>
                                                             <TableCell>{row.dateHightestSpend}</TableCell>
-                                                            <TableCell><Button><AddIcon /></Button></TableCell>
+                                                            <TableCell>
+                                                                <Button>
+                                                                    <FileIcon />
+                                                                </Button>
+                                                                <Button>
+                                                                    <AddIcon /><EditIcon />
+                                                                </Button>
+                                                            </TableCell>
                                                         </TableRow>
                                                     ))}
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
-                                        
+
                                     </Box>
                                 </Paper>
                             </Box>

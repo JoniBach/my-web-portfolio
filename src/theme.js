@@ -1,15 +1,19 @@
 /* eslint-disable linebreak-style */
 import { createMuiTheme } from '@material-ui/core'
-import grey from '@material-ui/core/colors/grey';
+
 import green from '@material-ui/core/colors/green';
 import blue from '@material-ui/core/colors/blue';
-import lime from '@material-ui/core/colors/lime';
+
+import purple from '@material-ui/core/colors/purple'
+
+
 
 
 const colors = {
-    primary: grey[50],
+    primary: purple[400],
     secondary: green[500],
     status: blue[500],
+
 };
 
 export default createMuiTheme({
@@ -23,5 +27,6 @@ export default createMuiTheme({
         status: {
             main: colors.status,
         },
+
     },
 });
