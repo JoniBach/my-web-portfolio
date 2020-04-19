@@ -38,50 +38,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
 import TextField from '@material-ui/core/TextField'
 import { KeyboardDatePicker } from '@material-ui/pickers';
+import useStyles from './ExpensesDashboard.style.js'
 
 
-const drawerWidth = 240;
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-
-    },
-    textFields: {
-        '& > *': {
-            margin: theme.spacing(1),
-
-        },
-    },
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-    },
-    appBar: {
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-        },
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-            display: 'none',
-        },
-    },
-    // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-}));
 
 function ResponsiveDrawer(props) {
     const { container } = props;
@@ -106,10 +65,10 @@ function ResponsiveDrawer(props) {
         setShowHowMuch(event.target.checked);
     };
     const [showAddNewPurchase, setShowAddNewPurchase] = React.useState(false);
-    const handleShowAddNewPurchase = (event) => {
+    const handleShowAddNewPurchase = () => {
         setShowAddNewPurchase(true);
     };
-    const handleHideAddNewPurchase = (event) => {
+    const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
 
