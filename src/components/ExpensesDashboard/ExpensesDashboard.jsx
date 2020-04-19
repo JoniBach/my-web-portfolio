@@ -64,20 +64,19 @@ function ResponsiveDrawer(props) {
 
     const [newStoreName, setStoreName] = useState("");
     const [newTotalSpend, settotalSpend] = useState("");
-    // const [newPurchaseDate, setPurchaseDate] = useState("");
     const [newPurchaseType, setPurchaseType] = useState("");
     const [newPurchase, setnewPurchase] = useState([]);
-    
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
-        setSelectedDate(date);
+        setnewSelectedDate(date);
     };
+    const newPurchaseDate = newSelectedDate.toString()
 
 
     const handleSubmit = () => {
         setnewPurchase([
             ...newPurchase,
-            { totalSpend: newTotalSpend, storeName: newStoreName, purchaseDate: 'selectedDate', purchaseType: newPurchaseType },
+            { totalSpend: newTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
     }
 
@@ -239,20 +238,16 @@ function ResponsiveDrawer(props) {
                                                     </FormControl>
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
 
-                                                    <KeyboardDatePicker
-                                 
+                                                    <KeyboardDatePicker                                
                                                         required
                                                         disableToolbar
                                                         variant="inline"
-                                                        format="MM/dd/yyyy"
+                                                        format="dd/mm/yyyy"
                                                         margin="normal"
                                                         id="date-picker-inline"
-                                                        label="Date picker inline"
-                                                        value={selectedDate}
+                                                        label="Purchase Date"
+                                                        value={newSelectedDate}
                                                         onChange={handleDateChange}
-                                                        KeyboardButtonProps={{
-                                                            'aria-label': 'change date',
-                                                        }}
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
                                                     <TextField required label="Type of purchase" value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
