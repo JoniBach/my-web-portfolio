@@ -14,12 +14,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { 
-    Grid, 
-    Paper, 
-    Box, 
-    Button, 
+import { useTheme } from '@material-ui/core/styles';
+import {
+    Grid,
+    Paper,
+    Box,
+    Button,
     Table,
     TableBody,
     TableCell,
@@ -39,10 +39,48 @@ import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceh
 import TextField from '@material-ui/core/TextField'
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import useStyles from './ExpensesDashboard.style.js'
+import { useState } from "react";
+
+
+
+const ExpenseData = [
+    // purchase: [{ totalSpend: 450.00, storeName: "GoldSmiths", purchaseDate: "21/02/20", purchaseType: "Luxury" }],
+    // purchase: [{ totalSpend: 134.50, storeName: "Ebay", purchaseDate: "03/02/20", purchaseType: "Online" }],
+    // purchase: [{ totalSpend: 230.99, storeName: "Argos", purchaseDate: "16/02/20", purchaseType: "Appliances" }],
+    // purchase: [{ totalSpend: 70.00, storeName: "John Lewis", purchaseDate: "17/02/20", purchaseType: "Apparel" }],
+    { totalSpend: 450.00, storeName: "GoldSmiths", purchaseDate: "21/02/20", purchaseType: "Luxury" },
+    { totalSpend: 134.50, storeName: "Ebay", purchaseDate: "03/02/20", purchaseType: "Online" },
+    { totalSpend: 230.99, storeName: "Argos", purchaseDate: "16/02/20", purchaseType: "Appliances" },
+    { totalSpend: 70.00, storeName: "John Lewis", purchaseDate: "17/02/20", purchaseType: "Apparel" },
+
+]
+
 
 
 
 function ResponsiveDrawer(props) {
+
+
+
+    const [newStoreName, setStoreName] = useState("");
+    const [newTotalSpend, settotalSpend] = useState("");
+    // const [newPurchaseDate, setPurchaseDate] = useState("");
+    const [newPurchaseType, setPurchaseType] = useState("");
+    const [newPurchase, setnewPurchase] = useState([]);
+    
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
+
+    const handleSubmit = () => {
+        setnewPurchase([
+            ...newPurchase,
+            { totalSpend: newTotalSpend, storeName: newStoreName, purchaseDate: 'selectedDate', purchaseType: newPurchaseType },
+        ]);
+    }
+
     const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -72,23 +110,7 @@ function ResponsiveDrawer(props) {
         setShowAddNewPurchase(false);
     };
 
-    function createData(name, totalHighestSpend, storeName, dateHightestSpend, addReciept) {
-        return { name, totalHighestSpend, storeName, dateHightestSpend, addReciept };
-    }
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
-    };
-
-    const rows = [
-        createData(1, '£430.00', 'Goldsmiths', '16/02/20'),
-        createData(2, '£134.79', 'Ebay', '12/02/20'),
-        createData(3, '£67.99', 'Argos', '18/02/20'),
-        createData(4, '£55.00', 'John Lewis', '22/02/20'),
-        createData(5, '£49.99', 'Amazon', '02/02/20'),
-    ];
 
     const drawer = (
         <div className={classes.root}>
@@ -193,6 +215,7 @@ function ResponsiveDrawer(props) {
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                             <Paper >
                                 <Box width="100%" alignSelf="flex-start" p={2} >
+
                                     <Button variant="outlined" color="secondary" onClick={handleShowAddNewPurchase}>
                                         <Typography>
                                             Add New purchase
@@ -208,16 +231,17 @@ function ResponsiveDrawer(props) {
                                     {showAddNewPurchase ? (
                                         <Grid item xs={6}>
                                             <Box p={2}>
-                                                <form className={classes.textFields} noValidate autoComplete="off">
-                                                    <TextField required label="Shop Name" />
-                                                    <FormControl required fullWidth>
-                                                        <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+                                                <form className={classes.textFields} noValidate autoComplete="off" onSubmit={handleSubmit}>
+                                                    <TextField required label="Shop Name" value={newStoreName} onChange={e => setStoreName(e.target.value)} />
+                                                    <FormControl required fullWidth value={newTotalSpend} onChange={e => settotalSpend(e.target.value)}>
+                                                        <InputLabel htmlFor="standard-adornment-amount" >Amount</InputLabel>
                                                         <Input type="number" inputProps={{ min: 0 }} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
                                                     </FormControl>
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
 
                                                     <KeyboardDatePicker
-                                                    required
+                                 
+                                                        required
                                                         disableToolbar
                                                         variant="inline"
                                                         format="MM/dd/yyyy"
@@ -231,12 +255,12 @@ function ResponsiveDrawer(props) {
                                                         }}
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
-                                                    <TextField required label="Type of purchase" />
-                                                    <Box>
+                                                    <TextField required label="Type of purchase" value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
+                                                    {/* <Box>
                                                         <Typography>Upload Receipt</Typography>
-                                                        <Input type="file">hi</Input>
-                                                    </Box>
-                                                    <Button variant="outlined" color="secondary" disabled>
+                                                        <Input type="file" disabled></Input>
+                                                    </Box> */}
+                                                    <Button variant="outlined" color="secondary" onClick={handleSubmit} >
                                                         <Typography>
                                                             Submit
                                             </Typography>
@@ -255,6 +279,7 @@ function ResponsiveDrawer(props) {
                             </Paper>
                         </Box>
                     </Grid>
+
                     {showWhat ? (
                         <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -264,7 +289,6 @@ function ResponsiveDrawer(props) {
                                             Purchase Type
                                         </Typography>
                                         <img src={DoughnutPlaceholder} width={200}></img>
-
                                     </Box>
                                 </Paper>
                             </Box>
@@ -293,39 +317,33 @@ function ResponsiveDrawer(props) {
                                 <Paper >
                                     <Box width="100%" alignSelf="center" p={2}>
                                         <Typography >
-                                            Top Purchase
+                                            Top Purchases
                                     </Typography>
                                         <TableContainer>
                                             <Table className={classes.table} aria-label="simple table">
                                                 <TableHead>
                                                     <TableRow>
-                                                        <TableCell>Rank</TableCell>
                                                         <TableCell>Total</TableCell>
                                                         <TableCell>Store</TableCell>
                                                         <TableCell>Date</TableCell>
-                                                        <TableCell>Receipt</TableCell>
+                                                        <TableCell>Type</TableCell>
+
+                                                        {/* <TableCell>Receipt</TableCell> */}
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
-                                                    {rows.map((row) => (
+                                                    {newPurchase.map((row) => (
                                                         <TableRow key={row.name}>
-                                                            <TableCell component="th" scope="row">
-                                                                {row.name}
-                                                            </TableCell>
-                                                            <TableCell>{row.totalHighestSpend}</TableCell>
+                                                            <TableCell>{row.totalSpend}</TableCell>
                                                             <TableCell>{row.storeName}</TableCell>
-                                                            <TableCell>{row.dateHightestSpend}</TableCell>
-                                                            <TableCell>
-                                                                <IconButton>
-                                                                    <FileIcon />
-                                                                </IconButton>
-                                                                <IconButton>
-                                                                    <AddIcon /><EditIcon />
-                                                                </IconButton>
-                                                            </TableCell>
+                                                            <TableCell>{row.purchaseDate}</TableCell>
+                                                            <TableCell>{row.purchaseType}</TableCell>
+
+                                                            {/* <TableCell><IconButton><FileIcon /></IconButton><IconButton><AddIcon /><EditIcon /></IconButton></TableCell> */}
                                                         </TableRow>
                                                     ))}
                                                 </TableBody>
+
                                             </Table>
                                         </TableContainer>
                                     </Box>
@@ -349,3 +367,4 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default ResponsiveDrawer;
+ 
