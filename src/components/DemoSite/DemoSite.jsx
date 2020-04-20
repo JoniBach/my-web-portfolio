@@ -18,8 +18,8 @@ const NavContent = [
     buttonlink: String
     */
     { buttonText: 'About Me', buttonlink: '/home', buttonColor: 'secondary' },
-    { buttonText: 'Expenses Dash', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
-    { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'},
+    { buttonText: 'Web Portfolio', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
+    // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'},
 
 ]
 
@@ -28,7 +28,7 @@ const NavImages = [
     Each Object can take the following peramiters:  
     navImage: String
     */
-    { navImage: logo },
+    // { navImage: logo },
 ]
 
 const AnimationCardData = [
