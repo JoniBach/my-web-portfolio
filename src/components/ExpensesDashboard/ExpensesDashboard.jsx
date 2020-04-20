@@ -1,16 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -29,25 +18,27 @@ import {
     InputAdornment,
     FormControl,
     InputLabel,
-    Input,
-
+    Input, 
+    IconButton, 
+    List, 
+    ListItem, 
+    ListItemIcon, 
+    Checkbox, 
+    ListItemText, 
+    Hidden, 
+    Drawer, 
+    Divider, 
+    CssBaseline, 
+    AppBar,
 } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import FileIcon from '@material-ui/icons/FileCopyOutlined';
-import EditIcon from '@material-ui/icons/Edit';
-import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import useStyles from './ExpensesDashboard.style.js'
-import { useState } from "react";
+import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
+import useStyles from './ExpensesDashboard.style';
 
 
 
 const ExpenseData = [
-    // purchase: [{ totalSpend: 450.00, storeName: "GoldSmiths", purchaseDate: "21/02/20", purchaseType: "Luxury" }],
-    // purchase: [{ totalSpend: 134.50, storeName: "Ebay", purchaseDate: "03/02/20", purchaseType: "Online" }],
-    // purchase: [{ totalSpend: 230.99, storeName: "Argos", purchaseDate: "16/02/20", purchaseType: "Appliances" }],
-    // purchase: [{ totalSpend: 70.00, storeName: "John Lewis", purchaseDate: "17/02/20", purchaseType: "Apparel" }],
     { totalSpend: 450.00, storeName: "GoldSmiths", purchaseDate: "21/02/20", purchaseType: "Luxury" },
     { totalSpend: 134.50, storeName: "Ebay", purchaseDate: "03/02/20", purchaseType: "Online" },
     { totalSpend: 230.99, storeName: "Argos", purchaseDate: "16/02/20", purchaseType: "Appliances" },
@@ -61,34 +52,36 @@ const ExpenseData = [
 function ResponsiveDrawer(props) {
 
 
-
     const [newStoreName, setStoreName] = useState("");
     const [newTotalSpend, settotalSpend] = useState("");
     const [newPurchaseType, setPurchaseType] = useState("");
     const [newPurchase, setnewPurchase] = useState([]);
+    const parsedNewTotalSpend = parseInt(newTotalSpend)
     const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
         setnewSelectedDate(date);
     };
     const newPurchaseDate = newSelectedDate.toString()
-
-
     const handleSubmit = () => {
+
         setnewPurchase([
             ...newPurchase,
-            { totalSpend: newTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
+            { totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
+
     }
+
+    var totalExpense = newPurchase.reduce(function(a, b) {
+        return a + b.totalSpend;
+      }, 0);
 
     const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
     const [showWhat, setShowWhat] = React.useState(true);
     const handleShowWhat = (event) => {
         setShowWhat(event.target.checked);
@@ -108,8 +101,6 @@ function ResponsiveDrawer(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
-
-
 
     const drawer = (
         <div className={classes.root}>
@@ -171,7 +162,7 @@ function ResponsiveDrawer(props) {
                         Your Expenses Dashboard
                     </Typography>
                     <Typography variant="body2" noWrap>
-                        ->  Site under development. Features will include placehoders until logic is complete
+                         ___Site under development
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -234,7 +225,7 @@ function ResponsiveDrawer(props) {
                                                     <TextField required label="Shop Name" value={newStoreName} onChange={e => setStoreName(e.target.value)} />
                                                     <FormControl required fullWidth value={newTotalSpend} onChange={e => settotalSpend(e.target.value)}>
                                                         <InputLabel htmlFor="standard-adornment-amount" >Amount</InputLabel>
-                                                        <Input type="number" inputProps={{ min: 0 }} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
+                                                        <Input type="Number" inputProps={{ min: 0 }} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
                                                     </FormControl>
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
 
@@ -274,6 +265,21 @@ function ResponsiveDrawer(props) {
                             </Paper>
                         </Box>
                     </Grid>
+
+                    <Grid item xs={12}>
+                            <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
+                                <Paper >
+                                    <Box width="100%" alignSelf="center" py={1}>
+                                        <Typography >
+                                            Total Spend
+                                        </Typography>
+                                        <Typography>
+                                            £{totalExpense}
+                                        </Typography>
+                                    </Box>
+                                </Paper>
+                            </Box>
+                        </Grid>
 
                     {showWhat ? (
                         <Grid item xs={6}>
@@ -322,18 +328,16 @@ function ResponsiveDrawer(props) {
                                                         <TableCell>Store</TableCell>
                                                         <TableCell>Date</TableCell>
                                                         <TableCell>Type</TableCell>
-
                                                         {/* <TableCell>Receipt</TableCell> */}
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
                                                     {newPurchase.map((row) => (
                                                         <TableRow key={row.name}>
-                                                            <TableCell>{row.totalSpend}</TableCell>
+                                                            <TableCell>£{row.totalSpend}</TableCell>
                                                             <TableCell>{row.storeName}</TableCell>
                                                             <TableCell>{row.purchaseDate}</TableCell>
                                                             <TableCell>{row.purchaseType}</TableCell>
-
                                                             {/* <TableCell><IconButton><FileIcon /></IconButton><IconButton><AddIcon /><EditIcon /></IconButton></TableCell> */}
                                                         </TableRow>
                                                     ))}
