@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable react/jsx-indent */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,9 +17,6 @@ import {
     TableHead,
     TableRow,
     InputAdornment,
-    FormControl,
-    InputLabel,
-    Input,
     IconButton,
     List,
     ListItem,
@@ -36,18 +34,20 @@ import { KeyboardDatePicker } from '@material-ui/pickers';
 import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
 import useStyles from './ExpensesDashboard.style';
 
-function ResponsiveDrawer(props) {
+export default function ExpensesDashboard(props) {
     const [newStoreName, setStoreName] = useState('');
+
     const [newTotalSpend, settotalSpend] = useState('');
+
     const [newPurchaseType, setPurchaseType] = useState('');
     const [newPurchase, setnewPurchase] = useState([]);
     const parsedNewTotalSpend = parseInt(newTotalSpend)
     const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
+
     const handleDateChange = (date) => {
         setnewSelectedDate(date);
     };
     const newPurchaseDate = newSelectedDate.toString();
-
     const handleSubmit = (event) => {
         event.preventDefault();
         setnewPurchase([
@@ -55,16 +55,10 @@ function ResponsiveDrawer(props) {
             { totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
     };
-
     const reducedTotalSpend = newPurchase.reduce((a, b) => {
         return a + b.totalSpend;
     },
     0);
-
-    var totalExpense = newPurchase.reduce(function(a, b) {
-        return a + b.totalSpend;
-      }, 0);
-
     const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -91,7 +85,6 @@ function ResponsiveDrawer(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
-
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
@@ -117,8 +110,6 @@ function ResponsiveDrawer(props) {
                     </ListItemIcon>
                     <ListItemText primary="Where have you shopped?" />
                 </ListItem>
-
-
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
@@ -189,7 +180,6 @@ function ResponsiveDrawer(props) {
             </nav>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-
                 <Grid container>
                     <Grid item xs={12}>
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -201,27 +191,41 @@ function ResponsiveDrawer(props) {
                                           Add New purchase
                                         </Typography>
                                     </Button>
-                                    <Button variant="outlined" color="secondary" disabled>
+                                    {/* <Button variant="outlined" color="secondary" disabled>
                                         <Typography>
                                           Edit Existing purchase
                                         </Typography>
-                                    </Button>
+                                    </Button> */}
                                 </Box>
                                 <Box width="100%">
                                   {showAddNewPurchase ? (
                                         <Grid item xs={6}>
                                             <Box p={2}>
-                                                <form className={classes.textFields} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                                                    <TextField required label="Shop Name" value={newStoreName} onChange={e => setStoreName(e.target.value)} />
-                                                    <FormControl required fullWidth value={newTotalSpend} onChange={e => settotalSpend(e.target.value)}>
-                                                        <InputLabel htmlFor="standard-adornment-amount" >Amount</InputLabel>
-                                                        <Input type="Number" inputProps={{ min: 0.01 }} startAdornment={<InputAdornment position="start">$</InputAdornment>} />
-                                                    </FormControl>
+                                                <form
+                                                className={classes.textFields}
+                                                noValidate
+                                                autoComplete="off"
+                                                onSubmit={handleSubmit}>
+                                                    <TextField
+                                                    required
+                                                    label="Shop Name"
+                                                    fullWidth
+                                                    value={newStoreName}
+                                                    onChange={e => setStoreName(e.target.value)} />
+                                                    <TextField
+                                                    label="Ammount"
+                                                    required
+                                                    fullWidth
+                                                    value={newTotalSpend}
+                                                    onChange={e => settotalSpend(e.target.value)}
+                                                    type="Number"
+                                                    inputProps={{ min: 0 }}
+                                                    startAdornment={<InputAdornment position="start">£</InputAdornment>} />
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
-
                                                   <KeyboardDatePicker
                                                         required
                                                         disableToolbar
+                                                        fullWidth
                                                         variant="inline"
                                                         format="dd/mm/yyyy"
                                                         margin="normal"
@@ -231,7 +235,7 @@ function ResponsiveDrawer(props) {
                                                         onChange={handleDateChange}
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
-                                                    <TextField required label="Type of purchase" value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
+                                                    <TextField required label="Type of purchase" fullWidth value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
                                                   {/* <Box>
                                                         <Typography>Upload Receipt</Typography>
                                                         <Input type="file" disabled></Input>
@@ -255,7 +259,6 @@ function ResponsiveDrawer(props) {
                             </Paper>
                         </Box>
                     </Grid>
-
                     <Grid item xs={12}>
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                             <Paper >
@@ -285,7 +288,6 @@ function ResponsiveDrawer(props) {
                         </Grid>
                     )
                         : null}
-
                   {showWhere ? (
                         <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -308,7 +310,7 @@ function ResponsiveDrawer(props) {
                                     <Box width="100%" alignSelf="center" p={2}>
                                         <Typography >
                                             Top Purchases
-                                    </Typography>
+                                        </Typography>
                                         <TableContainer>
                                             <Table className={classes.table} aria-label="simple table">
                                                 <TableHead>
@@ -345,13 +347,3 @@ function ResponsiveDrawer(props) {
         </div>
     );
 }
-
-ResponsiveDrawer.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    container: PropTypes.any,
-};
-
-export default ResponsiveDrawer;
