@@ -93,6 +93,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem>
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showWhat}
                             onChange={handleShowWhat}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -103,6 +104,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showWhere}
                             onChange={handleShowWhere}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -113,6 +115,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showHowMuch}
                             onChange={handleShowHowMuch}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
