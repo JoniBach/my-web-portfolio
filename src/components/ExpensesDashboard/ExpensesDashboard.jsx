@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-indent */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,9 +17,6 @@ import {
     TableHead,
     TableRow,
     InputAdornment,
-    FormControl,
-    InputLabel,
-    Input,
     IconButton,
     List,
     ListItem,
@@ -38,7 +34,7 @@ import { KeyboardDatePicker } from '@material-ui/pickers';
 import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
 import useStyles from './ExpensesDashboard.style';
 
-function ExpensesDashboard(props) {
+export default function ExpensesDashboard(props) {
     const [newStoreName, setStoreName] = useState('');
 
     const [newTotalSpend, settotalSpend] = useState('');
@@ -51,7 +47,6 @@ function ExpensesDashboard(props) {
     const handleDateChange = (date) => {
         setnewSelectedDate(date);
     };
-
     const newPurchaseDate = newSelectedDate.toString();
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -60,12 +55,10 @@ function ExpensesDashboard(props) {
             { totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
     };
-
     const reducedTotalSpend = newPurchase.reduce((a, b) => {
         return a + b.totalSpend;
     },
     0);
-
     const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -92,7 +85,6 @@ function ExpensesDashboard(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
-
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
@@ -118,8 +110,6 @@ function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="Where have you shopped?" />
                 </ListItem>
-
-
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
@@ -190,7 +180,6 @@ function ExpensesDashboard(props) {
             </nav>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-
                 <Grid container>
                     <Grid item xs={12}>
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -270,7 +259,6 @@ function ExpensesDashboard(props) {
                             </Paper>
                         </Box>
                     </Grid>
-
                     <Grid item xs={12}>
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                             <Paper >
@@ -300,7 +288,6 @@ function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
-
                   {showWhere ? (
                         <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
@@ -360,4 +347,3 @@ function ExpensesDashboard(props) {
         </div>
     );
 }
-export default ExpensesDashboard;
