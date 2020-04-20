@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import theme from '../../theme'
-import { createMuiTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Typography from '@material-ui/core/Typography';
