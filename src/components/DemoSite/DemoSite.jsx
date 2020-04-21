@@ -19,7 +19,7 @@ const NavContent = [
     */
     { buttonText: 'About Me', buttonlink: '/home', buttonColor: 'secondary' },
     { buttonText: 'Web Portfolio', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
-    // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'},
+    // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
 
 ]
 
