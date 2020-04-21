@@ -5,14 +5,16 @@ import green from '@material-ui/core/colors/green';
 import blue from '@material-ui/core/colors/blue';
 
 import purple from '@material-ui/core/colors/purple'
+import grey from '@material-ui/core/colors/grey'
+
 
 
 
 
 const colors = {
     primary: purple[400],
-    secondary: green[500],
-    status: blue[500],
+    secondary: grey[50],
+    status: green[500],
 
 };
 

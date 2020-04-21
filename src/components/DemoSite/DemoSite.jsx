@@ -17,9 +17,9 @@ const NavContent = [
     buttonColor: String
     buttonlink: String
     */
-    { buttonText: 'Home', buttonlink: '/home' },
-    { buttonText: 'Expenses Dash', buttonlink: '/expensesdashboard' },
-    { buttonText: 'My Work', buttonlink: '/' },
+    { buttonText: 'About Me', buttonlink: '/home', buttonColor: 'secondary' },
+    { buttonText: 'Web Portfolio', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
+    // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
 
 ]
 
@@ -28,7 +28,7 @@ const NavImages = [
     Each Object can take the following peramiters:  
     navImage: String
     */
-    { navImage: logo },
+    // { navImage: logo },
 ]
 
 const AnimationCardData = [
@@ -106,6 +106,7 @@ export default function DemoSite() {
                 <FormControlLabel
                       control={(
                             <Checkbox
+                                color="primary"
                                 checked={showWebDesign}
                                 onChange={handleShowWebDesign}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -116,6 +117,7 @@ export default function DemoSite() {
                     <FormControlLabel
                       control={(
                             <Checkbox
+                                color="primary"
                                 checked={showGrad}
                                 onChange={handleShowGrad}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -126,6 +128,7 @@ export default function DemoSite() {
                     <FormControlLabel
                       control={(
                             <Checkbox
+                                color="primary"
                                 checked={showAnimations}
                                 onChange={handleShowAnimations}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -136,6 +139,7 @@ export default function DemoSite() {
                     <FormControlLabel
                       control={(
                             <Checkbox
+                                color="primary"
                                 checked={showPhotos}
                                 onChange={handleShowAPhotos}
                                 inputProps={{ 'aria-label': 'primary checkbox' }}

@@ -93,6 +93,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem>
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showWhat}
                             onChange={handleShowWhat}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -103,6 +104,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showWhere}
                             onChange={handleShowWhere}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -113,6 +115,7 @@ export default function ExpensesDashboard(props) {
                 <ListItem >
                     <ListItemIcon>
                       <Checkbox
+                            color="primary"
                             checked={showHowMuch}
                             onChange={handleShowHowMuch}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -186,12 +189,12 @@ export default function ExpensesDashboard(props) {
                             <Paper >
                                 <Box width="100%" alignSelf="flex-start" p={2} >
 
-                                    <Button variant="outlined" color="secondary" onClick={handleShowAddNewPurchase}>
+                                    <Button variant="contained" color="primary" onClick={handleShowAddNewPurchase}>
                                         <Typography>
                                           Add New purchase
                                         </Typography>
                                     </Button>
-                                    {/* <Button variant="outlined" color="secondary" disabled>
+                                    {/* <Button variant="contained" color="primary" disabled>
                                         <Typography>
                                           Edit Existing purchase
                                         </Typography>
@@ -235,17 +238,17 @@ export default function ExpensesDashboard(props) {
                                                         onChange={handleDateChange}
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
-                                                    <TextField required label="Type of purchase" fullWidth value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
+                                                    <TextField required label="Type" fullWidth value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
                                                   {/* <Box>
                                                         <Typography>Upload Receipt</Typography>
                                                         <Input type="file" disabled></Input>
                                                     </Box> */}
-                                                    <Button variant="outlined" color="secondary" onClick={handleSubmit} >
+                                                    <Button variant="contained" color="primary" onClick={handleSubmit} >
                                                         <Typography>
                                                           Submit
                                                         </Typography>
                                                     </Button>
-                                                    <Button variant="outlined" color="warning" onClick={handleHideAddNewPurchase}>
+                                                    <Button variant="contained" color="warning" onClick={handleHideAddNewPurchase}>
                                                         <Typography>
                                                           Cancel
                                                         </Typography>
@@ -266,7 +269,7 @@ export default function ExpensesDashboard(props) {
                                     <Typography >
                                       Total Spend
                                     </Typography>
-                                    <Typography>
+                                    <Typography color="primary" fontWeight="fontWeightBold">
                                       £{reducedTotalSpend}
                                     </Typography>
                                 </Box>
@@ -281,7 +284,7 @@ export default function ExpensesDashboard(props) {
                                         <Typography >
                                             Purchase Type
                                         </Typography>
-                                        <img src={DoughnutPlaceholder} width={200}></img>
+                                        chart.js coming soon
                                     </Box>
                                 </Paper>
                             </Box>
@@ -296,7 +299,7 @@ export default function ExpensesDashboard(props) {
                                         <Typography >
                                             Purchase Details
                                         </Typography>
-                                        <img src={DoughnutPlaceholder} width={200}></img>
+                                        chart.js coming soon
                                     </Box>
                                 </Paper>
                             </Box>
@@ -309,7 +312,8 @@ export default function ExpensesDashboard(props) {
                                 <Paper >
                                     <Box width="100%" alignSelf="center" p={2}>
                                         <Typography >
-                                            Top Purchases
+                                            {/* Top Purchases */}
+                                            My Purchases
                                         </Typography>
                                         <TableContainer>
                                             <Table className={classes.table} aria-label="simple table">
