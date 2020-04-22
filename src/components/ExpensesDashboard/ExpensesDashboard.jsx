@@ -282,7 +282,7 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
                     {showWhat ? (
-                        <Grid item xs={8}>
+                        <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
@@ -321,7 +321,7 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {showWhere ? (
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
