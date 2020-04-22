@@ -31,10 +31,13 @@ import {
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import DoughnutPlaceholder from './ExpensesDashboardImages/ChartjsDoughnutPlaceholder.png';
+import { ResponsivePie } from "@nivo/pie";
 import useStyles from './ExpensesDashboard.style';
 
+
+
 export default function ExpensesDashboard(props) {
+
     const [newStoreName, setStoreName] = useState('');
 
     const [newTotalSpend, settotalSpend] = useState('');
@@ -52,7 +55,7 @@ export default function ExpensesDashboard(props) {
         event.preventDefault();
         setnewPurchase([
             ...newPurchase,
-            { totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
+            { day: newPurchaseDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
     };
     const reducedTotalSpend = newPurchase.reduce((a, b) => {
@@ -85,6 +88,7 @@ export default function ExpensesDashboard(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
+   
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
@@ -92,36 +96,36 @@ export default function ExpensesDashboard(props) {
             <List>
                 <ListItem>
                     <ListItemIcon>
-                      <Checkbox
+                        <Checkbox
                             color="primary"
                             checked={showWhat}
                             onChange={handleShowWhat}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="What have you bought?" />
+                    <ListItemText primary="What is your average purchase?" />
                 </ListItem>
                 <ListItem >
                     <ListItemIcon>
-                      <Checkbox
+                        <Checkbox
                             color="primary"
                             checked={showWhere}
                             onChange={handleShowWhere}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Where have you shopped?" />
+                    <ListItemText primary="Where have you recently shopped?" />
                 </ListItem>
                 <ListItem >
                     <ListItemIcon>
-                      <Checkbox
+                        <Checkbox
                             color="primary"
                             checked={showHowMuch}
                             onChange={handleShowHowMuch}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="How much have you spent?" />
+                    <ListItemText primary="What have you bought?" />
                 </ListItem>
             </List>
             <Divider />
@@ -133,7 +137,7 @@ export default function ExpensesDashboard(props) {
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                  <IconButton
+                    <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         edge="start"
@@ -146,23 +150,23 @@ export default function ExpensesDashboard(props) {
                       Your Expenses Dashboard
                     </Typography>
                     <Typography variant="body2" noWrap>
-                      ___Site under development
+                      .ALPHA
                     </Typography>
                 </Toolbar>
             </AppBar>
             <nav className={classes.drawer} aria-label="mailbox folders">
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
-                  <Drawer
+                    <Drawer
                         container={container}
                         variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                         open={mobileOpen}
                         onClose={handleDrawerToggle}
-                    classes={{
+                        classes={{
                             paper: classes.drawerPaper,
                         }}
-                    ModalProps={{
+                        ModalProps={{
                             keepMounted: true, // Better open performance on mobile.
                         }}
                     >
@@ -170,8 +174,8 @@ export default function ExpensesDashboard(props) {
                     </Drawer>
                 </Hidden>
                 <Hidden xsDown implementation="css">
-                  <Drawer
-                    classes={{
+                    <Drawer
+                        classes={{
                             paper: classes.drawerPaper,
                         }}
                         variant="permanent"
@@ -201,31 +205,31 @@ export default function ExpensesDashboard(props) {
                                     </Button> */}
                                 </Box>
                                 <Box width="100%">
-                                  {showAddNewPurchase ? (
+                                    {showAddNewPurchase ? (
                                         <Grid item xs={6}>
                                             <Box p={2}>
                                                 <form
-                                                className={classes.textFields}
-                                                noValidate
-                                                autoComplete="off"
-                                                onSubmit={handleSubmit}>
+                                                    className={classes.textFields}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                    onSubmit={handleSubmit}>
                                                     <TextField
-                                                    required
-                                                    label="Shop Name"
-                                                    fullWidth
-                                                    value={newStoreName}
-                                                    onChange={e => setStoreName(e.target.value)} />
+                                                        required
+                                                        label="Shop Name"
+                                                        fullWidth
+                                                        value={newStoreName}
+                                                        onChange={e => setStoreName(e.target.value)} />
                                                     <TextField
-                                                    label="Ammount"
-                                                    required
-                                                    fullWidth
-                                                    value={newTotalSpend}
-                                                    onChange={e => settotalSpend(e.target.value)}
-                                                    type="Number"
-                                                    inputProps={{ min: 0 }}
-                                                    startAdornment={<InputAdornment position="start">£</InputAdornment>} />
+                                                        label="Ammount"
+                                                        required
+                                                        fullWidth
+                                                        value={newTotalSpend}
+                                                        onChange={e => settotalSpend(e.target.value)}
+                                                        type="Number"
+                                                        inputProps={{ min: 0 }}
+                                                        startAdornment={<InputAdornment position="start">£</InputAdornment>} />
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
-                                                  <KeyboardDatePicker
+                                                    <KeyboardDatePicker
                                                         required
                                                         disableToolbar
                                                         fullWidth
@@ -239,7 +243,7 @@ export default function ExpensesDashboard(props) {
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
                                                     <TextField required label="Type" fullWidth value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
-                                                  {/* <Box>
+                                                    {/* <Box>
                                                         <Typography>Upload Receipt</Typography>
                                                         <Input type="file" disabled></Input>
                                                     </Box> */}
@@ -270,43 +274,91 @@ export default function ExpensesDashboard(props) {
                                       Total Spend
                                     </Typography>
                                     <Typography color="primary" fontWeight="fontWeightBold">
-                                      £{reducedTotalSpend}
+                                      £
+                                        {reducedTotalSpend}
                                     </Typography>
                                 </Box>
                             </Paper>
                         </Box>
                     </Grid>
-                  {showWhat ? (
-                        <Grid item xs={6}>
+                    {showWhat ? (
+                        <Grid item xs={8}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
                                         <Typography >
                                             Purchase Type
                                         </Typography>
-                                        chart.js coming soon
+                                        <div style={{height: "35vw"}}>
+                                            <ResponsivePie
+                                                data={newPurchase}
+                                                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                                                innerRadius={0.5}
+                                                padAngle={0.7}
+                                                cornerRadius={3}
+                                                colors={{ scheme: 'nivo' }}
+                                                borderWidth={1}
+                                                borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+                                                radialLabelsSkipAngle={10}
+                                                radialLabelsTextXOffset={6}
+                                                radialLabelsTextColor="#333333"
+                                                radialLabelsLinkOffset={0}
+                                                radialLabelsLinkDiagonalLength={16}
+                                                radialLabelsLinkHorizontalLength={24}
+                                                radialLabelsLinkStrokeWidth={1}
+                                                radialLabelsLinkColor={{ from: 'color' }}
+                                                slicesLabelsSkipAngle={10}
+                                                slicesLabelsTextColor="#333333"
+                                                animate
+                                                motionStiffness={90}
+                                                motionDamping={15}
+                                            />
+                                        </div>
                                     </Box>
                                 </Paper>
                             </Box>
                         </Grid>
                     )
                         : null}
-                  {showWhere ? (
-                        <Grid item xs={6}>
+                    {showWhere ? (
+                        <Grid item xs={4}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
                                         <Typography >
-                                            Purchase Details
+                                            Recent Stores
                                         </Typography>
-                                        chart.js coming soon
+                                        <div style={{height: "35vw"}}>
+                                            <TableContainer>
+                                                <Table className={classes.table} aria-label="simple table">
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell>Store</TableCell>
+                                                            <TableCell>Total</TableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        {newPurchase.map((row) => (
+                                                            <TableRow key={row.name}>
+                                                                <TableCell>
+                                                                    {row.storeName}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    £{row.totalSpend}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        ))}
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+                                        </div>
                                     </Box>
                                 </Paper>
                             </Box>
                         </Grid>
                     )
                         : null}
-                  {showHowMuch ? (
+                    {showHowMuch ? (
                         <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
@@ -327,9 +379,12 @@ export default function ExpensesDashboard(props) {
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
-                                                  {newPurchase.map((row) => (
+                                                    {newPurchase.map((row) => (
                                                         <TableRow key={row.name}>
-                                                            <TableCell>£{row.totalSpend}</TableCell>
+                                                            <TableCell>
+£
+                                                                {row.totalSpend}
+                                                            </TableCell>
                                                             <TableCell>{row.storeName}</TableCell>
                                                             <TableCell>{row.purchaseDate}</TableCell>
                                                             <TableCell>{row.purchaseType}</TableCell>
@@ -337,7 +392,6 @@ export default function ExpensesDashboard(props) {
                                                         </TableRow>
                                                     ))}
                                                 </TableBody>
-
                                             </Table>
                                         </TableContainer>
                                     </Box>
