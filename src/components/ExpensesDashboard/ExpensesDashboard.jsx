@@ -35,6 +35,7 @@ import useStyles from './ExpensesDashboard.style';
 import { MyResponsivePieCanvas } from '../Chart/Chart';
 import data from '../Chart/data';
 import { ResponsivePie } from "@nivo/pie";
+import { ResponsiveCalendar } from '@nivo/calendar'
 
 
 
@@ -77,7 +78,7 @@ export default function ExpensesDashboard(props) {
         event.preventDefault();
         setnewPurchase([
             ...newPurchase,
-            { value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
+            { day: newPurchaseDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
         ]);
     };
     const reducedTotalSpend = newPurchase.reduce((a, b) => {
@@ -125,7 +126,7 @@ export default function ExpensesDashboard(props) {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="What have you bought?" />
+                    <ListItemText primary="What is your average purchase?" />
                 </ListItem>
                 <ListItem >
                     <ListItemIcon>
@@ -136,7 +137,7 @@ export default function ExpensesDashboard(props) {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Where have you shopped?" />
+                    <ListItemText primary="Where have you recently shopped?" />
                 </ListItem>
                 <ListItem >
                     <ListItemIcon>
@@ -147,7 +148,7 @@ export default function ExpensesDashboard(props) {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="How much have you spent?" />
+                    <ListItemText primary="What have you bought?" />
                 </ListItem>
             </List>
             <Divider />
@@ -172,7 +173,7 @@ export default function ExpensesDashboard(props) {
                       Your Expenses Dashboard
                     </Typography>
                     <Typography variant="body2" noWrap>
-                      ___Site under development
+                      .ALPHA
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -304,7 +305,7 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
                     {showWhat ? (
-                        <Grid item xs={6}>
+                        <Grid item xs={8}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
@@ -343,14 +344,37 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {showWhere ? (
-                        <Grid item xs={6}>
+                        <Grid item xs={4}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper >
                                     <Box width="100%" alignSelf="center" py={1}>
                                         <Typography >
-                                            Purchase Details
+                                            Recent Stores
                                         </Typography>
-                                        chart.js coming soon
+                                        <div style={{height: "35vw"}}>
+                                            <TableContainer>
+                                                <Table className={classes.table} aria-label="simple table">
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell>Store</TableCell>
+                                                            <TableCell>Total</TableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        {newPurchase.map((row) => (
+                                                            <TableRow key={row.name}>
+                                                                <TableCell>
+                                                                    {row.storeName}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    £{row.totalSpend}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        ))}
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+                                        </div>
                                     </Box>
                                 </Paper>
                             </Box>
