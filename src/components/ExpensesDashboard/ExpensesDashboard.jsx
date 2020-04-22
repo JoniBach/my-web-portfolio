@@ -31,11 +31,8 @@ import {
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import useStyles from './ExpensesDashboard.style';
-import { MyResponsivePieCanvas } from '../Chart/Chart';
-import data from '../Chart/data';
 import { ResponsivePie } from "@nivo/pie";
-import { ResponsiveCalendar } from '@nivo/calendar'
+import useStyles from './ExpensesDashboard.style';
 
 
 
