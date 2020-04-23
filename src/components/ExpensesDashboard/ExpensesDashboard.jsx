@@ -229,7 +229,7 @@ export default function ExpensesDashboard(props) {
                                                         value={newStoreName}
                                                         onChange={e => setStoreName(e.target.value)} />
                                                     <TextField
-                                                        label="Ammount"
+                                                        label="Amount"
                                                         required
                                                         fullWidth
                                                         value={newTotalSpend}
@@ -243,7 +243,7 @@ export default function ExpensesDashboard(props) {
                                                         disableToolbar
                                                         fullWidth
                                                         variant="inline"
-                                                        format="dd/mm/yyyy"
+                                                        format="dd/MM/yyyy"
                                                         margin="normal"
                                                         id="date-picker-inline"
                                                         label="Purchase Date"
