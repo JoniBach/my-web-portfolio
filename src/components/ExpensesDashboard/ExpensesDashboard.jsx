@@ -83,8 +83,12 @@ export default function ExpensesDashboard(props) {
     // parsing is required to convert the string received into a number type
     const parsedNewTotalSpend = parseInt(newTotalSpend);
 
+    // formatting the date to look more readable
+    let currentDate = new Date();
+    let formattedDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear()
+
     // Assigning the output for the purchase date to a string
-    const newPurchaseDate = (!newSelectedDate ? 'no date selected' : newSelectedDate.toString());
+    const newPurchaseDate = (!formattedDate ? 'no date selected' : formattedDate.toString());
 
 
     // settinng event handlers to enable updating variables
@@ -132,6 +136,9 @@ export default function ExpensesDashboard(props) {
     // };
 
     // Checkboxes for hiding components (and content for drawer)
+
+
+
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
