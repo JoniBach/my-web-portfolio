@@ -84,8 +84,8 @@ export default function ExpensesDashboard(props) {
     const parsedNewTotalSpend = parseInt(newTotalSpend);
 
     // formatting the date to look more readable
-    let currentDate = new Date();
-    let formattedDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear()
+    const currentDate = new Date();
+    const formattedDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear()
 
     // Assigning the output for the purchase date to a string
     const newPurchaseDate = (!formattedDate ? 'no date selected' : formattedDate.toString());
@@ -137,13 +137,22 @@ export default function ExpensesDashboard(props) {
 
     // Checkboxes for hiding components (and content for drawer)
 
-
-
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
             <Divider />
             <List>
+            <ListItem>
+                    <ListItemIcon>
+                        <Checkbox
+                            color="primary"
+                            checked={showMyPurchases}
+                            onChange={handleshowMyPurchases}
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary="How much have you spent?" />
+                </ListItem>
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -166,17 +175,7 @@ export default function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="Where have you recently shopped?" />
                 </ListItem>
-                <ListItem>
-                    <ListItemIcon>
-                        <Checkbox
-                            color="primary"
-                            checked={showMyPurchases}
-                            onChange={handleshowMyPurchases}
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                    </ListItemIcon>
-                    <ListItemText primary="What have you bought?" />
-                </ListItem>
+                
             </List>
             <Divider />
         </div>
@@ -284,10 +283,10 @@ export default function ExpensesDashboard(props) {
                                           
 
                                                     <Input
-                                                    fullWidth
-                                                    required
-                                                    placeholder="How much did you spend?"
-                                                    type="Number"
+                                                        fullWidth
+                                                        required
+                                                        placeholder="How much did you spend?"
+                                                        type="Number"
                                                         value={newTotalSpend}
                                                         onChange={(e) => settotalSpend(e.target.value)}
                                                         startAdornment={<InputAdornment position="start">£</InputAdornment>}
@@ -327,56 +326,58 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
                     {/* rendering new total spend card */}
-
-                    <Grid item xs={12}>
-                        <Box p={2}>
-                            <ExpansionPanel>
-                                <ExpansionPanelSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Box width="100%" align="center" justifyContent="center" alignContent="center">
-                                        <Box width="100%" alignSelf="center" py={1} variant="h5">
-                                            <Typography gutterBottom>
-                                                Total Spend
-                                            </Typography>
-                                            <Typography color="primary" variant="h4">
-                                                £{reducedTotalSpend}
-                                            </Typography>
+                    {showMyPurchases ? (
+                        <Grid item xs={12}>
+                            <Box p={2}>
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                    >
+                                        <Box width="100%" align="center" justifyContent="center" alignContent="center">
+                                            <Box width="100%" alignSelf="center" py={1} variant="h5">
+                                                <Typography gutterBottom>
+                                Total Spend
+                                                </Typography>
+                                                <Typography color="primary" variant="h4">
+                                £{reducedTotalSpend}
+                                                </Typography>
+                                            </Box>
                                         </Box>
-                                    </Box>
-                                </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
-                                    <TableContainer>
-                                        <Table className={classes.table} aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Total</TableCell>
-                                                    <TableCell>Store</TableCell>
-                                                    <TableCell>Date</TableCell>
-                                                    <TableCell>Type</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {newPurchase.map((row) => (
-                                                    <TableRow key={row.name}>
-                                                        <TableCell>
-                                                            {row.totalSpend}
-                                                        </TableCell>
-                                                        <TableCell>{row.storeName}</TableCell>
-                                                        <TableCell>{row.purchaseDate}</TableCell>
-                                                        <TableCell>{row.purchaseType}</TableCell>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <TableContainer>
+                                            <Table className={classes.table} aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Total</TableCell>
+                                                        <TableCell>Store</TableCell>
+                                                        <TableCell>Date</TableCell>
+                                                        <TableCell>Type</TableCell>
                                                     </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
-                        </Box>
-
-                    </Grid>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {newPurchase.map((row) => (
+                                                        <TableRow key={row.name}>
+                                                            <TableCell>
+                                                                {row.totalSpend}
+                                                            </TableCell>
+                                                            <TableCell>{row.storeName}</TableCell>
+                                                            <TableCell>{row.purchaseDate}</TableCell>
+                                                            <TableCell>{row.purchaseType}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                            </Box>
+                        </Grid>
+                    )
+                        : null}
+                    
                     {/* rendering purchase type card if checkbox is true */}
                     {showPurchaseType ? (
                         <Grid item xs={6}>
@@ -460,13 +461,13 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {/* rendering list of my purchases card if checkbox is true */}
-                    {showMyPurchases ? (
+                    {/* {showMyPurchases ? (
                         <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper>
                                     <Box width="100%" alignSelf="center" p={2}>
                                         <Typography>
-                                            {/* Top Purchases */}
+
                                             My Purchases
                                         </Typography>
                                         <TableContainer>
@@ -498,7 +499,7 @@ export default function ExpensesDashboard(props) {
                             </Box>
                         </Grid>
                     )
-                        : null}
+                        : null} */}
                 </Grid>
             </main>
         </div>
