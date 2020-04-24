@@ -28,13 +28,40 @@ import {
     Divider,
     CssBaseline,
     AppBar,
+    ExpansionPanel,
+    ExpansionPanelSummary,
+    ExpansionPanelDetails,
+    FormControl,
+    InputLabel,
+    Input,
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import { ResponsivePie } from "@nivo/pie";
+import { ResponsivePie } from '@nivo/pie';
 import useStyles from './ExpensesDashboard.style';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import AutoFill from '../AutoFill/AutoFill';
+
 
 export default function ExpensesDashboard(props) {
+
+    // function renderInput(inputProps) {
+    //     const { InputProps, classes, ref, ...other } = inputProps;
+
+    //     return (
+    //       <TextField
+    //         InputProps={{
+    //           inputRef: ref,
+    //           classes: {
+    //             root: classes.inputRoot,
+    //             input: classes.inputInput,
+    //           },
+    //           ...InputProps,
+    //         }}
+    //         {...other}
+    //       />
+    //     );
+    //   }
     // Importing Style and theme
     const classes = useStyles();
     const theme = useTheme();
@@ -42,7 +69,7 @@ export default function ExpensesDashboard(props) {
     // Setting state for newly entered variables
     const [newPurchase, setnewPurchase] = useState([]);
     const [newStoreName, setStoreName] = useState('');
-    const [newTotalSpend, settotalSpend] = useState('');
+    const [newTotalSpend, settotalSpend] = useState();
     const [newPurchaseType, setPurchaseType] = useState('');
     const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
     // Setting state for hiding components with ternary operators
@@ -56,8 +83,12 @@ export default function ExpensesDashboard(props) {
     // parsing is required to convert the string received into a number type
     const parsedNewTotalSpend = parseInt(newTotalSpend);
 
+    // formatting the date to look more readable
+    const currentDate = new Date();
+    const formattedDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear()
+
     // Assigning the output for the purchase date to a string
-    const newPurchaseDate = newSelectedDate.toString();
+    const newPurchaseDate = (!formattedDate ? 'no date selected' : formattedDate.toString());
 
 
     // settinng event handlers to enable updating variables
@@ -83,28 +114,45 @@ export default function ExpensesDashboard(props) {
         setShowAddNewPurchase(false);
     };
 
-    const reducedTotalSpend = newPurchase.reduce((a, b) => {
-        return a + b.totalSpend;
-    },
-    0);
+    // calculating total spend and resolving null values as 0 so not to break total sum
+    const reducedTotalSpend = newPurchase.reduce((a, b) => a + (!b.totalSpend ? 0 : b.totalSpend), 0);
 
     // setting an event handler to add the incoming data to an object in the newPurchase array
     const handleSubmit = (event) => {
         event.preventDefault();
         setnewPurchase([
             ...newPurchase,
-            { day: newPurchaseDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType },
+            {
+                day: newPurchaseDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType,
+            },
         ]);
     };
 
     const { container } = props;
 
+    // const defaultProps = {
+    //     options: StoreNamesList,
+    //     getOptionLabel: (option) => option.title,
+    // };
+
     // Checkboxes for hiding components (and content for drawer)
+
     const drawer = (
         <div className={classes.root}>
             <div className={classes.toolbar} />
             <Divider />
             <List>
+            <ListItem>
+                    <ListItemIcon>
+                        <Checkbox
+                            color="primary"
+                            checked={showMyPurchases}
+                            onChange={handleshowMyPurchases}
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary="How much have you spent?" />
+                </ListItem>
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -127,17 +175,7 @@ export default function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="Where have you recently shopped?" />
                 </ListItem>
-                <ListItem>
-                    <ListItemIcon>
-                        <Checkbox
-                            color="primary"
-                            checked={showMyPurchases}
-                            onChange={handleshowMyPurchases}
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                    </ListItemIcon>
-                    <ListItemText primary="What have you bought?" />
-                </ListItem>
+                
             </List>
             <Divider />
         </div>
@@ -159,10 +197,10 @@ export default function ExpensesDashboard(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                      Your Expenses Dashboard
+                        Your Expenses Dashboard
                     </Typography>
                     <Typography variant="body2" noWrap>
-                      .ALPHA
+                        .ALPHA
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -209,7 +247,7 @@ export default function ExpensesDashboard(props) {
 
                                     <Button variant="contained" color="primary" onClick={handleShowAddNewPurchase}>
                                         <Typography>
-                                          Add New purchase
+                                            Add New purchase
                                         </Typography>
                                     </Button>
                                 </Box>
@@ -221,22 +259,38 @@ export default function ExpensesDashboard(props) {
                                                     className={classes.textFields}
                                                     noValidate
                                                     autoComplete="off"
-                                                    onSubmit={handleSubmit}>
+                                                    onSubmit={handleSubmit}
+
+                                                >
                                                     <TextField
                                                         required
-                                                        label="Shop Name"
+                                                        label="Store Name"
+                                                        placeholder="What store did you shop at?"
                                                         fullWidth
                                                         value={newStoreName}
-                                                        onChange={e => setStoreName(e.target.value)} />
-                                                    <TextField
-                                                        label="Amount"
-                                                        required
+                                                        onChange={(e) => setStoreName(e.target.value)}
+                                                    />
+
+                                                    {/* <Autocomplete
+                                                        {...defaultProps}
+                                                        options={StoreNamesList}
+                                                        getOptionLabel={(option) => option.store}
+                                                        onChange={(e) => setStoreName(e.target.value)}
+                                                        renderInput={(params) =>
+                                                            <TextField {...params} label="Shop Name" />}
+                                                    /> */}
+                                                    {/* <AutoFill /> */}
+                                          
+
+                                                    <Input
                                                         fullWidth
-                                                        value={newTotalSpend}
-                                                        onChange={e => settotalSpend(e.target.value)}
+                                                        required
+                                                        placeholder="How much did you spend?"
                                                         type="Number"
-                                                        inputProps={{ min: 0 }}
-                                                        startAdornment={<InputAdornment position="start">£</InputAdornment>} />
+                                                        value={newTotalSpend}
+                                                        onChange={(e) => settotalSpend(e.target.value)}
+                                                        startAdornment={<InputAdornment position="start">£</InputAdornment>}
+                                                    />
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
                                                     <KeyboardDatePicker
                                                         required
@@ -251,15 +305,15 @@ export default function ExpensesDashboard(props) {
                                                         onChange={handleDateChange}
                                                     />
                                                     {/* </MuiPickersUtilsProvider> */}
-                                                    <TextField required label="Type" fullWidth value={newPurchaseType} onChange={e => setPurchaseType(e.target.value)} />
+                                                    <TextField required label="Type" fullWidth value={newPurchaseType} onChange={(e) => setPurchaseType(e.target.value)} />
                                                     <Button variant="contained" color="primary" onClick={handleSubmit}>
                                                         <Typography>
-                                                          Submit
+                                                            Submit
                                                         </Typography>
                                                     </Button>
                                                     <Button variant="contained" color="warning" onClick={handleHideAddNewPurchase}>
                                                         <Typography>
-                                                          Cancel
+                                                            Cancel
                                                         </Typography>
                                                     </Button>
                                                 </form>
@@ -272,21 +326,58 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
                     {/* rendering new total spend card */}
-                    <Grid item xs={12}>
-                        <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
-                            <Paper>
-                                <Box width="100%" alignSelf="center" py={1}>
-                                    <Typography>
-                                      Total Spend
-                                    </Typography>
-                                    <Typography color="primary" fontWeight="fontWeightBold">
-                                      £
-                                        {reducedTotalSpend}
-                                    </Typography>
-                                </Box>
-                            </Paper>
-                        </Box>
-                    </Grid>
+                    {showMyPurchases ? (
+                        <Grid item xs={12}>
+                            <Box p={2}>
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                    >
+                                        <Box width="100%" align="center" justifyContent="center" alignContent="center">
+                                            <Box width="100%" alignSelf="center" py={1} variant="h5">
+                                                <Typography gutterBottom>
+                                Total Spend
+                                                </Typography>
+                                                <Typography color="primary" variant="h4">
+                                £{reducedTotalSpend}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        <TableContainer>
+                                            <Table className={classes.table} aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Total</TableCell>
+                                                        <TableCell>Store</TableCell>
+                                                        <TableCell>Date</TableCell>
+                                                        <TableCell>Type</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {newPurchase.map((row) => (
+                                                        <TableRow key={row.name}>
+                                                            <TableCell>
+                                                                {row.totalSpend}
+                                                            </TableCell>
+                                                            <TableCell>{row.storeName}</TableCell>
+                                                            <TableCell>{row.purchaseDate}</TableCell>
+                                                            <TableCell>{row.purchaseType}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                            </Box>
+                        </Grid>
+                    )
+                        : null}
+                    
                     {/* rendering purchase type card if checkbox is true */}
                     {showPurchaseType ? (
                         <Grid item xs={6}>
@@ -296,10 +387,12 @@ export default function ExpensesDashboard(props) {
                                         <Typography>
                                             Purchase Type
                                         </Typography>
-                                        <div style={{height: "35vw"}}>
+                                        <div style={{ height: '35vw' }}>
                                             <ResponsivePie
                                                 data={newPurchase}
-                                                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                                                margin={{
+                                                    top: 40, right: 80, bottom: 80, left: 80,
+                                                }}
                                                 innerRadius={0.5}
                                                 padAngle={0.7}
                                                 cornerRadius={3}
@@ -336,7 +429,7 @@ export default function ExpensesDashboard(props) {
                                         <Typography>
                                             Recent Stores
                                         </Typography>
-                                        <div style={{height: "35vw"}}>
+                                        <div style={{ height: '35vw' }}>
                                             <TableContainer>
                                                 <Table className={classes.table} aria-label="simple table">
                                                     <TableHead>
@@ -352,7 +445,8 @@ export default function ExpensesDashboard(props) {
                                                                     {row.storeName}
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    £{row.totalSpend}
+                                                                    £
+                                                                    {row.totalSpend}
                                                                 </TableCell>
                                                             </TableRow>
                                                         ))}
@@ -367,13 +461,13 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {/* rendering list of my purchases card if checkbox is true */}
-                    {showMyPurchases ? (
+                    {/* {showMyPurchases ? (
                         <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper>
                                     <Box width="100%" alignSelf="center" p={2}>
                                         <Typography>
-                                            {/* Top Purchases */}
+
                                             My Purchases
                                         </Typography>
                                         <TableContainer>
@@ -405,7 +499,7 @@ export default function ExpensesDashboard(props) {
                             </Box>
                         </Grid>
                     )
-                        : null}
+                        : null} */}
                 </Grid>
             </main>
         </div>
