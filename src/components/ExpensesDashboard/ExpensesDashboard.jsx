@@ -28,11 +28,18 @@ import {
     Divider,
     CssBaseline,
     AppBar,
+    ExpansionPanel,
+    ExpansionPanelSummary,
+    ExpansionPanelDetails,
+    FormControl,
+    InputLabel,
+    Input,
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { ResponsivePie } from '@nivo/pie';
 import useStyles from './ExpensesDashboard.style';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import AutoFill from '../AutoFill/AutoFill';
 
 
@@ -40,7 +47,7 @@ export default function ExpensesDashboard(props) {
 
     // function renderInput(inputProps) {
     //     const { InputProps, classes, ref, ...other } = inputProps;
-      
+
     //     return (
     //       <TextField
     //         InputProps={{
@@ -77,7 +84,7 @@ export default function ExpensesDashboard(props) {
     const parsedNewTotalSpend = parseInt(newTotalSpend);
 
     // Assigning the output for the purchase date to a string
-    const newPurchaseDate = newSelectedDate.toString();
+    const newPurchaseDate = (!newSelectedDate ? 'no date selected' : newSelectedDate.toString());
 
 
     // settinng event handlers to enable updating variables
@@ -102,7 +109,7 @@ export default function ExpensesDashboard(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
-    
+
     // calculating total spend and resolving null values as 0 so not to break total sum
     const reducedTotalSpend = newPurchase.reduce((a, b) => a + (!b.totalSpend ? 0 : b.totalSpend), 0);
 
@@ -247,7 +254,7 @@ export default function ExpensesDashboard(props) {
                                                     noValidate
                                                     autoComplete="off"
                                                     onSubmit={handleSubmit}
-                                                    
+
                                                 >
                                                     <TextField
                                                         required
@@ -267,15 +274,15 @@ export default function ExpensesDashboard(props) {
                                                             <TextField {...params} label="Shop Name" />}
                                                     /> */}
                                                     {/* <AutoFill /> */}
-                                                    <TextField
-                                                        label="Amount"
-                                                        placeholder="How much did you spend?"
-                                                        required
-                                                        fullWidth
+                                          
+
+                                                    <Input
+                                                    fullWidth
+                                                    required
+                                                    placeholder="How much did you spend?"
+                                                    type="Number"
                                                         value={newTotalSpend}
                                                         onChange={(e) => settotalSpend(e.target.value)}
-                                                        type="Number"
-                                                        inputProps={{ min: 0 }}
                                                         startAdornment={<InputAdornment position="start">£</InputAdornment>}
                                                     />
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
@@ -283,7 +290,6 @@ export default function ExpensesDashboard(props) {
                                                         required
                                                         disableToolbar
                                                         fullWidth
-                                                        placeholder="What type of goods did you buy?"
                                                         variant="inline"
                                                         format="dd/MM/yyyy"
                                                         margin="normal"
@@ -314,19 +320,55 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
                     {/* rendering new total spend card */}
+
                     <Grid item xs={12}>
-                        <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
-                            <Paper>
-                                <Box width="100%" alignSelf="center" py={1}>
-                                    <Typography>
-                                        Total Spend
-                                    </Typography>
-                                    <Typography color="primary" fontWeight="fontWeightBold">
-                                        {reducedTotalSpend}
-                                    </Typography>
-                                </Box>
-                            </Paper>
+                        <Box p={2}>
+                            <ExpansionPanel>
+                                <ExpansionPanelSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <Box width="100%" align="center" justifyContent="center" alignContent="center">
+                                        <Box width="100%" alignSelf="center" py={1} variant="h5">
+                                            <Typography gutterBottom>
+                                                Total Spend
+                                            </Typography>
+                                            <Typography color="primary" variant="h4">
+                                                £{reducedTotalSpend}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    <TableContainer>
+                                        <Table className={classes.table} aria-label="simple table">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Total</TableCell>
+                                                    <TableCell>Store</TableCell>
+                                                    <TableCell>Date</TableCell>
+                                                    <TableCell>Type</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {newPurchase.map((row) => (
+                                                    <TableRow key={row.name}>
+                                                        <TableCell>
+                                                            {row.totalSpend}
+                                                        </TableCell>
+                                                        <TableCell>{row.storeName}</TableCell>
+                                                        <TableCell>{row.purchaseDate}</TableCell>
+                                                        <TableCell>{row.purchaseType}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
                         </Box>
+
                     </Grid>
                     {/* rendering purchase type card if checkbox is true */}
                     {showPurchaseType ? (
