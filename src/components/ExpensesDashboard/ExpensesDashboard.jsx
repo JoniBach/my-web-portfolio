@@ -450,7 +450,7 @@ export default function ExpensesDashboard(props) {
                                         <Typography>
                                             Purchase Type
                                         </Typography>
-                                        <div style={{ height: '35vw' }}>
+                                        <div style={{ height: '300px' }}>
                                             <ResponsivePie
                                                 data={newPurchase}
                                                 margin={{
@@ -493,7 +493,7 @@ export default function ExpensesDashboard(props) {
                                         <Typography>
                              Purchase History
                                         </Typography>
-                                        <div style={{ height: '35vw' }}>
+                                        <div style={{ height: '300px' }}>
                                             <ResponsiveCalendar
                                                 data={newPurchase}
                                                 from="2020-01-01"
