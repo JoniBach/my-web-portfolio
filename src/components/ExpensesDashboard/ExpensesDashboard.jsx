@@ -34,12 +34,14 @@ import {
     FormControl,
     InputLabel,
     Input,
+    Select,
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { ResponsivePie } from '@nivo/pie';
 import useStyles from './ExpensesDashboard.style';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ResponsiveCalendar } from '@nivo/calendar'
 // import AutoFill from '../AutoFill/AutoFill';
 
 
@@ -74,7 +76,7 @@ export default function ExpensesDashboard(props) {
     const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
     // Setting state for hiding components with ternary operators
     const [showPurchaseType, setShowPurchaseType] = React.useState(true);
-    const [showRecentStores, setShowRecentStores] = React.useState(true);
+    const [showPurchaseHistory, setshowPurchaseHistory] = React.useState(true);
     const [showMyPurchases, setShowMyPurchases] = React.useState(true);
     const [showAddNewPurchase, setShowAddNewPurchase] = React.useState(false);
     // Setting state for changing drawer when a mobile user is detected
@@ -84,14 +86,26 @@ export default function ExpensesDashboard(props) {
     const parsedNewTotalSpend = parseInt(newTotalSpend);
 
     // formatting the date to look more readable
-    const currentDate = new Date();
-    const formattedDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear()
+    const formattedDate = newSelectedDate.getDate() + '/' + (newSelectedDate.getMonth() + 1) + '/' + newSelectedDate.getFullYear()
+    const localDate = newSelectedDate.toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    // const formattedDateCalendar = newSelectedDate.getFullYear() + '-' + (newSelectedDate.getMonth() + 1) + '-' + newSelectedDate.getDate()
+    // const month = newSelectedDate.getMonth() + 1;
+
+
+
+
+    const parsedDate = localDate.split("/").join("-");
+
+
 
     // Assigning the output for the purchase date to a string
     const newPurchaseDate = (!formattedDate ? 'no date selected' : formattedDate.toString());
 
+    // Assigning the output for the purchase date to a string
 
-    // settinng event handlers to enable updating variables
+
+    // settinng event handlers to enable updating variable
+
     const handleDateChange = (date) => {
         setnewSelectedDate(date);
     };
@@ -101,8 +115,8 @@ export default function ExpensesDashboard(props) {
     const handleshowPurchaseType = (event) => {
         setShowPurchaseType(event.target.checked);
     };
-    const handleshowRecentStores = (event) => {
-        setShowRecentStores(event.target.checked);
+    const handleshowPurchaseHistory = (event) => {
+        setshowPurchaseHistory(event.target.checked);
     };
     const handleshowMyPurchases = (event) => {
         setShowMyPurchases(event.target.checked);
@@ -122,27 +136,59 @@ export default function ExpensesDashboard(props) {
         event.preventDefault();
         setnewPurchase([
             ...newPurchase,
+            // order the purchases by value
             {
-                day: newPurchaseDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType,
+                day: parsedDate, value: parsedNewTotalSpend, id: newPurchaseType, label: newPurchaseType, totalSpend: parsedNewTotalSpend, storeName: newStoreName, purchaseDate: newPurchaseDate, purchaseType: newPurchaseType,
             },
         ]);
     };
 
     const { container } = props;
+      
+    const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
+        if (a.value > b.value) return 1;
+        if (a.value < b.value) return -1;
+        return 0;
+    });
+    const sortTotalSpendHighLow = newPurchase.sort(function (a, b) {
+        if (a.value < b.value) return 1;
+        if (a.value > b.value) return -1;
+        return 0;
+    });
+    const sortDateNewOld = newPurchase.sort(function (a, b) {
+        if (a.day < b.day) return 1;
+        if (a.day > b.day) return -1;
+        return 0;
+    });
+    const sortDateOldNew = newPurchase.sort(function (a, b) {
+        if (a.day > b.day) return 1;
+        if (a.day < b.day) return -1;
+        return 0;
+    });
+      
+    const purchaseTypeOptions = [
+        // { typeOption: null },
+        { typeOption: 'Other' },
+        { typeOption: 'Groceries' },
+        { typeOption: 'Entertainment' },
+        { typeOption: 'Appliances' },
+        { typeOption: 'Household' },
+        { typeOption: 'Personal' },
+        { typeOption: 'Groceries' },
+        { typeOption: 'Electronics' },
+        
 
-    // const defaultProps = {
-    //     options: StoreNamesList,
-    //     getOptionLabel: (option) => option.title,
-    // };
+    ];
 
-    // Checkboxes for hiding components (and content for drawer)
+
 
     const drawer = (
         <div className={classes.root}>
+
             <div className={classes.toolbar} />
             <Divider />
             <List>
-            <ListItem>
+                <ListItem>
                     <ListItemIcon>
                         <Checkbox
                             color="primary"
@@ -153,6 +199,18 @@ export default function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="How much have you spent?" />
                 </ListItem>
+                
+                <ListItem>
+                    <ListItemIcon>
+                        <Checkbox
+                            color="primary"
+                            checked={showPurchaseHistory}
+                            onChange={handleshowPurchaseHistory}
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary="What type of stores do you shop at?" />
+                </ListItem>
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -162,20 +220,9 @@ export default function ExpensesDashboard(props) {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="What is your average purchase?" />
+                    <ListItemText primary="See your purchase history" />
                 </ListItem>
-                <ListItem>
-                    <ListItemIcon>
-                        <Checkbox
-                            color="primary"
-                            checked={showRecentStores}
-                            onChange={handleshowRecentStores}
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                    </ListItemIcon>
-                    <ListItemText primary="Where have you recently shopped?" />
-                </ListItem>
-                
+
             </List>
             <Divider />
         </div>
@@ -263,7 +310,6 @@ export default function ExpensesDashboard(props) {
 
                                                 >
                                                     <TextField
-                                                        required
                                                         label="Store Name"
                                                         placeholder="What store did you shop at?"
                                                         fullWidth
@@ -280,11 +326,10 @@ export default function ExpensesDashboard(props) {
                                                             <TextField {...params} label="Shop Name" />}
                                                     /> */}
                                                     {/* <AutoFill /> */}
-                                          
+
 
                                                     <Input
                                                         fullWidth
-                                                        required
                                                         placeholder="How much did you spend?"
                                                         type="Number"
                                                         value={newTotalSpend}
@@ -293,7 +338,6 @@ export default function ExpensesDashboard(props) {
                                                     />
                                                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
                                                     <KeyboardDatePicker
-                                                        required
                                                         disableToolbar
                                                         fullWidth
                                                         variant="inline"
@@ -303,9 +347,26 @@ export default function ExpensesDashboard(props) {
                                                         label="Purchase Date"
                                                         value={newSelectedDate}
                                                         onChange={handleDateChange}
+                                                    // onChange={(e) => handleDateChange(e.target.value)}
                                                     />
+                                                    <FormControl fullWidth className={classes.formControl}>
+                                                        <InputLabel>Purchase Type</InputLabel>
+                                                        <Select
+                                                            native
+                                                            value={newPurchaseType}
+                                                            onChange={(e) => setPurchaseType(e.target.value)}
+                                                            inputProps={{
+                                                                name: 'Purchase Type',
+                                                            }}
+                                                        >
+                                                            {
+                                                                purchaseTypeOptions.map((options) => (
+                                                                    <option>{options.typeOption}</option>
+                                                                ))
+                                                            }
+                                                        </Select>
+                                                    </FormControl>
                                                     {/* </MuiPickersUtilsProvider> */}
-                                                    <TextField required label="Type" fullWidth value={newPurchaseType} onChange={(e) => setPurchaseType(e.target.value)} />
                                                     <Button variant="contained" color="primary" onClick={handleSubmit}>
                                                         <Typography>
                                                             Submit
@@ -325,7 +386,7 @@ export default function ExpensesDashboard(props) {
                             </Paper>
                         </Box>
                     </Grid>
-                    {/* rendering new total spend card */}
+
                     {showMyPurchases ? (
                         <Grid item xs={12}>
                             <Box p={2}>
@@ -338,10 +399,10 @@ export default function ExpensesDashboard(props) {
                                         <Box width="100%" align="center" justifyContent="center" alignContent="center">
                                             <Box width="100%" alignSelf="center" py={1} variant="h5">
                                                 <Typography gutterBottom>
-                                Total Spend
+                                                    Total Spend
                                                 </Typography>
                                                 <Typography color="primary" variant="h4">
-                                £{reducedTotalSpend}
+                                                    £{reducedTotalSpend}
                                                 </Typography>
                                             </Box>
                                         </Box>
@@ -357,8 +418,11 @@ export default function ExpensesDashboard(props) {
                                                         <TableCell>Type</TableCell>
                                                     </TableRow>
                                                 </TableHead>
+
+
+
                                                 <TableBody>
-                                                    {newPurchase.map((row) => (
+                                                    {sortDateNewOld.map((row) => (
                                                         <TableRow key={row.name}>
                                                             <TableCell>
                                                                 {row.totalSpend}
@@ -379,14 +443,14 @@ export default function ExpensesDashboard(props) {
                         : null}
                     {/* rendering purchase type card if checkbox is true */}
                     {showPurchaseType ? (
-                        <Grid item xs={6}>
+                        <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper>
                                     <Box width="100%" alignSelf="center" py={1} overflow="auto">
                                         <Typography>
                                             Purchase Type
                                         </Typography>
-                                        <div style={{ height: '35vw' }}>
+                                        <div style={{ height: '300px' }}>
                                             <ResponsivePie
                                                 data={newPurchase}
                                                 margin={{
@@ -410,7 +474,6 @@ export default function ExpensesDashboard(props) {
                                                 slicesLabelsSkipAngle={10}
                                                 slicesLabelsTextColor="#333333"
                                                 sliceLabel="id"
-                                                animate
                                                 motionStiffness={90}
                                                 motionDamping={15}
                                             />
@@ -422,38 +485,39 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {/* rendering purchase type card if checkbox is true */}
-                    {showRecentStores ? (
-                        <Grid item xs={6} >
+                    {showPurchaseHistory ? (
+                        <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper>
                                     <Box width="100%" alignSelf="center" py={1} overflow="auto">
                                         <Typography>
-                                            Recent Stores
+                             Purchase History
                                         </Typography>
-                                        <div style={{ height: '35vw' }}>
-                                            <TableContainer>
-                                                <Table className={classes.table} aria-label="simple table">
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell>Store</TableCell>
-                                                            <TableCell>Total</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        {newPurchase.map((row) => (
-                                                            <TableRow key={row.name}>
-                                                                <TableCell>
-                                                                    {row.storeName}
-                                                                </TableCell>
-                                                                <TableCell>
-                                                                    £
-                                                                    {row.totalSpend}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                        ))}
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
+                                        <div style={{ height: '300px' }}>
+                                            <ResponsiveCalendar
+                                                data={newPurchase}
+                                                from="2020-01-01"
+                                                to="2020-12-31"
+                                                emptyColor="#eeeeee"
+                                                colors={['#61cdbb', '#97e3d5', '#e8c1a0', '#f47560']}
+                                                margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+                                                yearSpacing={40}
+                                                monthBorderColor="#ffffff"
+                                                dayBorderWidth={2}
+                                                dayBorderColor="#ffffff"
+                                                legends={[
+                                                    {
+                                                        anchor: 'bottom-right',
+                                                        direction: 'row',
+                                                        translateY: 36,
+                                                        itemCount: 4,
+                                                        itemWidth: 42,
+                                                        itemHeight: 36,
+                                                        itemsSpacing: 14,
+                                                        itemDirection: 'right-to-left',
+                                                    },
+                                                ]}
+                                            />
                                         </div>
                                     </Box>
                                 </Paper>
@@ -461,46 +525,7 @@ export default function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
-                    {/* rendering list of my purchases card if checkbox is true */}
-                    {/* {showMyPurchases ? (
-                        <Grid item xs={12}>
-                            <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
-                                <Paper>
-                                    <Box width="100%" alignSelf="center" p={2}>
-                                        <Typography>
-
-                                            My Purchases
-                                        </Typography>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Total</TableCell>
-                                                        <TableCell>Store</TableCell>
-                                                        <TableCell>Date</TableCell>
-                                                        <TableCell>Type</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {newPurchase.map((row) => (
-                                                        <TableRow key={row.name}>
-                                                            <TableCell>
-                                                                {row.totalSpend}
-                                                            </TableCell>
-                                                            <TableCell>{row.storeName}</TableCell>
-                                                            <TableCell>{row.purchaseDate}</TableCell>
-                                                            <TableCell>{row.purchaseType}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </Box>
-                                </Paper>
-                            </Box>
-                        </Grid>
-                    )
-                        : null} */}
+           
                 </Grid>
             </main>
         </div>

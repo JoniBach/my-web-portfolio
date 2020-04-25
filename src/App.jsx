@@ -17,12 +17,10 @@ function App() {
         <Router>
             <Switch>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
                 <Route exact path="/" component={DemoSite} />
                 <Route path="/home" component={MainDisplay} />
                 <Route path="/expensesdashboard" component={ExpensesDashboard} />
                 </MuiPickersUtilsProvider>
-
             </Switch>
         </Router>
     );
