@@ -76,7 +76,7 @@ export default function ExpensesDashboard(props) {
     const [newSelectedDate, setnewSelectedDate] = React.useState(new Date());
     // Setting state for hiding components with ternary operators
     const [showPurchaseType, setShowPurchaseType] = React.useState(true);
-    const [showRecentStores, setShowRecentStores] = React.useState(true);
+    const [showPurchaseHistory, setshowPurchaseHistory] = React.useState(true);
     const [showMyPurchases, setShowMyPurchases] = React.useState(true);
     const [showAddNewPurchase, setShowAddNewPurchase] = React.useState(false);
     // Setting state for changing drawer when a mobile user is detected
@@ -115,8 +115,8 @@ export default function ExpensesDashboard(props) {
     const handleshowPurchaseType = (event) => {
         setShowPurchaseType(event.target.checked);
     };
-    const handleshowRecentStores = (event) => {
-        setShowRecentStores(event.target.checked);
+    const handleshowPurchaseHistory = (event) => {
+        setshowPurchaseHistory(event.target.checked);
     };
     const handleshowMyPurchases = (event) => {
         setShowMyPurchases(event.target.checked);
@@ -145,26 +145,26 @@ export default function ExpensesDashboard(props) {
 
     const { container } = props;
       
-      const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
+    const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
         if (a.value > b.value) return 1;
         if (a.value < b.value) return -1;
         return 0;
-      });
-      const sortTotalSpendHighLow = newPurchase.sort(function (a, b) {
+    });
+    const sortTotalSpendHighLow = newPurchase.sort(function (a, b) {
         if (a.value < b.value) return 1;
         if (a.value > b.value) return -1;
         return 0;
-      });
-      const sortDateNewOld = newPurchase.sort(function (a, b) {
+    });
+    const sortDateNewOld = newPurchase.sort(function (a, b) {
         if (a.day < b.day) return 1;
         if (a.day > b.day) return -1;
         return 0;
-      });
-      const sortDateOldNew = newPurchase.sort(function (a, b) {
+    });
+    const sortDateOldNew = newPurchase.sort(function (a, b) {
         if (a.day > b.day) return 1;
         if (a.day < b.day) return -1;
         return 0;
-      });
+    });
       
     const purchaseTypeOptions = [
         // { typeOption: null },
@@ -199,6 +199,18 @@ export default function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="How much have you spent?" />
                 </ListItem>
+                
+                <ListItem>
+                    <ListItemIcon>
+                        <Checkbox
+                            color="primary"
+                            checked={showPurchaseHistory}
+                            onChange={handleshowPurchaseHistory}
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary="What type of stores do you shop at?" />
+                </ListItem>
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -208,18 +220,7 @@ export default function ExpensesDashboard(props) {
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="What is your average purchase?" />
-                </ListItem>
-                <ListItem>
-                    <ListItemIcon>
-                        <Checkbox
-                            color="primary"
-                            checked={showRecentStores}
-                            onChange={handleshowRecentStores}
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                    </ListItemIcon>
-                    <ListItemText primary="Where have you recently shopped?" />
+                    <ListItemText primary="See your purchase history" />
                 </ListItem>
 
             </List>
@@ -473,7 +474,6 @@ export default function ExpensesDashboard(props) {
                                                 slicesLabelsSkipAngle={10}
                                                 slicesLabelsTextColor="#333333"
                                                 sliceLabel="id"
-                                                animate
                                                 motionStiffness={90}
                                                 motionDamping={15}
                                             />
@@ -485,52 +485,13 @@ export default function ExpensesDashboard(props) {
                     )
                         : null}
                     {/* rendering purchase type card if checkbox is true */}
-                    {/* {showRecentStores ? (
-                        <Grid item xs={6} >
-                            <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
-                                <Paper>
-                                    <Box width="100%" alignSelf="center" py={1} overflow="auto">
-                                        <Typography>
-                                            Recent Stores
-                                        </Typography>
-                                        <div style={{ height: '35vw' }}>
-                                            <TableContainer>
-                                                <Table className={classes.table} aria-label="simple table">
-                                                    <TableHead>
-                                                        <TableRow>
-                                                            <TableCell>Store</TableCell>
-                                                            <TableCell>Total</TableCell>
-                                                        </TableRow>
-                                                    </TableHead>
-                                                    <TableBody>
-                                                        {newPurchase.map((row) => (
-                                                            <TableRow key={row.name}>
-                                                                <TableCell>
-                                                                    {row.storeName}
-                                                                </TableCell>
-                                                                <TableCell>
-                                                                    £
-                                                                    {row.totalSpend}
-                                                                </TableCell>
-                                                            </TableRow>
-                                                        ))}
-                                                    </TableBody>
-                                                </Table>
-                                            </TableContainer>
-                                        </div>
-                                    </Box>
-                                </Paper>
-                            </Box>
-                        </Grid>
-                    )
-                        : null} */}
-                    {showPurchaseType ? (
+                    {showPurchaseHistory ? (
                         <Grid item xs={12}>
                             <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                                 <Paper>
                                     <Box width="100%" alignSelf="center" py={1} overflow="auto">
                                         <Typography>
-                                            Purchase Type
+                             Purchase History
                                         </Typography>
                                         <div style={{ height: '35vw' }}>
                                             <ResponsiveCalendar
@@ -564,6 +525,7 @@ export default function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
+           
                 </Grid>
             </main>
         </div>
