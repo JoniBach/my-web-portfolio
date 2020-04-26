@@ -5,6 +5,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
+import { motion } from "framer-motion"
+
 import {
     Grid,
     Paper,
@@ -292,6 +294,7 @@ export default function ExpensesDashboard(props) {
                 <Grid container>
                     {/* rendering new purchase card */}
                     <Grid item xs={12}>
+
                         <Box p={2} width="100%" align="center" justifyContent="center" alignContent="center">
                             <Paper>
                                 <Box width="100%" alignSelf="flex-start" p={2}>
@@ -305,6 +308,8 @@ export default function ExpensesDashboard(props) {
                                 <Box width="100%">
                                     {showAddNewPurchase ? (
                                         <Grid item xs={6}>
+                                                                                                    
+
                                             <Box p={2}>
                                                 <form
                                                     className={classes.textFields}
@@ -391,9 +396,13 @@ export default function ExpensesDashboard(props) {
                         </Box>
                     </Grid>
 
+
                     {showMyPurchases ? (
                         <Grid item xs={12}>
+                                                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} >
+
                             <Box p={2}>
+
                                 <ExpansionPanel>
                                     <ExpansionPanelSummary
                                         expandIcon={<ExpandMoreIcon />}
@@ -448,7 +457,10 @@ export default function ExpensesDashboard(props) {
                                         </TableContainer>
                                     </ExpansionPanelDetails>
                                 </ExpansionPanel>
+
                             </Box>
+                            </motion.div>
+
                         </Grid>
                     )
                         : null}
