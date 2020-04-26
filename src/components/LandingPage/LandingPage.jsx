@@ -32,9 +32,9 @@ export default function MainDisplay() {
         buttonColor: String
         buttonlink: String
         */
-        { buttonText: 'About Me', buttonlink: '/home', buttonColor: 'secondary' },
-        { buttonText: 'Web Portfolio', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
-        { buttonText: 'Web Portfolio', buttonlink: '/expensesdashboard', buttonColor: 'secondary' },
+        { buttonText: 'About Me', buttonlink: '/', buttonColor: 'secondary' },
+        { buttonText: 'Creative Portfolio', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
+        { buttonText: 'Web Portfolio', buttonlink: '/webportfolio', buttonColor: 'secondary' },
 
         // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
 
