@@ -43,6 +43,9 @@ import useStyles from './ExpensesDashboard.style';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ResponsiveCalendar } from '@nivo/calendar'
 // import AutoFill from '../AutoFill/AutoFill';
+import MovingList from '../MovingList/MovingList';
+import { Motion, spring } from 'react-motion';
+
 
 
 export default function ExpensesDashboard(props) {
@@ -144,7 +147,8 @@ export default function ExpensesDashboard(props) {
     };
 
     const { container } = props;
-      
+
+    // sorting functions for ordering the list views
     const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
         if (a.value > b.value) return 1;
         if (a.value < b.value) return -1;
@@ -165,7 +169,7 @@ export default function ExpensesDashboard(props) {
         if (a.day < b.day) return -1;
         return 0;
     });
-      
+
     const purchaseTypeOptions = [
         // { typeOption: null },
         { typeOption: 'Other' },
@@ -176,7 +180,7 @@ export default function ExpensesDashboard(props) {
         { typeOption: 'Personal' },
         { typeOption: 'Groceries' },
         { typeOption: 'Electronics' },
-        
+
 
     ];
 
@@ -199,7 +203,7 @@ export default function ExpensesDashboard(props) {
                     </ListItemIcon>
                     <ListItemText primary="How much have you spent?" />
                 </ListItem>
-                
+
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -402,8 +406,15 @@ export default function ExpensesDashboard(props) {
                                                     Total Spend
                                                 </Typography>
                                                 <Typography color="primary" variant="h4">
-                                                    £{reducedTotalSpend}
+
+                                                    <Motion defaultStyle={{ x: 0 }} style={{ x: spring(reducedTotalSpend) }}>
+                                                        {(value) => <Typography color="primary" variant="h4">£{Math.round((value.x + Number.EPSILON) * 100) / 100}</Typography>}
+
+                                                    </Motion>
                                                 </Typography>
+
+                                                <Box fontWeight="fontWeightLight" fontStyle="oblique">in {newPurchase.length} purchases</Box>
+
                                             </Box>
                                         </Box>
                                     </ExpansionPanelSummary>
@@ -491,13 +502,13 @@ export default function ExpensesDashboard(props) {
                                 <Paper>
                                     <Box width="100%" alignSelf="center" py={1} overflow="auto">
                                         <Typography>
-                             Purchase History
+                                            Purchase History
                                         </Typography>
                                         <div style={{ height: '300px' }}>
                                             <ResponsiveCalendar
                                                 data={newPurchase}
-                                                from="2020-01-01"
-                                                to="2020-12-31"
+                                                from="2020-04-01"
+                                                to="2020-04-30"
                                                 emptyColor="#eeeeee"
                                                 colors={['#61cdbb', '#97e3d5', '#e8c1a0', '#f47560']}
                                                 margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
@@ -525,7 +536,9 @@ export default function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
-           
+                        {/* <Grid item xs={12}>
+                            <MovingList/>
+                        </Grid> */}
                 </Grid>
             </main>
         </div>
