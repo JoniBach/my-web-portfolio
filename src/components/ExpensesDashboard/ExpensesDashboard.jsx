@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
 import { motion } from "framer-motion"
+import Buttons from '../LinkToButtonsComponent/LinkToButtonsComponent'
+
 
 import {
     Grid,
@@ -51,7 +53,13 @@ import { Motion, spring } from 'react-motion';
 
 
 export default function ExpensesDashboard(props) {
+    const buttons = [
+        { buttonText: 'About Me', buttonlink: '/', buttonColor: 'secondary' },
+        { buttonText: 'Creative Portfolio', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
+        { buttonText: 'Web Portfolio', buttonlink: '/webportfolio', buttonColor: 'secondary' },
 
+
+    ]
     // function renderInput(inputProps) {
     //     const { InputProps, classes, ref, ...other } = inputProps;
 
@@ -185,7 +193,9 @@ export default function ExpensesDashboard(props) {
 
 
     ];
-
+    function goBack() {
+        window.history.back();
+    }
 
 
     const drawer = (
@@ -194,6 +204,10 @@ export default function ExpensesDashboard(props) {
             <div className={classes.toolbar} />
             <Divider />
             <List>
+                <ListItem>
+                    <Button variant="outlined" onClick={goBack} fullWidth={true} >Return</Button>
+                </ListItem>
+
                 <ListItem>
                     <ListItemIcon>
                         <Checkbox
@@ -308,7 +322,7 @@ export default function ExpensesDashboard(props) {
                                 <Box width="100%">
                                     {showAddNewPurchase ? (
                                         <Grid item xs={6}>
-                                                                                                    
+
 
                                             <Box p={2}>
                                                 <form
@@ -399,66 +413,66 @@ export default function ExpensesDashboard(props) {
 
                     {showMyPurchases ? (
                         <Grid item xs={12}>
-                                                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} >
+                            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} >
 
-                            <Box p={2}>
+                                <Box p={2}>
 
-                                <ExpansionPanel>
-                                    <ExpansionPanelSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                    >
-                                        <Box width="100%" align="center" justifyContent="center" alignContent="center">
-                                            <Box width="100%" alignSelf="center" py={1} variant="h5">
-                                                <Typography gutterBottom>
-                                                    Total Spend
+                                    <ExpansionPanel>
+                                        <ExpansionPanelSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                        >
+                                            <Box width="100%" align="center" justifyContent="center" alignContent="center">
+                                                <Box width="100%" alignSelf="center" py={1} variant="h5">
+                                                    <Typography gutterBottom>
+                                                        Total Spend
                                                 </Typography>
-                                                <Typography color="primary" variant="h4">
+                                                    <Typography color="primary" variant="h4">
 
-                                                    <Motion defaultStyle={{ x: 0 }} style={{ x: spring(reducedTotalSpend) }}>
-                                                        {(value) => <Typography color="primary" variant="h4">£{Math.round((value.x + Number.EPSILON) * 100) / 100}</Typography>}
+                                                        <Motion defaultStyle={{ x: 0 }} style={{ x: spring(reducedTotalSpend) }}>
+                                                            {(value) => <Typography color="primary" variant="h4">£{Math.round((value.x + Number.EPSILON) * 100) / 100}</Typography>}
 
-                                                    </Motion>
-                                                </Typography>
+                                                        </Motion>
+                                                    </Typography>
 
-                                                <Box fontWeight="fontWeightLight" fontStyle="oblique">in {newPurchase.length} purchases</Box>
+                                                    <Box fontWeight="fontWeightLight" fontStyle="oblique">in {newPurchase.length} purchases</Box>
 
+                                                </Box>
                                             </Box>
-                                        </Box>
-                                    </ExpansionPanelSummary>
-                                    <ExpansionPanelDetails>
-                                        <TableContainer>
-                                            <Table className={classes.table} aria-label="simple table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Total</TableCell>
-                                                        <TableCell>Store</TableCell>
-                                                        <TableCell>Date</TableCell>
-                                                        <TableCell>Type</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-
-
-
-                                                <TableBody>
-                                                    {sortDateNewOld.map((row) => (
-                                                        <TableRow key={row.name}>
-                                                            <TableCell>
-                                                                {row.totalSpend}
-                                                            </TableCell>
-                                                            <TableCell>{row.storeName}</TableCell>
-                                                            <TableCell>{row.purchaseDate}</TableCell>
-                                                            <TableCell>{row.purchaseType}</TableCell>
+                                        </ExpansionPanelSummary>
+                                        <ExpansionPanelDetails>
+                                            <TableContainer>
+                                                <Table className={classes.table} aria-label="simple table">
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell>Total</TableCell>
+                                                            <TableCell>Store</TableCell>
+                                                            <TableCell>Date</TableCell>
+                                                            <TableCell>Type</TableCell>
                                                         </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
+                                                    </TableHead>
 
-                            </Box>
+
+
+                                                    <TableBody>
+                                                        {sortDateNewOld.map((row) => (
+                                                            <TableRow key={row.name}>
+                                                                <TableCell>
+                                                                    {row.totalSpend}
+                                                                </TableCell>
+                                                                <TableCell>{row.storeName}</TableCell>
+                                                                <TableCell>{row.purchaseDate}</TableCell>
+                                                                <TableCell>{row.purchaseType}</TableCell>
+                                                            </TableRow>
+                                                        ))}
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+                                        </ExpansionPanelDetails>
+                                    </ExpansionPanel>
+
+                                </Box>
                             </motion.div>
 
                         </Grid>
@@ -548,7 +562,7 @@ export default function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
-                        {/* <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                             <MovingList/>
                         </Grid> */}
                 </Grid>

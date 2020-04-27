@@ -48,15 +48,15 @@ export default function MainDisplay() {
     ];
 
     const buttons = [
-        {buttonText: 'LinkedIn', buttonIcon: <LinkedInIcon />, buttonColor: 'secondary', buttonlink:'https://www.linkedin.com/in/james-crook-492652185/', buttonVariant: "outlined" },
-        {buttonText: 'Email', buttonIcon: <EmailIcon />, buttonColor: 'secondary',buttonlink: 'mailto:james@jamescrook.uk', buttonVariant: "outlined"},
-        {buttonText: 'CV', buttonIcon: <DriveIcon />, buttonColor: 'secondary', buttonlink: 'https://docs.google.com/document/d/1T7bBXvHs8SR6-YXDmXWAdowlkUAd7ONjOdUKwZ8-tvk/edit?usp=sharing?export=download', buttonVariant: "outlined" },
-        {buttonText: 'Instagram', buttonIcon: <Instagram />, buttonColor: 'secondary', buttonlink: 'https://www.instagram.com/jzcrook/', buttonVariant: "outlined"},
-    
+        { buttonText: 'LinkedIn', buttonIcon: <LinkedInIcon />, buttonColor: 'secondary', buttonlink: 'https://www.linkedin.com/in/james-crook-492652185/', buttonVariant: "outlined" },
+        { buttonText: 'Email', buttonIcon: <EmailIcon />, buttonColor: 'secondary', buttonlink: 'mailto:james@jamescrook.uk', buttonVariant: "outlined" },
+        { buttonText: 'CV', buttonIcon: <DriveIcon />, buttonColor: 'secondary', buttonlink: 'https://docs.google.com/document/d/1T7bBXvHs8SR6-YXDmXWAdowlkUAd7ONjOdUKwZ8-tvk/edit?usp=sharing?export=download', buttonVariant: "outlined" },
+        { buttonText: 'Instagram', buttonIcon: <Instagram />, buttonColor: 'secondary', buttonlink: 'https://www.instagram.com/jzcrook/', buttonVariant: "outlined" },
+
     ]
     const [rotate, setRotate] = useState(0);
     const toggleRotate = () => setRotate(rotate + 90);
-  
+
 
     return (
 
@@ -96,7 +96,7 @@ export default function MainDisplay() {
                     </Grid>
                     <Grid item xs={9}>
                         <Typography variant="h5" color="secondary">
-                        Thanks for checking me out! My name is James Crook. I am a front end developer with one year of experience as a software engineer. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of Deloitte Systems Design & Engineering (where I am soon to complete my Industrial Placement). I am adept in the art of upskilling to address a wide-scale variety of tasks. I have demonstrated the ability to serve clients across a number of different mediums from the carefully controlled environment of the Public Sector; to the fast-paced and highly mobile environment of private sector eCommerce. Being able to learn quality soft skills from a decade of performing and creating art has helped me grow in the technology sector.                        </Typography>
+                            Thanks for checking me out! My name is James Crook. I am a front end developer with one year of experience as a software engineer. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of Deloitte Systems Design & Engineering (where I am soon to complete my Industrial Placement). I am adept in the art of upskilling to address a wide-scale variety of tasks. I have demonstrated the ability to serve clients across a number of different mediums from the carefully controlled environment of the Public Sector; to the fast-paced and highly mobile environment of private sector eCommerce. Being able to learn quality soft skills from a decade of performing and creating art has helped me grow in the technology sector.                        </Typography>
                     </Grid>
                 </Grid>
                 <Box display="flex" justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/parkinglot.png)", }}>
