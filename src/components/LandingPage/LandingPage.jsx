@@ -92,9 +92,9 @@ export default function MainDisplay() {
                 </Grid>
             </Box>
             <Box display="flex" justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/strut.png)", }}>
-                <Typography variant="h1" color="secondary">I'm a bit of a show off!</Typography>
+                <Typography variant="h3" color="secondary">And check out my web portfolio site <a style={{ color: 'white' }} href="https://github.com/JoniBach/my-web-portfolio/">here!</a></Typography>
             </Box>
-            <Box className={styles.paralaxCard} p={4} alignItems="center">
+            {/* <Box className={styles.paralaxCard} p={4} alignItems="center">
                 <Grid container direction="row"
                     justify="center"
                     alignItems="center">
@@ -109,7 +109,7 @@ export default function MainDisplay() {
             </Box>
             <Box display="flex" justifyContent="center" p={2} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Sight_Eye.jpg)", }}>
                 <Typography align="center" variant="h4" color="secondary"> My top softskills are Empathy, Collaboration, Approachability, Creativity and Adaptability </Typography>
-            </Box>
+            </Box> */}
         </Box>
     );
 }
