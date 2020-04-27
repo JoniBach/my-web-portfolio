@@ -17,9 +17,9 @@ const NavContent = [
     buttonColor: String
     buttonlink: String
     */
-    { buttonText: 'About Me', buttonlink: '/', buttonColor: 'secondary' },
-    { buttonText: 'Creative Portfolio', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
-    { buttonText: 'Web Portfolio', buttonlink: '/webportfolio', buttonColor: 'secondary' },
+    { buttonText: 'About', buttonlink: '/', buttonColor: 'secondary' },
+    { buttonText: 'Creative', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
+    { buttonText: 'Web', buttonlink: '/webportfolio', buttonColor: 'secondary' },
 
     // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
 
