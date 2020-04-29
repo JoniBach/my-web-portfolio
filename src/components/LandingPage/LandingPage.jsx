@@ -83,15 +83,15 @@ export default function MainDisplay() {
     }));
     springsetScrollY({ springscrollY: scrollY });
 
-    const parallaxLevelA = 2;
+    const parallaxLevelA = 3;
     const interpHeaderA = springscrollY.interpolate(
         o => `translateY(${o / parallaxLevelA}px)`
     );
-    const parallaxLevelB = 3;
+    const parallaxLevelB = 5;
     const interpHeaderB = springscrollY.interpolate(
         o => `translateY(${o / parallaxLevelB}px)`
     );
-    const parallaxLevelC = 4;
+    const parallaxLevelC = 10;
     const interpHeaderC = springscrollY.interpolate(
         o => `translateY(${o / parallaxLevelC}px)`
     );
@@ -106,31 +106,31 @@ export default function MainDisplay() {
             <NavBar navContent={NavContent} navImages={NavImages} />
             <Box justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{  backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/ButterflyCover.jpg)", }}>
         
->
+
                     <animated.div style={{ transform: interpHeaderA }}>
                 
                     <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '0%', top: '0%' }}>
                     Salut!
                     </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '70%', top: '60%' }}>
+                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, right: '10%', top: '60%' }}>
                     Hug!
                     </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '80%', top: '40%' }}>
+                    {/* <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '20%', top: '40%' }}>
                     Hug!
-                    </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '80%', top: '10%' }}>
+                    </Typography> */}
+                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, right: '30%', top: '10%' }}>
                     Hallo!
                     </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '50%', top: '70%' }}>
+                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '40%', top: '70%' }}>
                     Hej!
                     </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '20%', top: '80%' }}>
+                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, right: '0%', top: '80%' }}>
                     Oi!
                     </Typography>
-                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '30%', top: '50%' }}>
+                    <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '0%', top: '50%' }}>
                     Privet
                     </Typography>
-                    <Typography align="center" variant="h1" color="primary" style={{ fontWeight: fontWeight}}>
+                    <Typography align="center" variant="h1" color="primary" style={{ fontWeight: fontWeight,  position: 'relative'}}>
                         Hey!
                     </Typography>
                 </animated.div>
@@ -138,7 +138,7 @@ export default function MainDisplay() {
 
 
                 <animated.div style={{ transform: interpHeaderB }}>
-                    <Typography align="center" variant="h1" color="primary" color="primary" style={{fontWeight: fontWeight }}>
+                    <Typography align="center" variant="h2" color="primary" color="primary" style={{fontWeight: fontWeight }}>
                         My name is James!
                     </Typography>
                 </animated.div>
@@ -148,8 +148,6 @@ export default function MainDisplay() {
                         Welcome to my site!
                     </Typography>
                 </animated.div>
-
-
             </Box>
             <Box className={styles.paralaxCard} p={4} alignItems="center">
                 <Grid container direction="row"
@@ -164,7 +162,7 @@ export default function MainDisplay() {
                                 <Spring delay={fadeDelay} to={{ opacity: isVisible ? 1 : 0 }}>
                                     {({ opacity }) => (
                                         <Typography variant="h5" color="secondary" style={{ opacity }}>
-                                           I am a front end developer with a passion for visual creativity. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of tech consulting, where I still reside today!
+                                           I am a front end developer with a passion for visual creativity. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of tech consulting.
                                         </Typography>
                                     )}
                                 </Spring>
