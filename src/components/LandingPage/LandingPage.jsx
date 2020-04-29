@@ -19,12 +19,17 @@ import { Frame } from "framer";
 import designImage from "../DemoSite/DemoSiteImages/wing_logo_01_white_circle_transparent.png"
 import appImage from "../DemoSite/DemoSiteImages/appIcon.png"
 import AppIcon from "@material-ui/icons/Apps"
+import './fadeAnimations.css';
+import { Spring } from "react-spring/renderprops";
+import VisibilitySensor from "react-visibility-sensor";
 
 
 
 
 export default function MainDisplay() {
     const styles = useStyles();
+
+
 
     const NavContent = [
         /* 
@@ -50,6 +55,9 @@ export default function MainDisplay() {
         // { navImage: logo },
     ];
 
+    const fadeDelay = 400;
+
+
     return (
 
 
@@ -68,13 +76,22 @@ export default function MainDisplay() {
                         <img src={logo} alt="Portrait" width="100%" />
                     </Grid>
                     <Grid item xs={9}>
-                        <Typography variant="h5" color="secondary">
-                            Thanks for checking out my page! My name is James Crook. I am a front end developer with one year of experience as a software engineer. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of Deloitte Systems Design & Engineering (where I am soon to complete my Industrial Placement).
-                        </Typography>
+                        <VisibilitySensor>
+                            {({ isVisible }) => (
+                                <Spring delay={fadeDelay} to={{ opacity: isVisible ? 1 : 0 }}>
+                                    {({ opacity }) => (
+                                        <Typography variant="h5" color="secondary" style={{ opacity }}>
+                                            Thanks for checking out my page! My name is James Crook. I am a front end developer with one year of experience as a software engineer. After concluding my bachelor's Degree in the creative industries, I taught myself to code and joined the fast-paced digital environment of Deloitte Systems Design & Engineering (where I am soon to complete my Industrial Placement).
+                                        </Typography>
+                                    )}
+                                </Spring>
+                            )}
+                        </VisibilitySensor>
                     </Grid>
                 </Grid>
                 <Box display="flex" justifyContent="center" p={2} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/parkinglot.png)", }}>
-                    <Typography variant="h4" color="secondary"> Weird fact: <a align="center" style={{ color: 'white' }} href="https://www.instagram.com/p/B8eL2SKnJAy/">My office band performed for the OneShow</a></Typography>
+                    <Typography variant="h4" color="secondary">Check out my web portfolio site <a style={{ color: 'white' }} href="https://github.com/JoniBach/my-web-portfolio/">here!</a></Typography>
+
                 </Box>
             </Box>
 
@@ -83,16 +100,27 @@ export default function MainDisplay() {
                     justify="center"
                     alignItems="center">
                     <Grid item xs={10}>
-                        <Typography variant="h5" color="secondary">
-                            I am passionate about injecting creativity into my work. I have a background in the creative industries stretching over 7 years. I have collated some of my favourite projects <a style={{ color: 'skyBlue' }} href="/creative portfolio" >here! </a>                            </Typography>
+                        <VisibilitySensor>
+                            {({ isVisible }) => (
+                                <Spring delay={fadeDelay} to={{ opacity: isVisible ? 1 : 0 }}>
+                                    {({ opacity }) => (
+                                        <Typography variant="h5" color="secondary" style={{ opacity }}>
+                                            I am passionate about injecting creativity into my work. I have a background in the creative industries stretching over 7 years. I have collated some of my favourite projects <a style={{ color: 'skyBlue' }} href="/creative portfolio" >here! </a>
+                                        </Typography>
+                                    )}
+                                </Spring>
+                            )}
+                        </VisibilitySensor>
                     </Grid>
                     <Grid item xs={2}>
                         <img src={designImage} alt="design image" width="100%"></img>
                     </Grid>
                 </Grid>
             </Box>
+
             <Box display="flex" justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/strut.png)", }}>
-                <Typography variant="h3" color="secondary">And check out my web portfolio site <a style={{ color: 'white' }} href="https://github.com/JoniBach/my-web-portfolio/">here!</a></Typography>
+            <Typography variant="h4" color="secondary"> Weird fact: <a align="center" style={{ color: 'white' }} href="https://www.instagram.com/p/B8eL2SKnJAy/">My office band performed for the OneShow</a></Typography>
+
             </Box>
             {/* <Box className={styles.paralaxCard} p={4} alignItems="center">
                 <Grid container direction="row"
