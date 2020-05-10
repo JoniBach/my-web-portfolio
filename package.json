@@ -9,7 +9,10 @@
     "@material-ui/lab": "^4.0.0-alpha.50",
     "@material-ui/pickers": "^3.2.10",
     "@nivo/calendar": "^0.61.1",
+    "@nivo/geo": "^0.61.1",
+    "@nivo/line": "^0.61.1",
     "@nivo/pie": "^0.61.1",
+    "@nivo/scatterplot": "^0.61.1",
     "@react-spring/addons": "^9.0.0-beta.33",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -30,6 +33,7 @@
     "react-scripts": "3.4.1",
     "react-scroll-parallax": "^2.3.2",
     "react-spring": "^8.0.27",
+    "react-vis": "^1.11.7",
     "react-visibility-sensor": "^5.1.1"
   },
   "scripts": {

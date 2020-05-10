@@ -22,7 +22,7 @@ function App() {
                 <Route exact path="/creativeportfolio" component={DemoSite} />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/webportfolio" component={ExpensesDashboard} />
-                <Route exact path="/croamer" component={Croamer} />
+                <Route exact path="/mycovidtracker" component={Croamer} />
                 </MuiPickersUtilsProvider>
             </Switch>
         </Router>
