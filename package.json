@@ -18,6 +18,8 @@
     "downshift": "^5.2.0",
     "framer": "^1.1.7",
     "framer-motion": "^1.10.3",
+    "http-proxy-middleware": "^1.0.3",
+    "mongodb": "^3.5.7",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
