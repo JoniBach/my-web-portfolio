@@ -57,8 +57,7 @@ export default function ExpensesDashboard(props) {
         { buttonText: 'About', buttonlink: '/', buttonColor: 'secondary' },
         { buttonText: 'Creative', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
         { buttonText: 'Web', buttonlink: '/webportfolio', buttonColor: 'secondary' },
-
-
+        { buttonText: 'Covid', buttonlink: '/mycovidtracker', buttonColor: 'secondary' },
     ]
     // function renderInput(inputProps) {
     //     const { InputProps, classes, ref, ...other } = inputProps;

@@ -57,7 +57,7 @@ export default function MainDisplay() {
         { buttonText: 'About', buttonlink: '/', buttonColor: 'secondary' },
         { buttonText: 'Creative', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
         { buttonText: 'Web', buttonlink: '/webportfolio', buttonColor: 'secondary' },
-
+        { buttonText: 'Covid', buttonlink: '/mycovidtracker', buttonColor: 'secondary' },
         // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
 
     ];
