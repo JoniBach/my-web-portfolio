@@ -13,7 +13,7 @@ class Croamer extends React.Component {
 
     };
     async componentDidMount() {
-        const covidData = '/covid19/casedistribution/json';
+        const covidData = 'https://cors-anywhere.herokuapp.com/https://opendata.ecdc.europa.eu/covid19/casedistribution/json';
         const res = await fetch(covidData);
         const data = await res.json();
         this.setState({ record: data.records, loading: false });
