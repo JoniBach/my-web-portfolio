@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-indent */
 import React, { useState, useEffect } from 'react';
-import { Slider, Paper, LinearProgress, Typography, Card, Box, Grid } from '@material-ui/core';
+import { Slider, Paper, LinearProgress, Typography, Box, Grid } from '@material-ui/core';
 import {
     FlexibleWidthXYPlot,
     XAxis,
@@ -22,24 +22,16 @@ export default function ButtonAppBar() {
     const handleChangeCasesRange = (event, newValue) => {
         setCasesRange(newValue);
     };
-
-
-    // const firstDate =  selectedDate.getMonth()
-
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const [startDate, setStartDate] = React.useState(new Date('02/01/2020'));
-
     const unixStartDate = startDate.getTime();
     const unixCurrentDate = selectedDate.getTime();
-
     const [value, setValue] = React.useState([unixStartDate, unixCurrentDate]);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const selectedStartDate = value[0];
     const selectedEndDate = value[value.length - 1];
-
     const useFetch = (url) => {
         const [data, setData] = useState([]);
         async function fetchUrl() {
@@ -55,7 +47,6 @@ export default function ButtonAppBar() {
 
         return [data, loading];
     };
-
 
     const [covidData] = useFetch(
         "https://cors-anywhere.herokuapp.com/https://opendata.ecdc.europa.eu/covid19/casedistribution/json"
@@ -144,7 +135,7 @@ export default function ButtonAppBar() {
                                                     <LineSeries color="orange" data={covidData.filter(d => d.location === 'United_States_of_America')} />
                                                 </FlexibleWidthXYPlot>
                                             </Box>
-                                            <Box pl={17} pr={5} pb={3} display="flex">
+                                            <Box pl={11} pr={5} pb={3} display="flex">
                                                 <Slider
                                                     value={value}
                                                     onChange={handleChange}
