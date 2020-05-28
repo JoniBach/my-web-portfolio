@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-indent */
 import React, { useState, useEffect } from 'react';
-import { Slider, LinearProgress, Typography, Card, Box, Grid } from '@material-ui/core';
+import { Slider, Paper, LinearProgress, Typography, Box, Grid } from '@material-ui/core';
 import {
     FlexibleWidthXYPlot,
     XAxis,
@@ -22,30 +22,22 @@ export default function ButtonAppBar() {
     const handleChangeCasesRange = (event, newValue) => {
         setCasesRange(newValue);
     };
-
-
-    // const firstDate =  selectedDate.getMonth()
-
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const [startDate, setStartDate] = React.useState(new Date('02/01/2020'));
-
     const unixStartDate = startDate.getTime();
     const unixCurrentDate = selectedDate.getTime();
-
     const [value, setValue] = React.useState([unixStartDate, unixCurrentDate]);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const selectedStartDate = value[0];
     const selectedEndDate = value[value.length - 1];
-
     const useFetch = (url) => {
         const [data, setData] = useState([]);
         async function fetchUrl() {
             const response = await fetch(url);
             const json = await response.json();
-            const xy = json.records.map(e => ({ x: new Date(e.year, e.month, e.day), y: e.cases, size: e.deaths, location: e.countriesAndTerritories }));
+            const xy = json.records.map(e => ({ x: new Date(`${e.month}/${e.day}/${e.year}`), y: e.cases, size: e.deaths, location: e.countriesAndTerritories }));
             setData(xy);
             setLoading(false);
         }
@@ -55,7 +47,6 @@ export default function ButtonAppBar() {
 
         return [data, loading];
     };
-
 
     const [covidData] = useFetch(
         "https://cors-anywhere.herokuapp.com/https://opendata.ecdc.europa.eu/covid19/casedistribution/json"
@@ -83,21 +74,22 @@ export default function ButtonAppBar() {
                     )
                     : (
                         <div>
+
                             <Box p={5}>
                                 <Grid container
                                     spacing={1}
                                 >
                                     <Grid item xs={12}>
-                                        <Card>
+                                        <Paper>
                                             <Box p={2} >
                                                 My Covid Traker runs on live data sourced by the
                                                 <a href="opendata.ecdc.europa.eu/covid19"> ECDC </a>
                                                 and is expecting new features soon!
                                             </Box>
-                                        </Card>
+                                        </Paper>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Card>
+                                        <Paper>
                                             <Box display="flex">
                                                 <Box pb={10} pt={5} pl={2}>
                                                     <Slider
@@ -109,12 +101,10 @@ export default function ButtonAppBar() {
                                                     />
                                                 </Box>
                                                 <FlexibleWidthXYPlot
-                                                    style={{ paddingLeft: 20 }}
                                                     height={500}
                                                     yDomain={[0, casesRange]}
                                                     xDomain={[selectedStartDate, selectedEndDate]}
-
-                                                    margin={{ bottom: 80 }}
+                                                    margin={{ bottom: 80, left: 55 }}
                                                 >
                                                     <VerticalGridLines />
                                                     <HorizontalGridLines style={{ strokeWidth: '0.5', stroke: 'gray' }} />
@@ -145,7 +135,7 @@ export default function ButtonAppBar() {
                                                     <LineSeries color="orange" data={covidData.filter(d => d.location === 'United_States_of_America')} />
                                                 </FlexibleWidthXYPlot>
                                             </Box>
-                                            <Box pl={17} pr={5} pb={3} display="flex">
+                                            <Box pl={11} pr={5} pb={3} display="flex">
                                                 <Slider
                                                     value={value}
                                                     onChange={handleChange}
@@ -156,10 +146,10 @@ export default function ButtonAppBar() {
                                                     valueLabelDisplay="off"
                                                 />
                                             </Box>
-                                        </Card>
+                                        </Paper>
                                     </Grid>
                                     <Grid item xs={12} paper>
-                                        <Card>
+                                        <Paper>
                                             <Box p={2}>
                                                 <Typography >
                                                     <span style={{ color: 'blue' }}> United Kingdom </span> |
@@ -168,7 +158,7 @@ export default function ButtonAppBar() {
                                                     <span style={{ color: 'red' }}> China </span> |
                                                 </Typography>
                                             </Box>
-                                        </Card>
+                                        </Paper>
                                     </Grid>
                                 </Grid>
                             </Box>
