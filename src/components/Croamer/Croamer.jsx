@@ -12,6 +12,7 @@ import {
     LineSeries,
     DiscreteColorLegend,
 } from 'react-vis';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -110,68 +111,95 @@ export default function ButtonAppBar() {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Paper>
-                                            <Box display="flex">
-                                                <Box pb={10} pt={5} pl={2}>
-                                                    <Slider
-                                                        value={casesRange}
-                                                        onChange={handleChangeCasesRange}
-                                                        valueLabelDisplay="auto"
-                                                        max={60000}
-                                                        orientation="vertical"
-                                                    />
-                                                </Box>
-                                                <FlexibleWidthXYPlot
-                                                    height={500}
-                                                    yDomain={[0, casesRange]}
-                                                    xDomain={[selectedStartDate, selectedEndDate]}
-                                                    margin={{ bottom: 80, left: 55 }}
-                                                >
-                                                    <VerticalGridLines />
-                                                    <HorizontalGridLines style={{ strokeWidth: '0.5', stroke: 'gray' }} />
-                                                    <YAxis />
-                                                    <XAxis
-                                                        attr="x"
-                                                        attrAxis="y"
-                                                        orientation="bottom"
-                                                        tickFormat={function tickFormat(d) { return new Date(d).toLocaleDateString() }}
-                                                        tickTotal={10}
-                                                        tickLabelAngle={-45}
-                                                    />
-                                                    <ChartLabel
-                                                        text="Days"
-                                                        includeMargin={false}
-                                                        xPercent={0.01}
-                                                        yPercent={1.07}
-                                                    />
-                                                    <ChartLabel
-                                                        text="Cases"
-                                                        includeMargin={false}
-                                                        xPercent={-0.03}
-                                                        yPercent={0.06}
-                                                    />
-                                                    {/* <LineSeries color="green" data={covidData.filter(d => d.location === selectedLocation)} />
+                                            {
+                                                newCountry.length === 0 ? 
+                                                (
+                                                    <Box 
+                                                    width="100%"
+                                                    p={2}
+                                                    fontStyle="oblique"
+                                                    align="center"
+                                                    >
+                                                        {/* Please  */}
+                                                        <Typography color="primary"> Select Region </Typography>
+                                                        and press 
+                                                        <Typography color="primary"> "ADD" </Typography>
+                                                        to view data...
+                                                        <br />
+                                                        <ArrowDownwardIcon color="primary"/>
+                                                    </Box>
+                                                                 
+                                                )
+                                                : (
+                                                    <>
+                                                        <Box display="flex">
+
+                                                            <Box pb={10} pt={5} pl={2}>
+                                                                <Slider
+                                                                    value={casesRange}
+                                                                    onChange={handleChangeCasesRange}
+                                                                    valueLabelDisplay="auto"
+                                                                    max={60000}
+                                                                    orientation="vertical"
+                                                                />
+                                                            </Box>
+
+                                                            <FlexibleWidthXYPlot
+                                                            
+                                                                height={500}
+                                                                yDomain={[0, casesRange]}
+                                                                xDomain={[selectedStartDate, selectedEndDate]}
+                                                                margin={{ bottom: 80, left: 55 }}
+                                                            >
+                                                                <VerticalGridLines />
+                                                                <HorizontalGridLines style={{ strokeWidth: '0.5', stroke: 'gray' }} />
+                                                                <YAxis />
+                                                                <XAxis
+                                                                    attr="x"
+                                                                    attrAxis="y"
+                                                                    orientation="bottom"
+                                                                    tickFormat={function tickFormat(d) { return new Date(d).toLocaleDateString() }}
+                                                                    tickTotal={8}
+                                                                    tickLabelAngle={-45}
+                                                                />
+                                                                <ChartLabel
+                                                                    text="Days"
+                                                                    includeMargin={false}
+                                                                    xPercent={0.01}
+                                                                    yPercent={1.07}
+                                                                />
+                                                                <ChartLabel
+                                                                    text="Cases"
+                                                                    includeMargin={false}
+                                                                    xPercent={-0.03}
+                                                                    yPercent={0.06}
+                                                                />
+                                                                {/* <LineSeries color="green" data={covidData.filter(d => d.location === selectedLocation)} />
                                                     <LineSeries color="blue" data={covidData.filter(d => d.location === 'United_Kingdom')} />
                                                     <LineSeries color="red" data={covidData.filter(d => d.location === 'China')} />
                                                     <LineSeries color="orange" data={covidData.filter(d => d.location === 'United_States_of_America')} /> */}
-                                                    {
-                                                        newCountry.map(e => (
-                                                            <LineSeries data={covidData.filter(d => d.location === e.selectedLocation.location)} />
-                                                        ))
-                                                    }
-                                                    
-                                                </FlexibleWidthXYPlot>
-                                            </Box>
-                                            <Box pl={11} pr={5} pb={3} display="flex">
-                                                <Slider
-                                                    value={value}
-                                                    onChange={handleChange}
-                                                    valueLabelDisplay="auto"
-                                                    aria-labelledby="range-slider"
-                                                    min={unixStartDate}
-                                                    max={unixCurrentDate}
-                                                    valueLabelDisplay="off"
-                                                />
-                                            </Box>
+                                                                {
+                                                                    newCountry.map(e => (
+                                                                        <LineSeries data={covidData.filter(d => d.location === e.selectedLocation.location)} />
+                                                                    ))
+                                                                }
+
+                                                            </FlexibleWidthXYPlot>
+
+                                                        </Box>
+                                                        <Box pl={11} pr={5} pb={3} display="flex">
+                                                            <Slider
+                                                                value={value}
+                                                                onChange={handleChange}
+                                                                valueLabelDisplay="auto"
+                                                                aria-labelledby="range-slider"
+                                                                min={unixStartDate}
+                                                                max={unixCurrentDate}
+                                                                valueLabelDisplay="off"
+                                                            />
+                                                        </Box>
+                                                    </>
+                                                  )}
                                             <Box display="flex" p={2}>
                                                 <Autocomplete
                                                     id="combo-box-demo"
@@ -202,20 +230,10 @@ export default function ButtonAppBar() {
                                         <Paper>
                                             <Box p={2}>
                                                 <Typography variant="h6">Legend:</Typography>
-                                                <Typography>
-                                                
-
-                                                    {/* <span style={{ color: 'blue' }}> United Kingdom </span> |
-                                                    <span style={{ color: 'orange' }}> United States  </span> |
-                                                    <span style={{ color: 'green' }}> Italy </span> |
-                                                    <span style={{ color: 'red' }}> China </span> */}
-                                                    {/* <br /> */}
-                                                 
-                                                    <DiscreteColorLegend
-                                                        orientation="horizontal"
-                                                        items={newCountry.map(e => ([e.selectedLocation.location]))}
-                                                    />
-                                                </Typography>
+                                                <DiscreteColorLegend
+                                                    orientation="horizontal"
+                                                    items={newCountry.map(e => ([e.selectedLocation.location]))}
+                                                />
                                             </Box>
                                         </Paper>
                                     </Grid>
