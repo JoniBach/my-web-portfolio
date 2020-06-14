@@ -174,10 +174,10 @@ export default function ButtonAppBar() {
 
                                                                 <div style={{ width: '100%', position: 'relative' }}>
 
-                                                               
-                                                                <div style={{ width: '100%' }}>
 
-                                                                
+                                                                    <div style={{ width: '100%' }}>
+
+
                                                                         <FlexibleWidthXYPlot
 
                                                                             height={500}
@@ -224,21 +224,21 @@ export default function ButtonAppBar() {
                                                             } */}
 
                                                                         </FlexibleWidthXYPlot>
-                                                                        </div>
-                                                                    
-                                                           
-                                                                       
-                                                            <div style={{ position: 'absolute', top: 0, width: '100%' }}>
-                                                                
-                                                           
-                                                                <FlexibleWidthXYPlot
+                                                                    </div>
+
+
+
+                                                                    <div style={{ position: 'absolute', top: 0, width: '100%' }}>
+
+
+                                                                        <FlexibleWidthXYPlot
                                                                             height={500}
                                                                             yDomain={[0, casesRange]}
                                                                             xDomain={[selectedStartDate, selectedEndDate]}
                                                                             margin={{ bottom: 80, left: 55 }}
-                                                                            
+
                                                                         >
-                                                                        
+
                                                                             {
                                                                                 newCountry.map(e => (
                                                                                     <LineSeries strokeDasharray={[5, 5]} data={deathData.filter(d => d.location === e.selectedLocation.location)} />
@@ -246,9 +246,9 @@ export default function ButtonAppBar() {
                                                                             }
 
                                                                         </FlexibleWidthXYPlot>
-                                                                        </div>
-                                                                        </div>
-                                                    
+                                                                    </div>
+                                                                </div>
+
 
 
                                                             </Box>
@@ -295,7 +295,19 @@ export default function ButtonAppBar() {
                                     <Grid item xs={12} paper>
                                         <Paper>
                                             <Box p={2}>
-                                                <Typography variant="h6">Legend:</Typography>
+                                            <Typography variant="h6">Legend:</Typography>
+                                                <Box display="flex" >
+                                                    <Box pr={1} >
+                                                        <Box style={{ borderBottom: '2px solid black'}} />
+                                                        <Typography variant="body2">Cases</Typography>
+
+                                                    </Box>
+                                                    <Box pr={1}>
+                                                    <Box pr={2} style={{ borderBottom: '2px dotted black'}} />
+                                                    <Typography variant="body2">Fatalities</Typography>
+                                                    </Box>
+                                      
+                                                </Box>
                                                 <DiscreteColorLegend
                                                     orientation="horizontal"
                                                     items={newCountry.map(e => ([e.selectedLocation.location]))}
