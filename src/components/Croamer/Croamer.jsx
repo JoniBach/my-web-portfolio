@@ -241,7 +241,7 @@ export default function ButtonAppBar() {
                                                                         
                                                                             {
                                                                                 newCountry.map(e => (
-                                                                                    <AreaSeries data={deathData.filter(d => d.location === e.selectedLocation.location)} />
+                                                                                    <LineSeries strokeDasharray={[5, 5]} data={deathData.filter(d => d.location === e.selectedLocation.location)} />
                                                                                 ))
                                                                             }
 
