@@ -31,36 +31,7 @@ export function debounce(func, wait = 5, immediate = true) {
 
 export default function MainDisplay() {
     const styles = useStyles();
-
-
-
-
-    const NavContent = [
-        /* 
-        Each Object can take the following peramiters:  
-        buttonText: String
-        buttonlink: String
-        buttonIcon: Array<Object>
-        buttonColor: String
-        buttonlink: String
-        */
-        { buttonText: 'About', buttonlink: '/', buttonColor: 'secondary' },
-        { buttonText: 'Creative', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
-        { buttonText: 'Web', buttonlink: '/webportfolio', buttonColor: 'secondary' },
-        { buttonText: 'Covid', buttonlink: '/mycovidtracker', buttonColor: 'secondary' },
-        // { buttonText: 'My Work', buttonlink: '/', buttonColor: 'secondary'}, 
-
-    ];
-    const NavImages = [
-        /* 
-        Each Object can take the following peramiters:
-        navImage: String
-        */
-        // { navImage: logo },
-    ];
-
     const fadeDelay = 400;
-
     const [scrollY, setScrollY] = useState(0);
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
@@ -87,11 +58,8 @@ export default function MainDisplay() {
     );
     const textColor = 'purple'
     const textColorShadow = 'grey'
-
     const fontWeight = 'bold'
     return (
-
-
         <Box >
             <NavBar style="fab" />
             <Box justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{  backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/ButterflyCover.jpg)", }}>
@@ -102,9 +70,6 @@ export default function MainDisplay() {
                     <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, right: '10%', top: '60%' }}>
                     Hug!
                     </Typography>
-                    {/* <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '20%', top: '40%' }}>
-                    Hug!
-                    </Typography> */}
                     <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, right: '30%', top: '10%' }}>
                     Hallo!
                     </Typography>
@@ -156,10 +121,8 @@ export default function MainDisplay() {
                 </Grid>
                 <Box display="flex" justifyContent="center" p={2} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/parkinglot.png)", }}>
                     <Typography variant="h4" color="secondary">Check out my web portfolio site <a style={{ color: 'white' }} href="https://github.com/JoniBach/my-web-portfolio/">here!</a></Typography>
-
                 </Box>
             </Box>
-
             <Box className={styles.paralaxCard} p={4} alignItems="center" height="50%">
                 <Grid container direction="row"
                     justify="center"
@@ -173,9 +136,6 @@ export default function MainDisplay() {
                                         <Typography variant="h5" color="secondary" style={{ opacity }}>
                                             I am passionate about injecting creativity into my work. I have a background in the creative industries stretching over 7 years. I have collated some of my favourite projects <a style={{ color: 'skyBlue' }} href="/creative portfolio" >here! </a>
                                         </Typography>
-
-
-
                                     )}
                                 </Spring>
                             )}
@@ -186,27 +146,9 @@ export default function MainDisplay() {
                     </Grid>
                 </Grid>
             </Box>
-
             <Box display="flex" justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/strut.png)", }}>
                 <Typography variant="h4" color="secondary"> Weird fact: <a align="center" style={{ color: 'white' }} href="https://www.instagram.com/p/B8eL2SKnJAy/">My office band performed for the OneShow</a></Typography>
-
             </Box>
-            {/* <Box className={styles.paralaxCard} p={4} alignItems="center">
-                <Grid container direction="row"
-                    justify="center"
-                    alignItems="center">
-
-                    <Grid item justify="center"
-                        alignItems="center" xs={9}>
-                            <Typography variant="h5" align="center" color="secondary">
-                                I love experimenting with new Node libraries and components. I have recently been developing my own applications to learn the ropes. Check out my website build <a style={{ color: 'skyBlue' }} href="https://github.com/JoniBach/my-web-portfolio/">here!</a>
-                            </Typography>
-                    </Grid>
-                </Grid>
-            </Box>
-            <Box display="flex" justifyContent="center" p={2} alignItems="center" className={styles.paralax} style={{ backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Sight_Eye.jpg)", }}>
-                <Typography align="center" variant="h4" color="secondary"> My top softskills are Empathy, Collaboration, Approachability, Creativity and Adaptability </Typography>
-            </Box> */}
         </Box>
 
     );

@@ -6,9 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
 import { motion } from "framer-motion"
-import Buttons from '../LinkToButtonsComponent/LinkToButtonsComponent'
-
-
 import {
     Grid,
     Paper,
@@ -46,36 +43,15 @@ import { ResponsivePie } from '@nivo/pie';
 import useStyles from './ExpensesDashboard.style';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ResponsiveCalendar } from '@nivo/calendar'
-// import AutoFill from '../AutoFill/AutoFill';
 import MovingList from '../MovingList/MovingList';
 import { Motion, spring } from 'react-motion';
+import {purchaseTypeOptions} from '../../config/expenses.config'
 
 
 
 export default function ExpensesDashboard(props) {
-    const buttons = [
-        { buttonText: 'About', buttonlink: '/', buttonColor: 'secondary' },
-        { buttonText: 'Creative', buttonlink: '/creativeportfolio', buttonColor: 'secondary' },
-        { buttonText: 'Web', buttonlink: '/webportfolio', buttonColor: 'secondary' },
-        { buttonText: 'Covid', buttonlink: '/mycovidtracker', buttonColor: 'secondary' },
-    ]
-    // function renderInput(inputProps) {
-    //     const { InputProps, classes, ref, ...other } = inputProps;
 
-    //     return (
-    //       <TextField
-    //         InputProps={{
-    //           inputRef: ref,
-    //           classes: {
-    //             root: classes.inputRoot,
-    //             input: classes.inputInput,
-    //           },
-    //           ...InputProps,
-    //         }}
-    //         {...other}
-    //       />
-    //     );
-    //   }
+
     // Importing Style and theme
     const classes = useStyles();
     const theme = useTheme();
@@ -102,22 +78,10 @@ export default function ExpensesDashboard(props) {
     const localDate = newSelectedDate.toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' });
     // const formattedDateCalendar = newSelectedDate.getFullYear() + '-' + (newSelectedDate.getMonth() + 1) + '-' + newSelectedDate.getDate()
     // const month = newSelectedDate.getMonth() + 1;
-
-
-
-
     const parsedDate = localDate.split("/").join("-");
-
-
-
     // Assigning the output for the purchase date to a string
     const newPurchaseDate = (!formattedDate ? 'no date selected' : formattedDate.toString());
-
-    // Assigning the output for the purchase date to a string
-
-
     // settinng event handlers to enable updating variable
-
     const handleDateChange = (date) => {
         setnewSelectedDate(date);
     };
@@ -139,10 +103,8 @@ export default function ExpensesDashboard(props) {
     const handleHideAddNewPurchase = () => {
         setShowAddNewPurchase(false);
     };
-
     // calculating total spend and resolving null values as 0 so not to break total sum
     const reducedTotalSpend = newPurchase.reduce((a, b) => a + (!b.totalSpend ? 0 : b.totalSpend), 0);
-
     // setting an event handler to add the incoming data to an object in the newPurchase array
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -156,7 +118,6 @@ export default function ExpensesDashboard(props) {
     };
 
     const { container } = props;
-
     // sorting functions for ordering the list views
     const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
         if (a.value > b.value) return 1;
@@ -178,25 +139,9 @@ export default function ExpensesDashboard(props) {
         if (a.day < b.day) return -1;
         return 0;
     });
-
-    const purchaseTypeOptions = [
-        // { typeOption: null },
-        { typeOption: 'Other' },
-        { typeOption: 'Groceries' },
-        { typeOption: 'Entertainment' },
-        { typeOption: 'Appliances' },
-        { typeOption: 'Household' },
-        { typeOption: 'Personal' },
-        { typeOption: 'Groceries' },
-        { typeOption: 'Electronics' },
-
-
-    ];
     function goBack() {
         window.history.back();
     }
-
-
     const drawer = (
         <div className={classes.root}>
 
