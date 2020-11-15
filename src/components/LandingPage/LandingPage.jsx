@@ -7,7 +7,7 @@ import { useSpring, animated, interpolate } from "react-spring";
 import { Box, Typography, Grid } from '@material-ui/core';
 import NavBar from '../NavBar/NavBar'
 import logo from '../MainDisplay/portrait-01.jpg';
-import designImage from "../DemoSite/DemoSiteImages/wing_logo_01_white_circle_transparent.png"
+import designImage from "../CreativePortfolio/DemoSiteImages/wing_logo_01_white_circle_transparent.png"
 import './fadeAnimations.css';
 import { Spring } from "react-spring/renderprops";
 import VisibilitySensor from "react-visibility-sensor";

@@ -2,7 +2,7 @@
 /* eslint-disable no-tabs */
 import React from 'react';
 import MainDisplay from './components/MainDisplay/MainDisplay';
-import DemoSite from './components/DemoSite/DemoSite';
+import DemoSite from './components/CreativePortfolio/CreativePortfolio';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ExpensesDashboard from './components/ExpensesDashboard/ExpensesDashboard';
 import DateFnsUtils from '@date-io/date-fns';
