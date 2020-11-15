@@ -4,45 +4,82 @@
 import AppBar from '@material-ui/core/AppBar';
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Box } from '@material-ui/core';
+import { Box, Fab, IconButton, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import useStyles from '../LinkToButtonsComponent/LinkToButtonsComponent.style';
 import theme from '../../theme'
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '../Drawer/Drawer'
+import InfoIcon from '@material-ui/icons/Info';
+import CreateIcon from '@material-ui/icons/Create';
+import WebIcon from '@material-ui/icons/Web';
+import DataUsageIcon from '@material-ui/icons/DataUsage';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 
-type navProps = {
-    buttonText: String;
-    buttonIcon: Array<Object>;
-    buttonlink: String;
-    buttonColour: String;
-    buttonVariant: String;
-    navImage: Array<Object>;
-}
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    fab: {
+        position: 'fixed',
+        top: theme.spacing(2),
+        left: theme.spacing(2),
+        zIndex: 2
+    },
+}));
 
-export default function DemoSite({ navContent, navImages }: navProps) {
-    const styles = useStyles(theme);
-    return (
-        <AppBar position="static">
-            <Toolbar>
-                <Box mr={1}>
+const pages = [
+    { label: 'About', link: '/', icon: <InfoIcon /> },
+    { label: 'Creative', link: '/creativeportfolio', icon: <CreateIcon /> },
+    { label: 'Web', link: '/webportfolio', icon: <WebIcon /> },
+    { label: 'Covid', link: '/mycovidtracker', icon: <DataUsageIcon /> },
+]
+const links = [
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/james-crook-492652185/?originalSubdomain=uk', icon: <LinkedInIcon /> },
+    { label: 'Instagram', link: 'https://www.instagram.com/infrageist/', icon: <InstagramIcon /> },
+    // { label: 'CV', link: 'https://github.com/JoniBach', icon: <InsertDriveFileIcon /> },
+    { label: 'GITHub', link: 'https://github.com/JoniBach', icon: <GitHubIcon /> },
+]
 
-                    {
-                        navImages.map((image) => (
-                            <img src={image.navImage} height="50px" alt="Logo" />
-                        ))}
-
-                </Box>
-                <Box align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
-                    {
-                        navContent.map((button) => (
-                            <Box px={0.5} >
-                                <Button href={button.buttonlink} color={button.buttonColor} variant={button.buttonVariant} startIcon={button.buttonIcon}>{button.buttonText}</Button>
-                            </Box>
-                        ))
+export default function NavBar(props) {
+    const classes = useStyles();
+    const Nav = () => <Drawer pages={pages} links={links} />
+    const BarNav = () => {
+        return (
+            <AppBar position="static">
+                <Toolbar>
+                    <Nav />
+                    {props.label 
+                    ? <Typography>James Crook - {props.label}</Typography>
+                    : <Typography>James Crook Dev</Typography>
                     }
-                </Box>
-            </Toolbar>
-        </AppBar>
-    );
+                </Toolbar>
+            </AppBar>
+        )
+    }
+    const FabNav = () => {
+        return (
+            <Fab color="primary" className={classes.fab} >
+                <Nav />
+            </Fab>
+        )
+    }
+    
+    if (props.style === "fab") {
+        return <FabNav />
+    } else if (props.style === "bar") {
+        return <BarNav />
+    } else {
+        return <BarNav />
+    }
 }
 

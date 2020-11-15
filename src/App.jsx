@@ -9,13 +9,10 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LandingPage from './components/LandingPage/LandingPage';
 import Croamer from './components/Croamer/Croamer';
-
-
 import './App.css';
 
 function App() {
     return (
-        
         <Router>
             <Switch>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

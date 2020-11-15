@@ -7,17 +7,7 @@ import { useSpring, animated, interpolate } from "react-spring";
 import { Box, Typography, Grid } from '@material-ui/core';
 import NavBar from '../NavBar/NavBar'
 import logo from '../MainDisplay/portrait-01.jpg';
-import Buttons from '../LinkToButtonsComponent/LinkToButtonsComponent'
-import Instagram from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import EmailIcon from '@material-ui/icons/Email';
-import DriveIcon from '@material-ui/icons/InsertDriveFile';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import { render } from "react-dom";
-import { Frame } from "framer";
 import designImage from "../DemoSite/DemoSiteImages/wing_logo_01_white_circle_transparent.png"
-import appImage from "../DemoSite/DemoSiteImages/appIcon.png"
-import AppIcon from "@material-ui/icons/Apps"
 import './fadeAnimations.css';
 import { Spring } from "react-spring/renderprops";
 import VisibilitySensor from "react-visibility-sensor";
@@ -102,13 +92,10 @@ export default function MainDisplay() {
     return (
 
 
-        <Box>
-            <NavBar navContent={NavContent} navImages={NavImages} />
+        <Box >
+            <NavBar style="fab" />
             <Box justifyContent="center" p={1} alignItems="center" className={styles.paralax} style={{  backgroundImage: "url(https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/ButterflyCover.jpg)", }}>
-        
-
                     <animated.div style={{ transform: interpHeaderA }}>
-                
                     <Typography align="center" variant="h1" style={{ fontWeight: fontWeight,  filter: "blur(8px)", position: 'absolute', color: textColorShadow, left: '0%', top: '0%' }}>
                     Salut!
                     </Typography>
@@ -134,9 +121,6 @@ export default function MainDisplay() {
                         Hey!
                     </Typography>
                 </animated.div>
-
-
-
                 <animated.div style={{ transform: interpHeaderB }}>
                     <Typography align="center" variant="h2" color="primary" color="primary" style={{fontWeight: fontWeight }}>
                         My name is James!

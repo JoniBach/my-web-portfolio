@@ -105,7 +105,7 @@ export default function DemoSite() {
 
     return (
         <Box>
-            <NavBar navContent={NavContent} navImages={NavImages} />
+            <NavBar style="bar" label="Creative"/>
             <Box px={3}>
                 <FormGroup row>
                 <FormControlLabel
