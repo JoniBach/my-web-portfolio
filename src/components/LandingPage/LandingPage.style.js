@@ -5,6 +5,12 @@ export default makeStyles(() => ({
         width: "100%",
 
     },
+    shadow: {
+      fontWeight: "bold",  
+      filter: "blur(8px)", 
+      position: 'absolute', 
+      color: "grey",
+    },
    
     centered: {
         position: 'absolute',

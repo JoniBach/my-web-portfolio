@@ -4,45 +4,61 @@
 import AppBar from '@material-ui/core/AppBar';
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Box } from '@material-ui/core';
+import { Box, Fab, IconButton, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import useStyles from '../LinkToButtonsComponent/LinkToButtonsComponent.style';
 import theme from '../../theme'
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '../Drawer/Drawer'
+import {pages, links} from '../../config/nav.cofig'
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    fab: {
+        position: 'fixed',
+        top: theme.spacing(2),
+        left: theme.spacing(2),
+        zIndex: 2
+    },
+}));
 
-type navProps = {
-    buttonText: String;
-    buttonIcon: Array<Object>;
-    buttonlink: String;
-    buttonColour: String;
-    buttonVariant: String;
-    navImage: Array<Object>;
-}
-
-export default function DemoSite({ navContent, navImages }: navProps) {
-    const styles = useStyles(theme);
-    return (
-        <AppBar position="static">
-            <Toolbar>
-                <Box mr={1}>
-
-                    {
-                        navImages.map((image) => (
-                            <img src={image.navImage} height="50px" alt="Logo" />
-                        ))}
-
-                </Box>
-                <Box align="center" justifyContent="center" alignContent="center" display="flex" className={styles.fullScreen}>
-                    {
-                        navContent.map((button) => (
-                            <Box px={0.5} >
-                                <Button href={button.buttonlink} color={button.buttonColor} variant={button.buttonVariant} startIcon={button.buttonIcon}>{button.buttonText}</Button>
-                            </Box>
-                        ))
+export default function NavBar(props) {
+    const classes = useStyles();
+    const Nav = () => <Drawer pages={pages} links={links} />
+    const BarNav = () => {
+        return (
+            <AppBar position="static">
+                <Toolbar>
+                    <Nav />
+                    {props.label 
+                    ? <Typography>James Crook - {props.label}</Typography>
+                    : <Typography>James Crook Dev</Typography>
                     }
-                </Box>
-            </Toolbar>
-        </AppBar>
-    );
+                </Toolbar>
+            </AppBar>
+        )
+    }
+    const FabNav = () => {
+        return (
+            <Fab color="primary" className={classes.fab} >
+                <Nav />
+            </Fab>
+        )
+    }
+    
+    if (props.style === "fab") {
+        return <FabNav />
+    } else if (props.style === "bar") {
+        return <BarNav />
+    } else {
+        return <BarNav />
+    }
 }
 
