@@ -4,7 +4,7 @@
 import React from "react";
 import { Box} from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
-import logo from "../MainDisplay/portrait-01.jpg";
+import logo from "./portrait-01.jpg";
 import designImage from "../CreativePortfolio/DemoSiteImages/wing_logo_01_white_circle_transparent.png";
 import "./fadeAnimations.css";
 import {

@@ -46,15 +46,10 @@ import { ResponsiveCalendar } from '@nivo/calendar'
 import { Motion, spring } from 'react-motion';
 import {purchaseTypeOptions} from '../../config/expenses.config'
 
-
-
 export default function ExpensesDashboard(props) {
-
-
     // Importing Style and theme
     const classes = useStyles();
     const theme = useTheme();
-
     // Setting state for newly entered variables
     const [newPurchase, setnewPurchase] = useState([]);
     const [newStoreName, setStoreName] = useState('');
@@ -504,9 +499,6 @@ export default function ExpensesDashboard(props) {
                         </Grid>
                     )
                         : null}
-                    {/* <Grid item xs={12}>
-                            <MovingList/>
-                        </Grid> */}
                 </Grid>
             </main>
         </div>
