@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
 import { Box} from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import logo from "../MainDisplay/portrait-01.jpg";
@@ -100,7 +100,7 @@ export default function MainDisplay() {
           During my spare time, I dabble with producing multidisciplinary
           digital artwork that often expresses my observations of modern life.
           You can find them{" "}
-          <a style={{ color: "skyBlue" }} href="/creative portfolio">
+          <a style={{ color: "skyBlue" }} href="/creativeportfolio">
             here!{" "}
           </a>{" "}
           along with some of my UI designs
