@@ -4,9 +4,7 @@
 import AppBar from '@material-ui/core/AppBar';
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Box, Fab, IconButton, Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import theme from '../../theme'
+import { Fab, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '../Drawer/Drawer'
 import {pages, links} from '../../config/nav.cofig'

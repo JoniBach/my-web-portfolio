@@ -24,7 +24,7 @@ export default function LinkToButtonsComponent({buttons}: buttonProps) {
             {
                 buttons.map((button) => (
                     <Box px={0.5} >
-                    <Button href={button.buttonlink} color={button.buttonColor} variant={button.buttonVariant} startIcon={button.buttonIcon}>{button.buttonText}</Button>
+                        <Button href={button.buttonlink} color={button.buttonColor} variant={button.buttonVariant} startIcon={button.buttonIcon}>{button.buttonText}</Button>
                     </Box>
                 ))
             }

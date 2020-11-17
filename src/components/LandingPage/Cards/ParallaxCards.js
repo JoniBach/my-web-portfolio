@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Spring } from "react-spring/renderprops";
 import VisibilitySensor from "react-visibility-sensor";
 import { Box, Typography, Grid } from "@material-ui/core";
 import useStyles from "./ParallaxCards.style";
-import { useSpring, animated, interpolate } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 export const FloatingTextWithShadow = (props) => {
   const styles = useStyles();
@@ -13,7 +13,7 @@ export const FloatingTextWithShadow = (props) => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", debounce(handleScroll));
     return () => window.removeEventListener("scroll", debounce(handleScroll));
-  }, [debounce]);
+  }, []);
   const [{ springscrollY }, springsetScrollY] = useSpring(() => ({
     springscrollY: 0,
   }));
@@ -32,6 +32,7 @@ export const FloatingTextWithShadow = (props) => {
             align={props.align}
             variant={props.variant}
             style={d.style}
+            key={i}
           >
             {d.label}
           </Typography>
@@ -57,7 +58,7 @@ export const FloatingText = (props) => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", debounce(handleScroll));
     return () => window.removeEventListener("scroll", debounce(handleScroll));
-  }, [debounce]);
+  }, []);
   const [{ springscrollY }, springsetScrollY] = useSpring(() => ({
     springscrollY: 0,
   }));
@@ -92,7 +93,7 @@ export const FloatingTextCard = (props) => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", debounce(handleScroll));
     return () => window.removeEventListener("scroll", debounce(handleScroll));
-  }, [debounce]);
+  }, []);
   const [{ springscrollY }, springsetScrollY] = useSpring(() => ({
     springscrollY: 0,
   }));
@@ -154,7 +155,7 @@ export const ImageCard = (props) => {
 
 export const TextBar = (props) => {
   const fadeDelay = 400;
-  if (props.iconPosition == "right") {
+  if (props.iconPosition === "right") {
     return (
       <Box
         py={!props.py ? 0 : props.py}
@@ -180,7 +181,7 @@ export const TextBar = (props) => {
             </VisibilitySensor>
           </Grid>
           <Grid item xs={2}>
-            <img src={props.image} alt="design image" width="100%"></img>
+            <img src={props.image} alt="design" width="100%"></img>
           </Grid>
         </Grid>
       </Box>

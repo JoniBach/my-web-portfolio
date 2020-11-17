@@ -22,9 +22,7 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
-const LinkBehavior = React.forwardRef((props, ref) => (
-  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
-));
+
 
 export default function SwipeableTemporaryDrawer(props) {
 
@@ -77,7 +75,7 @@ export default function SwipeableTemporaryDrawer(props) {
     <div>
         <React.Fragment key={anchor}>
 
-          <IconButton edge="center" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(anchor, true)}>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(anchor, true)}>
             <MenuIcon />
           </IconButton>
           <SwipeableDrawer

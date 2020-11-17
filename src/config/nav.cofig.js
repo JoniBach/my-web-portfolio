@@ -5,7 +5,6 @@ import WebIcon from '@material-ui/icons/Web';
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import MovieIcon from '@material-ui/icons/Movie';

@@ -43,7 +43,6 @@ import { ResponsivePie } from '@nivo/pie';
 import useStyles from './ExpensesDashboard.style';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ResponsiveCalendar } from '@nivo/calendar'
-import MovingList from '../MovingList/MovingList';
 import { Motion, spring } from 'react-motion';
 import {purchaseTypeOptions} from '../../config/expenses.config'
 
@@ -119,26 +118,26 @@ export default function ExpensesDashboard(props) {
 
     const { container } = props;
     // sorting functions for ordering the list views
-    const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
-        if (a.value > b.value) return 1;
-        if (a.value < b.value) return -1;
-        return 0;
-    });
-    const sortTotalSpendHighLow = newPurchase.sort(function (a, b) {
-        if (a.value < b.value) return 1;
-        if (a.value > b.value) return -1;
-        return 0;
-    });
+    // const sortTotalSpendLowHigh = newPurchase.sort(function (a, b) {
+    //     if (a.value > b.value) return 1;
+    //     if (a.value < b.value) return -1;
+    //     return 0;
+    // });
+    // const sortTotalSpendHighLow = newPurchase.sort(function (a, b) {
+    //     if (a.value < b.value) return 1;
+    //     if (a.value > b.value) return -1;
+    //     return 0;
+    // });
     const sortDateNewOld = newPurchase.sort(function (a, b) {
         if (a.day < b.day) return 1;
         if (a.day > b.day) return -1;
         return 0;
     });
-    const sortDateOldNew = newPurchase.sort(function (a, b) {
-        if (a.day > b.day) return 1;
-        if (a.day < b.day) return -1;
-        return 0;
-    });
+    // const sortDateOldNew = newPurchase.sort(function (a, b) {
+    //     if (a.day > b.day) return 1;
+    //     if (a.day < b.day) return -1;
+    //     return 0;
+    // });
     function goBack() {
         window.history.back();
     }
@@ -201,7 +200,6 @@ export default function ExpensesDashboard(props) {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        edge="start"
                         onClick={handleDrawerToggle}
                         className={classes.menuButton}
                     >
