@@ -9,6 +9,9 @@ export const Data = [
     {
         title: "Web Design",
         id: "WebDesignCardData",
+        textPosition: [50, 40],
+        textColor: 'black',
+        textAlign: 'center',
         content: [
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+fintech+style+dashboard+Screenshot.png', title: 'FinTech Style Dash Wireframes', description: 'Low Fideliy Wire Frames to guide the design and implimentation of a FinTech style personal expenses dashboard Proof of Concept, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+FinTech+Dashboard+01+wireframes.png' },
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/LoFi+jamescrookdev+Screenshot.png', title: 'jamescrookdev Wireframes', description: 'Low Fideliy Wire Frames to guide the design of this website, made in Sketch', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/my-react-portfolio+design+01.pdf' },
@@ -18,6 +21,9 @@ export const Data = [
     {
         title: "Animations",
         id: "AnimationCardData",
+        textPosition: [85, 10],
+        textColor: 'black',
+        textAlign: 'right',
         content: [
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/butterfly.png', title: 'Butterfly', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://youtu.be/R1_Z7zR6drM' },
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/parkinglot.png', title: 'Parking Lot', description: 'An animation made using Cinema4D, Adobe Mixamo, AdobeFuse, Adobe AfterEffects', href: 'https://www.youtube.com/watch?v=PoLar73R4Zw' },
@@ -30,6 +36,9 @@ export const Data = [
     {
         title: "Grad Show",
         id: "GradshowData",
+        textPosition: [15, 50],
+        textColor: 'white',
+        textAlign: 'left',
         content: [
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/trumpbot.png', title: 'Trump Bot', description: 'A simulacrum of Donald Trump driven by a TensorFlow Neural Network, animated in Maya, rendered with Arnold', href: 'https://vimeo.com/317655498' },
         ]
@@ -37,6 +46,9 @@ export const Data = [
     {
         title: "Photography",
         id: "PhotographyCardData",
+        textPosition: [85, 5],
+        textColor: 'black',
+        textAlign: 'right',
         content: [
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Two+Foxes+Complete+Sides.jpg', title: 'Two Foxes', description: 'A rendering of a building concept made to learn modeling in Cinema4D', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Two+Foxes+Complete+Sides.jpg' },
             { image: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Three+Spikes+Final.jpg', title: 'Three Spikes', description: 'A rendering of a building concept made to learn modeling in Cinema4D', href: 'https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/Three+Spikes+Final.jpg' },
