@@ -21,7 +21,7 @@ export const Data = [
     {
         title: "Animations",
         id: "AnimationCardData",
-        textPosition: [85, 10],
+        textPosition: [70, 8],
         textColor: 'black',
         textAlign: 'right',
         content: [
@@ -36,7 +36,7 @@ export const Data = [
     {
         title: "Grad Show",
         id: "GradshowData",
-        textPosition: [15, 50],
+        textPosition: [30, 50],
         textColor: 'white',
         textAlign: 'left',
         content: [
@@ -46,7 +46,7 @@ export const Data = [
     {
         title: "Photography",
         id: "PhotographyCardData",
-        textPosition: [85, 5],
+        textPosition: [70, 3],
         textColor: 'black',
         textAlign: 'right',
         content: [
