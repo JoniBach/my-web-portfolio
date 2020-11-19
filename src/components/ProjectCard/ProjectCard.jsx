@@ -7,12 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import theme from '../../theme'
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
-// import { ResponsiveCalendar } from '@nivo/calendar'
-
-
 
 const useStyles = makeStyles({
     root: {

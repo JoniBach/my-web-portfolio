@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
 import React from 'react';
-import DemoSite from './components/CreativePortfolio/CreativePortfolio';
+import CreativeDash from './components/CreativePortfolio/CreativeDashboard';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ExpensesDashboard from './components/ExpensesDashboard/ExpensesDashboard';
 import DateFnsUtils from '@date-io/date-fns';
@@ -15,7 +15,7 @@ function App() {
         <Router>
             <Switch>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Route exact path="/creativeportfolio" component={DemoSite} />
+                <Route exact path="/creativeportfolio" component={CreativeDash} />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/webportfolio" component={ExpensesDashboard} />
                 <Route exact path="/mycovidtracker" component={Croamer} />

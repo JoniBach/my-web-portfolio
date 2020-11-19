@@ -1,0 +1,117 @@
+.container {
+  position: relative;
+  color: white;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+.icon-button {
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  border-style: solid;
+  border-color: #baab8f;
+  color: #baab8f;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  background: black;
+  cursor: pointer;
+  transition: box-shadow 0.8s 0s, color 0.8s 0s;
+  box-shadow: inset 0 0 0 0 #baab8f;
+}
+.icon-button:hover {
+  box-shadow: inset 0 0 0 150px #baab8f;
+  color: black;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.card-container {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  backdrop-filter: brightness(25%) blur(2px);
+
+  position: relative;
+  white-space: nowrap;
+}
+
+.content-backdrop {
+  width: "100%";
+  height: "300px";
+  background-position: "center";
+  background-repeat: "no-repeat";
+  background-size: "cover";
+  position: "relative";
+}
+
+.card {
+  flex-shrink: 0;
+  width: 30%;
+  height: 300px;
+  margin-left: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  z-index: 1;
+}
+.container img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  overflow: hidden;
+  background-size: initial;
+  background-position: center top;
+  overflow: scroll; /* Scrollbar are always visible */
+}
+
+.container h2 {
+  font-family: unit-gothic-721, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 40px;
+  padding-bottom: 10px;
+  letter-spacing: 0.07em;
+  padding-top: 30px;
+  text-transform: uppercase;
+  line-height: 40px;
+  display: block;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  position: absolute;
+
+  transform: translate(-50%, -50%);
+}
+.container button {
+  padding: 10px;
+  border-style: solid;
+  border-color: #baab8f;
+  color: #baab8f;
+  /* "to left" / "to right" - affects initial color */
+  background: linear-gradient(to left, black 50%, #baab8f 50%) right;
+  background-size: 200%;
+  transition: 0.2s ease-out;
+  font-family: unit-gothic-720, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+.container button:hover {
+  background-position: left;
+  color: black;
+  cursor: pointer;
+}
