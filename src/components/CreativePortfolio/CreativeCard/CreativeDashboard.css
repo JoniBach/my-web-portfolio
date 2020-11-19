@@ -2,9 +2,7 @@
   position: relative;
   color: white;
 }
-::-webkit-scrollbar {
-  width: 0px;
-}
+
 .icon-button {
   padding: 10px;
   height: 40px;
@@ -58,6 +56,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  
 }
 .text {
   position: absolute;
