@@ -56,7 +56,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  
 }
 .text {
   position: absolute;
@@ -113,4 +112,25 @@
   background-position: left;
   color: black;
   cursor: pointer;
+}
+.modal-container {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: auto;
+  white-space: nowrap;
+}
+.modal-content {
+  margin: auto;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 90%;
+  margin-left: 10px;
 }
