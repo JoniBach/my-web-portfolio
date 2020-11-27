@@ -12,7 +12,6 @@ export default function ButterflyHalo() {
   const title2 = "Creative Practitioner";
   return (
     <div>
-      <NavBar style="fab" />
 
       <video autoPlay loop muted>
         <source src={Clip} type="video/mp4" />
@@ -144,6 +143,8 @@ export default function ButterflyHalo() {
         </svg>
         <img src={PixelOverlay} className="pixelate" />
       </div>
+      <NavBar style="fab" />
+
     </div>
   );
 }
