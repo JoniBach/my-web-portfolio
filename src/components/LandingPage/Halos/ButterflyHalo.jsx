@@ -13,8 +13,7 @@ export default function ButterflyHalo() {
   const title1 = "James Crook";
   const title2 = "Creative Practitioner";
   return (
-    <div>
-
+    <div >
       {/* <video autoPlay loop muted>
         <source src={Clip} type="video/mp4" />
       </video> */}
