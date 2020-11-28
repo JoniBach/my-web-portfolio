@@ -3,6 +3,10 @@
   color: white;
 }
 
+.card-backdrop {
+  background-color: #222;
+}
+
 .icon-button {
   padding: 10px;
   height: 40px;
@@ -50,12 +54,30 @@
 
 .card {
   flex-shrink: 0;
-  width: 30%;
+  border-radius: 10px;
+  margin: 10px;
+  width: 300px;
+  max-width: 70%;
   height: 300px;
-  margin-left: 5px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: inset 0px 0px 40px 10px rgba(0,0,0,0.6);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  border: 1px solid #333;
+  transition: 600ms;
+
+}
+.card:hover {
+  box-shadow: inset 0px 0px 40px 10px rgba(0, 0, 0, 0.6), 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  filter: brightness(110%);
+  transition: 200ms;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+
 }
 .text {
   position: absolute;

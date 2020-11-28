@@ -35,7 +35,7 @@ export default function CreativeCard(props) {
           style={{ position: "relative", width: "100%" }}
           onClick={() => setShowModal(true)}
         >
-          <div style={{ backgroundImage: `url(${props.image})`}}>
+          <div style={{backgroundColor: 'white'}}>
             {props.children}
           </div>
           <button className="icon-button" onClick={() => setFlip(false)}>
