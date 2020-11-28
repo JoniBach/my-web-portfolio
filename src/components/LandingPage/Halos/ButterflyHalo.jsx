@@ -7,6 +7,7 @@ import Clip from "../../CreativePortfolio/DemoSiteImages/Butterfly.png";
 // import Clip from "../../../ButterflyRewind.mp4";
 import NavBar from "../../NavBar/NavBar";
 import PixelOverlay from "../../../PixelOverlayS.png";
+import Gif1 from './AnimatedWebHaloV1.gif'
 
 export default function ButterflyHalo() {
   const title1 = "James Crook";
@@ -17,7 +18,7 @@ export default function ButterflyHalo() {
       {/* <video autoPlay loop muted>
         <source src={Clip} type="video/mp4" />
       </video> */}
-      <img className="video" src={Clip} />
+      <img className="video" src={Gif1} />
       <div className="content">
         <svg viewBox="0 0 220 120">
           <defs>
