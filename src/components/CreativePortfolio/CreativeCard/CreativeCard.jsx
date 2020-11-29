@@ -91,9 +91,20 @@ export default function CreativeCard(props) {
           {props.text}
           <br />
           {props.button ? (
-            <button onClick={() => setFlip(true)}>
+            props.flip === false
+            ? (
+              <button onClick={()=> window.open(`${props.href}`, "_blank")}
+              >
               {props.buttonText ? props.buttonText : "Learn More"}
             </button>
+            )
+            : (
+              <button onClick={() => setFlip(true)}>
+              {props.buttonText ? props.buttonText : "Learn More"}
+            </button>
+            )
+
+
           ) : (
             <div />
           )}

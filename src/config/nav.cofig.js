@@ -20,7 +20,7 @@ export const links = [
     { label: 'Instagram', link: 'https://www.instagram.com/infrageist/', icon: <InstagramIcon /> },
     // { label: 'CV', link: 'https://github.com/JoniBach', icon: <InsertDriveFileIcon /> },
     { label: 'GITHub', link: 'https://github.com/JoniBach', icon: <GitHubIcon /> },
-    { label: 'Buy a Brew', link: 'https://jonibach.github.io/buy-a-brew/', icon: <LocalBarIcon /> },
-    { label: 'Stellify Media', link: 'https://jonibach.github.io/stellify-media/', icon: <MovieIcon /> },
-    { label: 'My Kitten Bestie', link: 'https://jonibach.github.io/gsap-tut-01/', icon: <PetsIcon /> },
+    // { label: 'Buy a Brew', link: 'https://jonibach.github.io/buy-a-brew/', icon: <LocalBarIcon /> },
+    // { label: 'Stellify Media', link: 'https://jonibach.github.io/stellify-media/', icon: <MovieIcon /> },
+    // { label: 'My Kitten Bestie', link: 'https://jonibach.github.io/gsap-tut-01/', icon: <PetsIcon /> },
 ]

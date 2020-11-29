@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-tabs */
 import React from 'react';
+import WebDash from './components/CreativePortfolio/WebDashboard';
 import CreativeDash from './components/CreativePortfolio/CreativeDashboard';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ExpensesDashboard from './components/ExpensesDashboard/ExpensesDashboard';
@@ -16,10 +17,11 @@ function App() {
         <Router>
             <Switch>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Route exact path="/webportfolio" component={WebDash} />
                 <Route exact path="/creativeportfolio" component={CreativeDash} />
                 {/* <Route exact path="/" component={LandingPage} /> */}
                 <Route exact path="/" component={ButterflyHalo} />
-                <Route exact path="/webportfolio" component={ExpensesDashboard} />
+                {/* <Route exact path="/webportfolio" component={ExpensesDashboard} /> */}
                 <Route exact path="/mycovidtracker" component={Croamer} />
                 </MuiPickersUtilsProvider>
             </Switch>
