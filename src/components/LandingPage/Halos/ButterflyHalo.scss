@@ -1,29 +1,47 @@
 $font-size: 100px;
-
-body { 
-  background-color: #222; 
-  color: #FFF; 
-  font-family: 'Saira', sans-serif; 
-  font-weight: 700;
+.tv-frame {
+  background-image: url(https://textures.world/wp-content/uploads/2018/10/Mahogany-Wood-Seamless-Background-Texture-2-copy.jpg);
+  z-index: -3;
+  height: 98vh;
+  width: 96vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0px 0px 40px 10px rgba(0,0,0,0.9), 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+  border-left: 2vw solid black;
+  border-right: 2vw solid black;
+  border-top: 1vh solid black;
+  border-bottom: 1vh solid black;
+  border-radius: 10%;
+  overflow: hidden;
+}
+.backdrop {
+  background-color: #111;
+  width: 100vw;
+  height: 100vh;
+  z-index: -5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.container {
-  // width: 30%;
-  // margin: 100px;
-}
-
-text {
+svg {
   // mix-blend-mode: multiply;
   // text-shadow: 10px 10px 3px magenta;
   // background: linear-gradient(to bottom,  #00f2ff 0%,#e2fbff 50%,#0a343f 51%,#0094f7 100%);
   // filter: brightness(0.4);
   // mix-blend-mode: difference;
-  z-index: 1;
 opacity: 0.7;
 
 }
 
-
+.media {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .video {
   position: absolute;
@@ -36,11 +54,41 @@ opacity: 0.7;
   z-index: -99;
   border: 2px solid rgb(161, 154, 154);
   margin: 5px;
-  border-radius: 50px;
   box-shadow: inset 0 0 100px black;
+  border-radius: 50% / 10%;
 }
 
+#tv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  height: 95%;
+  border-radius: 50% / 10%;
+  color: white;
+  text-align: center;
+  text-indent: .1em;
+  border-top: 5px solid silver;
+  border-bottom: 5px solid silver;
+}
 
+#tv:before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  right: -4%;
+  left: -4%;
+  background: inherit;
+  border-radius: 5% / 50%;
+  border-left: 5px solid silver;
+  border-right: 5px solid silver;
+}
+
+#tv {
+  background-position: center center;
+}
 
 .pixelate {
   position: absolute;
@@ -50,9 +98,13 @@ opacity: 0.7;
   left: 50%;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  z-index: 2;
+  z-index: 20;
   margin: 5px;
   border-radius: 50px;
   opacity: 0.1;
-  
+    border-top-left-radius: 50% 4%;
+  border-bottom-left-radius: 50% 4%;
+  border-top-right-radius: 50% 4%;
+  border-bottom-right-radius: 50% 4%;
+  border-radius: 50% / 10%;
 }
