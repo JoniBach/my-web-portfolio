@@ -33,4 +33,13 @@ export const Data = [
   textAlign: "center",
 
 },
+{
+  image: "https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/WebScreenShots/ExpensesDash.png",
+  title: "Money Tracker V1",
+  href: "https://github.com/JoniBach/expense-tracker-v1",
+textPosition: [50, 30],
+textColor: "black",
+textAlign: "center",
+
+},
 ];
