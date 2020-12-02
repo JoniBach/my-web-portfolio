@@ -8,6 +8,15 @@
 export const Data = [
   {
     image:
+      "https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/WebScreenShots/CovidDash.png",
+    title: "Global Covid Tracker",
+    href: "https://jonibach.github.io/global-covid-tracker/",
+    textPosition: [50, 30],
+    textColor: "black",
+    textAlign: "center",
+  },
+  {
+    image:
       "https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/WebScreenShots/BuyABrew.png",
     title: "Buy a Brew",
     href: "https://jonibach.github.io/buy-a-brew/",
@@ -41,14 +50,5 @@ export const Data = [
     textPosition: [50, 30],
     textColor: "black",
     textAlign: "center",
-  },
-  {
-    image:
-      "https://jamescrookdev.s3.eu-west-2.amazonaws.com/images/WebScreenShots/CovidDash.png",
-    title: "Global Covid Tracker",
-    href: "https://jonibach.github.io/global-covid-tracker/",
-    textPosition: [50, 30],
-    textColor: "black",
-    textAlign: "center",
-  },
+  }
 ];
