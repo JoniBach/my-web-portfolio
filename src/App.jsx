@@ -6,7 +6,6 @@ import CreativeDash from './components/CreativePortfolio/CreativeDashboard';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import Croamer from './components/Croamer/Croamer';
 import ButterflyHalo from './components/LandingPage/Halos/ButterflyHalo'
 import './App.css';
 
@@ -18,7 +17,6 @@ function App() {
                 <Route exact path="/webportfolio" component={WebDash} />
                 <Route exact path="/creativeportfolio" component={CreativeDash} />
                 <Route exact path="/" component={ButterflyHalo} />
-                <Route exact path="/mycovidtracker" component={Croamer} />
                 </MuiPickersUtilsProvider>
             </Switch>
         </Router>
